@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/activity_home_screen.xml" value="0.1796875" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/activity_home_screen_admin.xml" value="0.22" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/activity_register.xml" value="0.1796875" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/activity_save_data.xml" value="0.1796875" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/fragment_add_new_device_fragment.xml" value="0.1796875" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/fragment_all_devices.xml" value="0.22" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/fragment_device_details.xml" value="0.22" />
+        <entry key="..\:/Users/Hannah M/AndroidStudioProjects/Sunflower/Device_Magagement_mini_project/app/src/main/res/layout/fragment_my_devices.xml" value="0.22" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/drawable/title_bg.xml" value="0.2128205128205128" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/layout/activity_home_screen.xml" value="0.15625" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/layout/activity_home_screen_admin.xml" value="0.15625" />
@@ -14,13 +24,8 @@
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/layout/fragment_my_devices.xml" value="0.1" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/menu/admin_menu.xml" value="0.2" />
         <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_change_password.xml" value="0.1" />
-        <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_home_screen_admin.xml" value="0.1" />
-        <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_home_screen_employee.xml" value="0.1" />
-        <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_save_data.xml" value="0.1" />
         <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_admin_settings.xml" value="0.1" />
-        <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_emp_settings.xml" value="0.1" />
         <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/menu/admin_menu.xml" value="0.1" />
-        <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/menu/employee_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

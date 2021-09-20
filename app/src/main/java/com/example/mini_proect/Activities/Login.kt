@@ -37,7 +37,7 @@ class login : AppCompatActivity() {
                     if(cursor.moveToNext()){
                         var pass=cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if(pass==password.text.toString()){
-                            var intent = Intent(this, Home_screen::class.java)
+                            var intent = Intent(this, HomeScreen::class.java)
                             startActivity(intent)
                             finish()
                         }
@@ -58,7 +58,7 @@ class login : AppCompatActivity() {
                     if(cursor.moveToNext()){
                         var pass=cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if(pass==password.text.toString()){
-                            var intent = Intent(this, Home_screen_admin::class.java)
+                            var intent = Intent(this, HomeScreen::class.java)
                             startActivity(intent)
                             finish()
                         }

@@ -12,7 +12,7 @@ import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_admin_settings.*
 import kotlinx.android.synthetic.main.fragment_admin_settings.view.*
 
-class Admin_settings : Fragment() {
+class AdminSettings : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

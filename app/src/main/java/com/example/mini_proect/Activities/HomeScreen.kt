@@ -1,15 +1,15 @@
 package com.example.mini_proect.Activities
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.*
+import com.example.mini_proect.fragments.My_devices
+import com.example.mini_proect.fragments.admin_request_devices
+import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 
 class Home_screen_admin : AppCompatActivity() {
@@ -34,15 +34,6 @@ class Home_screen_admin : AppCompatActivity() {
                 R.id.admin_request_devices ->{
                     fragmets(admin_request_devices())
                 }
-                R.id.admin_add_new->{
-                    fragmets(add_new_Device())
-                }
-                R.id.admin_settings->{
-                    fragmets(Admin_settings())
-                }
-                R.id.admin_logout->{
-                    alertDialog()
-                }
             }
             drawer_layout.closeDrawer(GravityCompat.START)
             true
@@ -63,20 +54,4 @@ class Home_screen_admin : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-    override fun onBackPressed() {
-        alertDialog()
-    }
-    private fun alertDialog(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Do you want to exit Inventory app?")
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
-            finish()
-        }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
-
-        }
-        builder.create()
-        builder.show()
-    }
-
 }
