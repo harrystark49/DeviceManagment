@@ -1,42 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   android:id="@+id/frame"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="right">
-
-
+        >
         <TextView
-
-            android:id="@+id/project_title"
+            android:id="@+id/update_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/title_bg"
-            android:fontFamily="@font/finger_paint"
-            android:text="Device Management"
+            android:text="Update Profile"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="20dp"
             android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/app_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="OnClick"></TextView>
+        <TextView
+            android:id="@+id/change_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/applogo"
+            android:text="Change Password"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/project_title"></ImageView>
+            app:layout_constraintTop_toBottomOf="@+id/update_profile"
+            ></TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

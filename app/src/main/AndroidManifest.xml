@@ -10,26 +10,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mini_proect">
         <activity
+            android:name=".Activities.ChangePassword"
+            android:exported="true" />
+        <activity
             android:name=".save_data"
             android:exported="true" />
         <activity
-            android:name=".Register"
+            android:name=".Activities.Register"
             android:exported="true"
             android:label="Registration_form" />
         <activity
-            android:name=".Home_screen_admin"
+            android:name=".Activities.Home_screen_admin"
             android:exported="true"
             android:label="ADMIN" />
         <activity
-            android:name=".Home_screen"
+            android:name=".Activities.Home_screen"
             android:exported="true"
             android:label="Home_Screen" />
         <activity
-            android:name=".login"
+            android:name=".Activities.login"
             android:exported="true"
             android:label="Login" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

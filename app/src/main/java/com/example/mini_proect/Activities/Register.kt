@@ -1,20 +1,16 @@
-package com.example.mini_proect
+package com.example.mini_proect.Activities
 
-import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.View.Z
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.RadioButton
 import android.widget.Toast
-import androidx.core.text.isDigitsOnly
-import androidx.core.view.get
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.mini_proect.R
+import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.save_data
 import kotlinx.android.synthetic.main.activity_register.*
-import java.lang.Character.isDigit
 
 class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -24,12 +20,12 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        var helper=dbHelper(this)
+        var helper= dbHelper(this)
         var db=helper.readableDatabase
 
         spin.onItemSelectedListener=this
         var arr=arrayOf("Admin","Employee")
-        var adap= ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,arr)
+        var adap= ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,arr)
         spin.adapter=adap
 
             emp_register_btn.setOnClickListener {
@@ -47,7 +43,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                             ,emp_email.text.toString()
                             ,emp_mobile.text.toString()
                         )){
-                        var intent=Intent(this,save_data::class.java)
+                        var intent=Intent(this, save_data::class.java)
                         intent.putExtra("ID",emp_id.text.toString())
                         intent.putExtra("NAME",emp_name.text.toString())
                         intent.putExtra("EMAIL",emp_email.text.toString())
@@ -93,7 +89,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         if(mobile.isEmpty()){
             material_emp_mobile.error="Mobile number is Mandatory"
             material_emp_mobile.isErrorEnabled=true
-        }else if( isDigit(mobile)){
+        }else if(! isDigit(mobile)){
             material_emp_mobile.error="Enter valid mobile number"
             material_emp_mobile.isErrorEnabled=true
         }else{
@@ -110,8 +106,8 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         var test=true
         var mobile_length=0
         for(num in mobile){
-            if(num in '0'..'9'){
-                test=false
+            if(num !in '0'..'9'){
+                return false
             }
             mobile_length++
         }
@@ -143,7 +139,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         return false
 
     }
-
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         user=p0?.getItemAtPosition(p2).toString()
     }

@@ -1,22 +1,15 @@
-package com.example.mini_proect
+package com.example.mini_proect.Activities
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.system.Os.close
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.mini_proect.databinding.ActivityLoginBinding
+import com.example.mini_proect.R
+import com.example.mini_proect.DataBase.dbHelper
 import kotlinx.android.synthetic.main.activity_login.*
-import android.app.Activity
-import java.security.AccessController.getContext
 
 
 class login : AppCompatActivity() {
@@ -25,7 +18,7 @@ class login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
-        var helper=dbHelper(this)
+        var helper= dbHelper(this)
         var db=helper.readableDatabase
 
         super.onCreate(savedInstanceState)
@@ -78,7 +71,7 @@ class login : AppCompatActivity() {
             }
         }
         Register_btn.setOnClickListener {
-            var reg_intent=Intent(this,Register::class.java)
+            var reg_intent=Intent(this, Register::class.java)
             startActivity(reg_intent)
         }
 

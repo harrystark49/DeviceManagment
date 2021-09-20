@@ -1,10 +1,9 @@
-package com.example.mini_proect
+package com.example.mini_proect.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.widget.Toast
+import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         app_title.alpha=0f
         app_title.animate().setDuration(3000).alpha(1f).withEndAction {
 
-            var intent= Intent(this,login::class.java)
+            var intent= Intent(this, login::class.java)
             startActivity(intent)
             finish()
         }

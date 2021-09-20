@@ -5,14 +5,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.mini_proect.R
+import com.example.mini_proect.Activities.login
+import com.example.mini_proect.DataBase.dbHelper
 import kotlinx.android.synthetic.main.activity_save_data.*
 
 class save_data : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_save_data)
-        var helper=dbHelper(this)
+        var helper= dbHelper(this)
         var db=helper.readableDatabase
         var cv=ContentValues()
 
@@ -39,12 +40,12 @@ class save_data : AppCompatActivity() {
                 if(!cursor.moveToNext()){
                     db.insert("ADD_ADMIN", null, cv)
                     Toast.makeText(this,"Admin successfully Added", Toast.LENGTH_SHORT).show()
-                    var intent= Intent(this,login::class.java)
+                    var intent= Intent(this, login::class.java)
                     startActivity(intent)
                 }else{
                 db.insert("ADD_EMPLOYEE",null,cv)
                 Toast.makeText(this,"Employee successfully Added", Toast.LENGTH_SHORT).show()
-                var intent= Intent(this,login::class.java)
+                var intent= Intent(this, login::class.java)
                 startActivity(intent)
             }}
         }
