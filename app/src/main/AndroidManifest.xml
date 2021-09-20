@@ -17,7 +17,7 @@
             android:exported="true"
             android:label="Registration_form" />
         <activity
-            android:name=".fragments.Home_screen_admin"
+            android:name=".Activities.Home_screen_admin"
             android:exported="true"
             android:label="ADMIN" />
         <activity

@@ -1,4 +1,4 @@
-package com.example.mini_proect.fragments
+package com.example.mini_proect.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,8 +6,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.example.mini_proect.My_devices
 import com.example.mini_proect.R
+import com.example.mini_proect.fragments.My_devices
+import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 
 class Home_screen_admin : AppCompatActivity() {
