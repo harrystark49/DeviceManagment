@@ -1,4 +1,4 @@
-package com.example.mini_proect.fragments
+package com.example.mini_proect.fragments.emp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.mini_proect.R
 
-class AdminRequestDevices : Fragment() {
+
+class MyDevices : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +20,6 @@ class AdminRequestDevices : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_request_devices, container, false)
+        return inflater.inflate(R.layout.fragment_my_devices, container, false)
     }
-
 }

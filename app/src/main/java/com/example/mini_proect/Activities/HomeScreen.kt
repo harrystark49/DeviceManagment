@@ -8,6 +8,8 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.*
+import com.example.mini_proect.fragments.admin.AdminRequestDevices
+import com.example.mini_proect.fragments.admin.AdminSettings
 import kotlinx.android.synthetic.main.activity_home_screen.*
 
 class HomeScreen : AppCompatActivity() {
