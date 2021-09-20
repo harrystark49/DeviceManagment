@@ -1,4 +1,4 @@
-package com.example.mini_proect
+package com.example.mini_proect.DataBase
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
