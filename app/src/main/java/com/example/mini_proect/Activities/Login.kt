@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
 import kotlinx.android.synthetic.main.activity_login.*
-import com.example.mini_proect.fragments.Home_screen_admin
 
 
 class login : AppCompatActivity() {

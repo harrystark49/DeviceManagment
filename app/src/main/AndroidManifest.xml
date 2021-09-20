@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mini_proect">
         <activity
+            android:name=".Activities.ChangePassword"
+            android:exported="true" />
+        <activity
             android:name=".save_data"
             android:exported="true" />
         <activity
@@ -17,7 +20,7 @@
             android:exported="true"
             android:label="Registration_form" />
         <activity
-            android:name=".fragments.Home_screen_admin"
+            android:name=".Activities.Home_screen_admin"
             android:exported="true"
             android:label="ADMIN" />
         <activity
