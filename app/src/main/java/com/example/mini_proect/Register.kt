@@ -124,15 +124,20 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun IsAlphaNumeric(id: String): Boolean {
         var x:Boolean=false
         var y:Boolean=false
+        var z=true
         for(c in id){
+
             if(c in 'a'..'z' || c in 'A'..'Z'){
                 x=true
             }
             else if(c in '0'..'9'){
                 y=true
             }
+            else{
+                z=false
+            }
         }
-        if(x==true && y==true){
+        if(x && y && z){
             return true
         }
         return false

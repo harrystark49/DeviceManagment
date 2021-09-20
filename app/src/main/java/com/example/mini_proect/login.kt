@@ -103,7 +103,8 @@ class login : AppCompatActivity() {
             material_email.error="Email is Mandatory"
             material_email.isErrorEnabled=true
         }
-        else if(!email.contains("@gmail.com")){
+
+        else if(!email.endsWith("@gmail.com",true)){
                 material_email.error="Enter valid Email"
                 material_email.isErrorEnabled=true
         }

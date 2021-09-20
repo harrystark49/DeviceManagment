@@ -27,8 +27,10 @@ class save_data : AppCompatActivity() {
         cv.put("MOBILE",mobile)
 
 
+
         emp_submit.setOnClickListener {
             pass_check(emp_pass.text.toString())
+            var s=emp_pass.text.toString().length
             if(emp_pass.text.toString()!=emp_confirm_password.text.toString()){
                 Toast.makeText(this,"Password mismatch", Toast.LENGTH_SHORT).show()
             }else{
@@ -74,15 +76,19 @@ class save_data : AppCompatActivity() {
     private fun IsAlphaNumeric(id: String): Boolean {
         var x:Boolean=false
         var y:Boolean=false
+        var z:Boolean = true
         for(c in id){
-            if(c in 'a'..'z'){
+            if(c in 'a'..'z')
                 x=true
-            }
-            else if(c in '0'..'9'){
+
+            else if(c in '0'..'9')
                 y=true
-            }
+
+            else
+                z=false
+
         }
-        if(x==true && y==true){
+        if(x && y&& z){
             return true
         }
         return false
