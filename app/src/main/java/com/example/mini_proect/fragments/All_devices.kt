@@ -37,8 +37,6 @@ class all_devices : Fragment() {
         recycle.adapter = adapter
 
 
-
-
         return view
     }
 

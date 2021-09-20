@@ -9,7 +9,6 @@ import com.example.mini_proect.R
 
 class Adapter(var Devices: ArrayList<dataclass>?) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var ID = itemView.findViewById<TextView>(R.id.deviceId)
