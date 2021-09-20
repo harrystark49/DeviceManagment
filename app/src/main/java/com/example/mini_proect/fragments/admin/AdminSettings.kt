@@ -1,4 +1,4 @@
-package com.example.mini_proect.fragments
+package com.example.mini_proect.fragments.admin
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import com.example.mini_proect.Activities.ChangePassword
 import com.example.mini_proect.Activities.Register
 import com.example.mini_proect.R
-import kotlinx.android.synthetic.main.fragment_admin_settings.*
 import kotlinx.android.synthetic.main.fragment_admin_settings.view.*
 
 class AdminSettings : Fragment() {
