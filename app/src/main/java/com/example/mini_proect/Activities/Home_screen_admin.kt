@@ -1,50 +1,37 @@
 package com.example.mini_proect.Activities
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.Admin_settings
-import com.example.mini_proect.fragments.add_new_Device
-import com.example.mini_proect.fragments.admin_request_devices
+import com.example.mini_proect.fragments.My_devices
 import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 
 class Home_screen_admin : AppCompatActivity() {
-    lateinit var togglebtn: ActionBarDrawerToggle
+    lateinit var togglebtn:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_home_screen_admin)
 
-        togglebtn = ActionBarDrawerToggle(this, drawer_layout, R.string.open, R.string.close)
+        togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
         togglebtn.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navigation_tool.setNavigationItemSelectedListener {
 
-            when (it.itemId) {
-                R.id.admin_all_devices -> {
+            when(it.itemId){
+                R.id.admin_all_devices ->{
                     fragmets(all_devices())
 
                 }
-                R.id.admin_request_devices -> {
-                    fragmets(admin_request_devices())
-                }
-                R.id.admin_add_new -> {
-                    fragmets(add_new_Device())
-                }
-                R.id.admin_settings -> {
-                    fragmets(Admin_settings())
-                }
-                R.id.admin_logout -> {
-                    alertDialog()
+                R.id.admin_my_devices ->{
+                    fragmets(My_devices())
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -53,34 +40,17 @@ class Home_screen_admin : AppCompatActivity() {
 
     }
 
-    fun fragmets(frag: Fragment) {
+    fun fragmets(frag:Fragment){
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_replacer, frag)
+            replace(R.id.fragment_replacer,frag)
             commit()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (togglebtn.onOptionsItemSelected(item)) {
+        if(togglebtn.onOptionsItemSelected(item)){
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onBackPressed() {
-        alertDialog()
-    }
-
-    private fun alertDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Do you want to exit Inventory app?")
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
-            finish()
-        }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
-
-        }
-        builder.create()
-        builder.show()
     }
 }
