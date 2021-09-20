@@ -8,12 +8,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.My_devices
-import com.example.mini_proect.fragments.all_devices
-import com.example.mini_proect.fragments.emp_myhistory
-import com.example.mini_proect.fragments.emp_settings
-import kotlinx.android.synthetic.main.activity_home_screen_admin.*
-import kotlinx.android.synthetic.main.activity_home_screen_admin.drawer_layout
+import com.example.mini_proect.fragments.*
+import com.example.mini_proect.fragments.emp.MyDevices
 import kotlinx.android.synthetic.main.activity_home_screen_employee.*
 
 class Home_screen_employee : AppCompatActivity() {
@@ -29,10 +25,10 @@ class Home_screen_employee : AppCompatActivity() {
         emp_navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.emp_all_devices->{
-                   Fragments(all_devices())
+                   Fragments(AllDevices())
                 }
                 R.id.emp_mydevices->{
-                    Fragments(My_devices())
+                    Fragments(MyDevices())
                 }
                 R.id.emp_myhistory->{
                     Fragments(emp_myhistory())
