@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    tools:context=".save_data">
+    tools:context=".SaveData">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/material_emp_password"

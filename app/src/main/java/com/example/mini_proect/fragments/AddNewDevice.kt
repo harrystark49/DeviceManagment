@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.mini_proect.R
 
-class admin_request_devices : Fragment() {
+
+class AddNewDevice : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,7 @@ class admin_request_devices : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_request_devices, container, false)
+        return inflater.inflate(R.layout.fragment_add_new__device, container, false)
     }
 
 }

@@ -7,19 +7,18 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.My_devices
-import com.example.mini_proect.fragments.admin_request_devices
-import com.example.mini_proect.fragments.all_devices
-import kotlinx.android.synthetic.main.activity_home_screen_admin.*
+import com.example.mini_proect.fragments.*
+import kotlinx.android.synthetic.main.activity_home_screen.*
 
-class Home_screen_admin : AppCompatActivity() {
+class HomeScreen : AppCompatActivity() {
     lateinit var togglebtn:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_home_screen_admin)
+        setContentView(R.layout.activity_home_screen)
 
-        togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
+        togglebtn= ActionBarDrawerToggle(this,drawer_layout
+            , R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
         togglebtn.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -28,11 +27,14 @@ class Home_screen_admin : AppCompatActivity() {
 
             when(it.itemId){
                 R.id.admin_all_devices ->{
-                    fragmets(all_devices())
+                    fragmets(AllDevices())
 
                 }
                 R.id.admin_request_devices ->{
-                    fragmets(admin_request_devices())
+                    fragmets(AdminRequestDevices())
+                }
+                R.id.admin_settings->{
+                    fragmets(AdminSettings())
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)

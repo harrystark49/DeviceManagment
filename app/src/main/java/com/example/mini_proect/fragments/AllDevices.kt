@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.mini_proect.R
 
 
-class add_new_Device : Fragment() {
+class AllDevices : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,8 @@ class add_new_Device : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_new__device, container, false)
+        return inflater.inflate(R.layout.fragment_all_devices, container, false)
     }
+
 
 }
