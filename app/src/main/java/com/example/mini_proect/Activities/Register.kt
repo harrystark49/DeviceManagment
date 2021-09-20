@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
-import com.example.mini_proect.SaveData
+import com.example.mini_proect.save_data
 import kotlinx.android.synthetic.main.activity_register.*
 
 class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -18,7 +18,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_register)
 
         var helper= dbHelper(this)
@@ -44,7 +43,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                             ,emp_email.text.toString()
                             ,emp_mobile.text.toString()
                         )){
-                        var intent=Intent(this, SaveData::class.java)
+                        var intent=Intent(this, save_data::class.java)
                         intent.putExtra("ID",emp_id.text.toString())
                         intent.putExtra("NAME",emp_name.text.toString())
                         intent.putExtra("EMAIL",emp_email.text.toString())

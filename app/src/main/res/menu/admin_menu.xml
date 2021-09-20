@@ -6,11 +6,11 @@
         android:title="All Devices">
     </item>
     <item
-        android:id="@+id/admin_request_devices"
-        android:title="Request Devices">
+        android:id="@+id/admin_my_devices"
+        android:title="My Devices">
     </item>
     <item
-        android:id="@+id/admin_add_new"
+        android:id="@+id/admin_my_history"
         android:title="My History">
     </item>
     <item
