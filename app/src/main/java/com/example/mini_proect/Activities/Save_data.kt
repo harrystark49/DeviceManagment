@@ -71,7 +71,6 @@ class save_data : AppCompatActivity() {
             }else{
                 material_emp_password.isErrorEnabled=false
             }
-
         }
     }
     private fun IsAlphaNumeric(id: String): Boolean {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/emp_all_devices"
+        android:title="All Devices">
+    </item>
+    <item
+        android:id="@+id/emp_mydevices"
+        android:title="My Devices">
+    </item>
+    <item
+        android:id="@+id/emp_myhistory"
+        android:title="My History">
+    </item>
+    <item
+        android:id="@+id/emp_settings"
+        android:title="Settings">
+    </item>
+    <item
+        android:id="@+id/emp_logout"
+        android:title="Logout">
+    </item>
+</menu>
