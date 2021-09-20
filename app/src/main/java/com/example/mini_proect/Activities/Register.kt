@@ -29,6 +29,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spin.adapter=adap
 
             emp_register_btn.setOnClickListener {
+
                 var cursor=db.rawQuery("SELECT * FROM ADD_ADMIN",null)
                 if(cursor.moveToNext()&&user=="Admin"){
                     Toast.makeText(this,"Admin already Created",Toast.LENGTH_SHORT).show()

@@ -25,7 +25,7 @@ class Home_screen_employee : AppCompatActivity() {
         emp_navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.emp_all_devices->{
-                   Fragments(AllDevices())
+                   Fragments(all_devices())
                 }
                 R.id.emp_mydevices->{
                     Fragments(MyDevices())
@@ -40,8 +40,8 @@ class Home_screen_employee : AppCompatActivity() {
                     alertDialog()
                 }
             }
-            val b = true
-            b
+            true
+
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -53,6 +53,8 @@ class Home_screen_employee : AppCompatActivity() {
     private fun Fragments(frag:Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.drawer_layout,frag).commit()
     }
+
+
 
     override fun onBackPressed() {
         alertDialog()
