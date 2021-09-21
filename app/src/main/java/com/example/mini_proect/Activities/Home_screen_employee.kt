@@ -29,7 +29,7 @@ class Home_screen_employee : AppCompatActivity() {
                    Fragments(all_devices())
                 }
                 R.id.emp_mydevices->{
-                    Fragments(MyDevices())
+                    Fragments(My_devices())
                 }
                 R.id.emp_myhistory->{
                     Fragments(emp_myhistory())
