@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.*
@@ -40,6 +41,7 @@ class Home_screen_employee : AppCompatActivity() {
                     alertDialog()
                 }
             }
+            drawer_layout.closeDrawer(GravityCompat.START)
             true
 
         }
