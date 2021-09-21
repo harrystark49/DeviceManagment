@@ -1,14 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.add_new_Device">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/addID"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/addDeviceID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Device Id"></EditText>
+    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtOSType"
+        android:text="OS Type  :"
+        app:layout_constraintTop_toBottomOf="@id/addID"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/txtOSType"
+        app:layout_constraintTop_toBottomOf="@id/addID"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/spinnertype"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/addVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/txtOSType"
+        >
+
+        <EditText
+            android:id="@+id/addOSVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="OS Version"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/addManu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/addVersion"
+        >
+
+        <EditText
+            android:id="@+id/addDeviceManufacturer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="manufacturer"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPhone"
+        android:text="OS Type  :"
+        app:layout_constraintTop_toBottomOf="@id/addManu"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+<Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/txtPhone"
+        app:layout_constraintTop_toBottomOf="@id/addManu"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/spinnerPhone"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtPhone"
+        android:gravity="center_horizontal"
+        android:text="Add New Device"
+        android:textAllCaps="false"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

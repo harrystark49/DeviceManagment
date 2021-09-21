@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
+import com.example.mini_proect.add_new_device_fragment
 import com.example.mini_proect.fragments.My_devices
 import com.example.mini_proect.fragments.admin_request_devices
 import com.example.mini_proect.fragments.all_devices
@@ -25,7 +26,6 @@ class Home_screen_admin : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navigation_tool.setNavigationItemSelectedListener {
-
             when(it.itemId){
                 R.id.admin_all_devices ->{
                     fragmets(all_devices())
