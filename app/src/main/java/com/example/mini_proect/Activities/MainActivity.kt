@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
         ).get(All_Devices_view_Model::class.java)
 
 
-        viewModel.insertData(this,"1","harry","visshu","dtysr")
-        viewModel.insertData(this,"2","harry","visshu","dtysr")
-        viewModel.insertData(this,"3","harry","visshu","dtysr")
+        viewModel.insertData(this,"1","Nokia","Android","Mini")
+        viewModel.insertData(this,"2","Samsung","Android","Phone")
+        viewModel.insertData(this,"3","Huweii","Andoird","Tablet")
 
 
 
@@ -38,12 +38,11 @@ class MainActivity : AppCompatActivity() {
             devicesList = it
             if(!devicesList.isEmpty()){
                 for(i in 0..devicesList.size){
-                    Log.d("DEBUG",devicesList[0].phonetype)
+                    Log.d("DEBUG",devicesList[i].phonetype)
                 }
             }else{
                 Toast.makeText(this, "List is Empty!!!", Toast.LENGTH_SHORT).show()
             }
-            
         })
 
 
