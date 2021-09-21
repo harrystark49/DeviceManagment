@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mini_proect.DataBase.All_Devices_Repository.Companion.insertData
+import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
 import kotlinx.android.synthetic.main.activity_login.*
@@ -26,6 +29,8 @@ class login : AppCompatActivity() {
 
         login_btn.setOnClickListener {
 
+            Log.e("roomdb","Room")
+            All_Devices_view_Model().insertData(this,"123","harr","fhadfl","sfds")
             check_empty_fileds(email_id.text.toString(), password.text.toString())
             if (!admin_check.isChecked) {
                 var args = arrayOf(email_id.text.toString())
@@ -37,7 +42,7 @@ class login : AppCompatActivity() {
                     if(cursor.moveToNext()){
                         var pass=cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if(pass==password.text.toString()){
-                            var intent = Intent(this, Home_screen::class.java)
+                            var intent = Intent(this, Home_screen_employee::class.java)
                             startActivity(intent)
                             finish()
                         }

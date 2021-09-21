@@ -1,4 +1,4 @@
-package com.example.mini_proect.fragments
+package com.example.mini_proect.fragments.admin
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.mini_proect.R
 
-class admin_request_devices : Fragment() {
+class AdminRequestDevices : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

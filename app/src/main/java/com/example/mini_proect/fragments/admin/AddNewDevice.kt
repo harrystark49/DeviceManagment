@@ -1,4 +1,4 @@
-package com.example.mini_proect.fragments
+package com.example.mini_proect.fragments.admin
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.mini_proect.R
 
 
-class add_new_Device : Fragment() {
+class AddNewDevice : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -31,7 +31,6 @@ class save_data : AppCompatActivity() {
 
         emp_submit.setOnClickListener {
             pass_check(emp_pass.text.toString())
-            var s=emp_pass.text.toString().length
             if(emp_pass.text.toString()!=emp_confirm_password.text.toString()){
                 Toast.makeText(this,"Password mismatch", Toast.LENGTH_SHORT).show()
             }else{
@@ -71,7 +70,6 @@ class save_data : AppCompatActivity() {
             }else{
                 material_emp_password.isErrorEnabled=false
             }
-
         }
     }
     private fun IsAlphaNumeric(id: String): Boolean {
