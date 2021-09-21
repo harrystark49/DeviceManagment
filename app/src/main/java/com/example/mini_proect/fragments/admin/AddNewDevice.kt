@@ -9,6 +9,7 @@ import android.widget.*
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.view.*
+import kotlinx.android.synthetic.main.alldeviceviewitem.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
 
