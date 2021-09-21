@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.mini_proect.Activities.AdminDetails
 import com.example.mini_proect.Activities.ChangePassword
 import com.example.mini_proect.Activities.Register
 import com.example.mini_proect.R
@@ -34,6 +35,10 @@ class emp_settings : Fragment() {
         }
         view.emp_change_password.setOnClickListener {
             val intent = Intent(context, ChangePassword::class.java)
+            startActivity(intent)
+        }
+        view.adminDetails.setOnClickListener {
+            val intent = Intent(context,AdminDetails::class.java)
             startActivity(intent)
         }
         return view
