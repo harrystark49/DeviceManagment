@@ -9,8 +9,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
-import com.example.mini_proect.add_new_device_fragment
-import com.example.mini_proect.fragments.My_devices
 import com.example.mini_proect.fragments.admin.AddNewDevice
 import com.example.mini_proect.fragments.admin.AdminRequestDevices
 import com.example.mini_proect.fragments.admin.AdminSettings
