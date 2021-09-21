@@ -56,8 +56,6 @@ class Home_screen_employee : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.drawer_layout,frag).commit()
     }
 
-
-
     override fun onBackPressed() {
         alertDialog()
     }
