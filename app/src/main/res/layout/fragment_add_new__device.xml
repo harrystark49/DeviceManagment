@@ -1,117 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.admin.AddNewDevice">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addID"
+            android:id="@+id/deviceID"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            app:endIconMode="clear_text"
+            android:layout_margin="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/addDeviceID"
+                android:id="@+id/device_id"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Device ID"></EditText>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/os_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="OS Type : "
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="OS Type:"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addID" />
+            app:layout_constraintTop_toBottomOf="@+id/deviceID"></TextView>
 
         <Spinner
-            android:id="@+id/spinnertype"
+            android:id="@+id/os_type_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv1"
-            app:layout_constraintTop_toBottomOf="@id/addID" />
-
+            android:layout_margin="20dp"
+            app:layout_constraintStart_toEndOf="@+id/os_type"
+            app:layout_constraintTop_toBottomOf="@+id/deviceID"></Spinner>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addVersion"
+            android:id="@+id/os_version_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:endIconMode="clear_text"
+            android:layout_margin="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv1">
+            app:layout_constraintTop_toBottomOf="@+id/os_type">
 
             <EditText
-                android:id="@+id/addOsVersion"
+                android:id="@+id/os_version"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="61dp"
                 android:hint="OS Version"></EditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addManu"
+            android:id="@+id/manufacture_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addVersion">
+            app:layout_constraintTop_toBottomOf="@+id/os_version_layout"
+            tools:ignore="MissingConstraints">
 
             <AutoCompleteTextView
-                android:id="@+id/addDeviceManufacturer"
+                android:id="@+id/Manufacture"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Manufacturer"></AutoCompleteTextView>
+                android:layout_height="50dp"
+                android:paddingLeft="20dp"
+                android:hint="Manufacture"></AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tv2"
+            android:id="@+id/phone_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Phone Type : "
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Phone Type:"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addManu" />
+            app:layout_constraintTop_toBottomOf="@+id/manufacture_layout"></TextView>
 
         <Spinner
-            android:id="@+id/spinnerPhone"
+            android:id="@+id/phoneType_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv1"
-            app:layout_constraintTop_toBottomOf="@id/addManu" />
+            android:layout_margin="20dp"
+            app:layout_constraintStart_toEndOf="@+id/phone_type"
+            app:layout_constraintTop_toBottomOf="@+id/manufacture_layout"></Spinner>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/addDeviceButton"
-            android:text="Add Device"
-            android:textAllCaps="false"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinnerPhone"
+            android:layout_marginBottom="20dp"
+            android:text="add new device"
+            app:layout_constraintTop_toTopOf="@+id/phoneType_spinner"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"/>
+            app:layout_constraintStart_toStartOf="parent">
+
+        </Button>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
