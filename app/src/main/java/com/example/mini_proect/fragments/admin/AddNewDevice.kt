@@ -20,7 +20,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var spin = this.spinnertype
+        var spin = spinnertype
         val adapter = activity?.let {
             ArrayAdapter<String>(
                 it,
@@ -28,9 +28,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
                 types
             )
         }
-        if (adapter != null) {
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
+        adapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spin.adapter = adapter
         spin.onItemSelectedListener = this
 
