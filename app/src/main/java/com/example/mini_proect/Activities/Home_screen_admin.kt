@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -37,6 +38,7 @@ class Home_screen_admin : AppCompatActivity() {
                     fragmets(AdminRequestDevices())
                 }
                 R.id.add_newDevice->{
+                    Toast.makeText(this, "fafb", Toast.LENGTH_SHORT).show()
                     fragmets(AddNewDevice())
                 }
                 R.id.admin_settings->{

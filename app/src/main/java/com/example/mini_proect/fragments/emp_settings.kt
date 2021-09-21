@@ -50,7 +50,6 @@ class emp_settings : Fragment() {
             val intent = Intent(context,ChangePassword::class.java)
             startActivity(intent)
         }
-        view.admin
         return view
     }
 
