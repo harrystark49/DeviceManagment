@@ -29,8 +29,7 @@ class login : AppCompatActivity() {
 
         login_btn.setOnClickListener {
 
-            Log.e("roomdb","Room")
-            All_Devices_view_Model().insertData(this,"123","harr","fhadfl","sfds")
+
             check_empty_fileds(email_id.text.toString(), password.text.toString())
             if (!admin_check.isChecked) {
                 var args = arrayOf(email_id.text.toString())
