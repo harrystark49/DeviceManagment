@@ -32,9 +32,7 @@ class Home_screen_admin : AppCompatActivity() {
                     fragmets(all_devices())
 
                 }
-                R.id.admin_my_devices ->{
-                    fragmets(My_devices())
-                }
+
                 R.id.admin_logout->{
                     alertDialog()
                 }
