@@ -31,17 +31,26 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         val view = inflater.inflate(R.layout.fragment_add_new__device, container, false)
         view.os_type_spinner.onItemSelectedListener = this
         view.phoneType_spinner.onItemSelectedListener = this
-        var arr = arrayOf("IOS", "Android")
+        var arr = arrayOf("Android","IOS", )
         var arr2 = arrayOf("Phone","Tablet")
+        var manufactures= arrayOf("Honor","Samsung","Oppo","Realme","Redme","Vivo")
         var adap =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr)
         view.os_type_spinner.adapter = adap
         var adap2 = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr2)
         view.phoneType_spinner.adapter = adap2
+
+        var adapt = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, manufactures)
+        view.Manufacture.setAdapter(adapt)
         return view
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val text: String = os_type_spinner.getSelectedItem().toString()
+
+        if (text=="IOS"){
+            Manufacture.setText("Apple")
+        }
 
     }
 
