@@ -80,7 +80,9 @@
                 android:id="@+id/Manufacture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Manufacture"></EditText>
+                android:hint="Manufacture"
+                android:onClick="list"
+                ></EditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -113,6 +115,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
         </Button>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

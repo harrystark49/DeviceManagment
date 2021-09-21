@@ -32,12 +32,13 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         view.os_type_spinner.onItemSelectedListener = this
         view.phoneType_spinner.onItemSelectedListener = this
         var arr = arrayOf("IOS", "Android")
-        var arr2 = arrayOf("Phone","Tablet")
+        var arr2 = arrayOf("Phone", "Tablet")
         var adap =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr)
         view.os_type_spinner.adapter = adap
         var adap2 = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr2)
         view.phoneType_spinner.adapter = adap2
+
         return view
     }
 
