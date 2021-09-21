@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.*
@@ -34,7 +35,7 @@ class Home_screen_employee : AppCompatActivity() {
                    Fragments(all_devices())
                 }
                 R.id.emp_mydevices->{
-                    Fragments(MyDevices())
+                    Fragments(My_devices())
                 }
                 R.id.emp_myhistory->{
                     Fragments(emp_myhistory())
@@ -59,6 +60,7 @@ class Home_screen_employee : AppCompatActivity() {
                     alertDialog()
                 }
             }
+            drawer_layout.closeDrawer(GravityCompat.START)
             true
 
         }
@@ -72,8 +74,6 @@ class Home_screen_employee : AppCompatActivity() {
     private fun Fragments(frag:Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.drawer_layout,frag).commit()
     }
-
-
 
     override fun onBackPressed() {
         alertDialog()
