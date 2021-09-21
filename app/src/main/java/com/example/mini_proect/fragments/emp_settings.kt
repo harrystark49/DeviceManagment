@@ -1,11 +1,16 @@
 package com.example.mini_proect.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.mini_proect.Activities.ChangePassword
+import com.example.mini_proect.Activities.Register
 import com.example.mini_proect.R
+import kotlinx.android.synthetic.main.fragment_admin_settings.*
+import kotlinx.android.synthetic.main.fragment_emp_settings.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,26 +40,18 @@ class emp_settings : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_emp_settings, container, false)
+
+       val view=  inflater.inflate(R.layout.fragment_emp_settings, container, false)
+       view.emp_update_profile.setOnClickListener {
+           val intent= Intent(context,Register::class.java)
+           startActivity(intent)
+       }
+        view.emp_change_password.setOnClickListener {
+            val intent = Intent(context,ChangePassword::class.java)
+            startActivity(intent)
+        }
+        view.admin
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment emp_settings.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            emp_settings().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
