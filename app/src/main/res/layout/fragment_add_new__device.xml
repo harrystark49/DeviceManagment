@@ -76,11 +76,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/addVersion">
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/addDeviceManufacturer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Manufacturer"></EditText>
+                android:hint="Manufacturer"></AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
