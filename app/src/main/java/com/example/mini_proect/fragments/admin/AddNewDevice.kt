@@ -31,7 +31,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         val view = inflater.inflate(R.layout.fragment_add_new__device, container, false)
         view.os_type_spinner.onItemSelectedListener = this
         view.phoneType_spinner.onItemSelectedListener = this
-        var arr = arrayOf("OS", "Android")
+        var arr = arrayOf("IOS", "Android")
         var arr2 = arrayOf("Phone","Tablet")
         var adap =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr)

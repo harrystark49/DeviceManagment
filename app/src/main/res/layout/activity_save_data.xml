@@ -17,7 +17,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:errorIconDrawable="@null"
+        >
 
         <EditText
             android:id="@+id/emp_pass"
@@ -38,7 +40,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/material_emp_password"
         app:layout_goneMarginTop="20dp"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:errorIconDrawable="@null"
+        >
 
         <EditText
             android:id="@+id/emp_confirm_password"
