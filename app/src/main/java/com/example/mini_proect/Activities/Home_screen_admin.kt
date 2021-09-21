@@ -12,6 +12,7 @@ import com.example.mini_proect.R
 import com.example.mini_proect.fragments.My_devices
 import com.example.mini_proect.fragments.admin.AddNewDevice
 import com.example.mini_proect.fragments.admin.AdminRequestDevices
+import com.example.mini_proect.fragments.admin.AdminSettings
 import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 
@@ -39,6 +40,9 @@ class Home_screen_admin : AppCompatActivity() {
                 }
                 R.id.add_newDevice->{
                     fragmets(AddNewDevice())
+                }
+                R.id.admin_settings->{
+                    fragmets(AdminSettings())
                 }
                 R.id.admin_logout->{
                     alertDialog()
