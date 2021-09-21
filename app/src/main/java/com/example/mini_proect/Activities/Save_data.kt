@@ -56,6 +56,7 @@ class save_data : AppCompatActivity() {
         if(pass.isEmpty()){
             material_emp_password.isErrorEnabled=true
             material_emp_password.error="provide password"
+            material_emp_password.setErrorIconDrawable(0)
         }else if(!IsAlphaNumeric(pass)){
             material_emp_password.isErrorEnabled=true
             material_emp_password.error="Password should be alphanumeric"
