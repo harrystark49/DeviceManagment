@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 class All_Devices_view_Model:ViewModel() {
 
     var emplogindata: LiveData<List<All_Devices_Entity>>?=null
+    var Devicedata: LiveData<List<All_Devices_Entity>>?=null
 
     fun insertData(context: Context, phn_id:String, phn_type: String, manufacture: String,version:String) {
         All_Devices_Repository.insertData(context,phn_id,phn_type,manufacture,version)
@@ -18,6 +19,10 @@ class All_Devices_view_Model:ViewModel() {
     }
 
 
+    fun getDeviceDetails(context: Context) : LiveData<List<All_Devices_Entity>>? {
+        Devicedata = All_Devices_Repository.DeviceDetails(context)
+        return Devicedata
+    }
 
 
     fun getLoginDetails(context: Context) : LiveData<List<All_Devices_Entity>>? {
