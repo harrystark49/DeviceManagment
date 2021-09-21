@@ -16,12 +16,14 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     lateinit var user:String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         var helper= dbHelper(this)
         var db=helper.readableDatabase
+
 
         spin.onItemSelectedListener=this
         var arr=arrayOf("Admin","Employee")
@@ -31,14 +33,16 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             emp_register_btn.setOnClickListener {
 
                 var cursor=db.rawQuery("SELECT * FROM ADD_ADMIN",null)
-                if(cursor.moveToNext()&&user=="Admin"){
+                if(cursor.moveToNext() && user=="Admin"){
                     Toast.makeText(this,"Admin already Created",Toast.LENGTH_SHORT).show()
                     emp_name.setText("")
                     emp_mobile.setText("")
                     emp_id.setText("")
                     emp_email.setText("")
                     emp_id.requestFocus()
-                }else{
+                }
+
+                    else{
                         if(Check_for_empty_fields(emp_id.text.toString()
                             ,emp_name.text.toString()
                             ,emp_email.text.toString()
@@ -76,6 +80,8 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             material_emp_name.isErrorEnabled=false
             x++
         }
+
+
         if(email.isEmpty()){
             material_emp_email.error="Email is Mandatory"
             material_emp_email.isErrorEnabled=true
@@ -84,9 +90,23 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             material_emp_email.error="Enter valid Email"
             material_emp_email.isErrorEnabled=true
         }else{
-            material_emp_email.isErrorEnabled=false
-            x++
+
+            var helper= dbHelper(this)
+            var db=helper.readableDatabase
+
+            var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_email.text.toString()))
+            if(cursor.moveToNext()){
+                material_emp_email.error="Email already exists"
+                material_emp_email.isErrorEnabled=true
+            }else{
+                material_emp_email.isErrorEnabled=false
+                x++
+            }
+
+
         }
+
+
         if(mobile.isEmpty()){
             material_emp_mobile.error="Mobile number is Mandatory"
             material_emp_mobile.isErrorEnabled=true
