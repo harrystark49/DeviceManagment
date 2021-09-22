@@ -8,21 +8,20 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mini_proect.DataBase.All_Devices_Repository.Companion.insertData
-import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
 import kotlinx.android.synthetic.main.activity_login.*
 
 
 class login : AppCompatActivity() {
+        var helper= dbHelper(this)
+        var db=helper.readableDatabase
 
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
-        var helper= dbHelper(this)
-        var db=helper.readableDatabase
+
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -30,7 +29,6 @@ class login : AppCompatActivity() {
         login_btn.setOnClickListener {
 
             Log.e("roomdb","Room")
-            All_Devices_view_Model().insertData(this,"123","harr","fhadfl","sfds")
             check_empty_fileds(email_id.text.toString(), password.text.toString())
             if (!admin_check.isChecked) {
                 var args = arrayOf(email_id.text.toString())
@@ -80,6 +78,8 @@ class login : AppCompatActivity() {
             startActivity(reg_intent)
         }
 
+
+
     }
 
     override fun onBackPressed() {
@@ -117,4 +117,6 @@ class login : AppCompatActivity() {
             material_password.isErrorEnabled=false
         }
     }
+
+
 }

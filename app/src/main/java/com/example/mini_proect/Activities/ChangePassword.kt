@@ -2,6 +2,7 @@ package com.example.mini_proect.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_change_password.*
 
@@ -9,10 +10,16 @@ class ChangePassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_password)
+
+        var helper= dbHelper(this)
+        var db=helper.readableDatabase
+
         var OldPass= old_password.text.toString()
         val NewPass= new_password.text.toString()
         val ConNew = admin_confirm_password.text.toString()
         submit_button.setOnClickListener {
+
+
 
         }
     }
