@@ -41,7 +41,6 @@ class Home_screen_employee : AppCompatActivity() {
                     Fragments(emp_myhistory())
                 }
                 R.id.emp_settings-> {
-
                     var b: Bundle? = intent.extras
                     var email = b?.getString("EmpEmail").toString()
                     var pass = b?.getString("EmpPass").toString()
@@ -49,7 +48,6 @@ class Home_screen_employee : AppCompatActivity() {
                     val mBundle = Bundle()
                     mBundle.putString("EmpEmail", email)
                     mBundle.putString("EmpPass", pass)
-
                     myFrag.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag)

@@ -62,8 +62,7 @@
                 android:id="@+id/os_version"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
-                android:hint="OS Version">'
-            </EditText>
+                android:hint="OS Version"></EditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -106,6 +105,7 @@
             app:layout_constraintTop_toBottomOf="@+id/manufacture_layout"></Spinner>
 
         <Button
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -121,12 +121,9 @@
             android:id="@+id/Manufacture_Devices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/Manufacture"
-
-            app:layout_constraintTop_toBottomOf="@+id/phoneType_spinner">
-
-
-        </TextView>
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"></TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
