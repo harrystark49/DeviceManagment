@@ -8,27 +8,29 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mini_proect.DataBase.All_Devices_Repository.Companion.insertData
+import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 
 class login : AppCompatActivity() {
-        var helper= dbHelper(this)
-        var db=helper.readableDatabase
 
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
-
+        var helper= dbHelper(this)
+        var db=helper.readableDatabase
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         login_btn.setOnClickListener {
 
-            Log.e("roomdb","Room")
+
             check_empty_fileds(email_id.text.toString(), password.text.toString())
             if (!admin_check.isChecked) {
                 var args = arrayOf(email_id.text.toString())
@@ -40,7 +42,10 @@ class login : AppCompatActivity() {
                     if(cursor.moveToNext()){
                         var pass=cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if(pass==password.text.toString()){
+
                             var intent = Intent(this, Home_screen_employee::class.java)
+                            intent.putExtra("EmpEmail",email_id.text.toString())
+                            intent.putExtra("EmpPass",password.text.toString())
                             startActivity(intent)
                             finish()
                         }
@@ -59,9 +64,13 @@ class login : AppCompatActivity() {
                     var cursor=db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=? AND PASSWORD=?",login_details)
 
                     if(cursor.moveToNext()){
+
                         var pass=cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if(pass==password.text.toString()){
+
                             var intent = Intent(this, Home_screen_admin::class.java)
+                            intent.putExtra("AdminEmail",email_id.text.toString())
+                            intent.putExtra("AdminPass",password.text.toString())
                             startActivity(intent)
                             finish()
                         }
@@ -77,8 +86,6 @@ class login : AppCompatActivity() {
             var reg_intent=Intent(this, Register::class.java)
             startActivity(reg_intent)
         }
-
-
 
     }
 
@@ -117,6 +124,4 @@ class login : AppCompatActivity() {
             material_password.isErrorEnabled=false
         }
     }
-
-
 }

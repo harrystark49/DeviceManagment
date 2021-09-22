@@ -4,14 +4,18 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.My_devices
+import com.example.mini_proect.fragments.admin.AddNewDevice
+import com.example.mini_proect.fragments.admin.AdminRequestDevices
+import com.example.mini_proect.fragments.admin.AdminSettings
 import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 class Home_screen_admin : AppCompatActivity() {
     lateinit var togglebtn:ActionBarDrawerToggle
@@ -26,14 +30,37 @@ class Home_screen_admin : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navigation_tool.setNavigationItemSelectedListener {
-
             when(it.itemId){
                 R.id.admin_all_devices ->{
                     fragmets(all_devices())
 
                 }
-                R.id.admin_my_devices ->{
-                    fragmets(My_devices())
+                R.id.request_devices ->{
+                    fragmets(AdminRequestDevices())
+                }
+                R.id.add_newDevice->{
+                    Toast.makeText(this, "fafb", Toast.LENGTH_SHORT).show()
+                    fragmets(AddNewDevice())
+                }
+                R.id.admin_settings->{
+                    var b:Bundle? = intent.extras
+                    var email = b?.getString("AdminEmail").toString()
+                    var pass = b?.getString("AdminPass").toString()
+
+
+
+
+
+                    val myFrag = AdminSettings()
+                    val mBundle=Bundle()
+                    mBundle.putString("AdminEmail",email)
+                    mBundle.putString("AdminPass",pass)
+
+                    myFrag.arguments = mBundle
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragment_replacer,myFrag)
+                        commit()
+                    }
                 }
                 R.id.admin_logout->{
                     alertDialog()
