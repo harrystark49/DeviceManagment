@@ -41,7 +41,7 @@ class AdminSettings : Fragment() {
 
             val intent = Intent(context, ChangePassword::class.java)
             intent.putExtra("AdminEmail",email)
-            intent.putExtra("AdminPass",email)
+            intent.putExtra("AdminPass",pass)
 
             startActivity(intent)
         }

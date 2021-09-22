@@ -31,41 +31,81 @@ class ChangePassword : AppCompatActivity() {
             val NewPass = new_password.text.toString()
             val ConNew = admin_confirm_password.text.toString()
 
-            if (NewPass.equals(ConNew)) {
-                if(IsAlphaNumeric(NewPass) ){
-                if (empEmail != null && empPass.equals(OldPass)) {
-                    if(NewPass.length >=8 && NewPass.length<=10){
-                    var cv = ContentValues()
-                    cv.put("PASSWORD", NewPass)
-                    db.update("ADD_EMPLOYEE", cv, "EMAIL=?", arrayOf(empEmail))
-                }
-                    else{
-                        Toast.makeText(
-                            this,
-                            "Password should inbetween 8 and 10",
-                            Toast.LENGTH_SHORT
-                        ).show()
+
+            if(OldPass==empPass){
+                oldpassword.isErrorEnabled = false
+                if(checkDetails(NewPass,ConNew)) {
+                    if (!OldPass.equals(NewPass)) {
+                        var cv = ContentValues()
+                        cv.put("PASSWORD", NewPass)
+                        db.update("ADD_EMPLOYEE", cv, "EMAIL=?", arrayOf(empEmail))
+
+                        Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
+                        var i=Intent(this,Home_screen_employee::class.java)
+                        startActivity(i)
                     }
-                } else if (adminEmail != null && adminPass.equals(OldPass)) {
-                    var cv = ContentValues()
-                    cv.put("PASSWORD", NewPass)
-                    db.update("ADD_ADMIN", cv, "EMAIL=?", arrayOf(adminEmail))
                 }
-            } else{
-                    Toast.makeText(
-                        this,
-                        "Password should be alphanumeric",
-                        Toast.LENGTH_SHORT
-                    ).show()
-            }}else {
-                Toast.makeText(
-                    this,
-                    "new password and confirm password are mismatch",
-                    Toast.LENGTH_SHORT
-                ).show()
+
+                else
+                    Toast.makeText(this, "Old password and New password can't be same", Toast.LENGTH_SHORT).show()
             }
+
+            else if(OldPass==adminPass){
+                oldpassword.isErrorEnabled = false
+                if(checkDetails(NewPass,ConNew) ) {
+                    if (!OldPass.equals(NewPass)) {
+                        var cv = ContentValues()
+                        cv.put("PASSWORD", NewPass)
+                        db.update("ADD_ADMIN", cv, "EMAIL=?", arrayOf(adminEmail))
+
+                        Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
+                        var i=Intent(this,Home_screen_admin::class.java)
+                        startActivity(i)
+                    }
+
+                    else
+                        Toast.makeText(this, "Old password and New password can't be same", Toast.LENGTH_SHORT).show()
+
+                }
+
+            }
+
+            else{
+                oldpassword.error = "Current password is incorrect"
+                oldpassword.isErrorEnabled = true
+            }
+
+
+
         }
     }
+
+    private fun checkDetails(newPass:String,conPass:String):Boolean {
+        if(newPass.isEmpty()){
+            New_password.error = "Enter password"
+            New_password.isErrorEnabled = true
+        }
+        else if (!IsAlphaNumeric(newPass)) {
+            New_password.error = "Password should be alphanumeric"
+            New_password.isErrorEnabled = true
+        } else if (!(newPass.length >= 8 && newPass.length <= 10)) {
+            New_password.error = "Password should be in between 8 and 10 characters"
+            New_password.isErrorEnabled = true
+        } else if (!newPass.equals(conPass)) {
+            New_password.isErrorEnabled=false
+            confirm_new_layout.error = "New Password and Confirm Password are mis-matched"
+            confirm_new_layout.isErrorEnabled = true
+
+        } else {
+            confirm_new_layout.isErrorEnabled = false
+            New_password.isErrorEnabled=false
+            return true
+        }
+        return false
+    }
+
+
+
 
 
         private fun IsAlphaNumeric(id: String): Boolean {
@@ -73,7 +113,7 @@ class ChangePassword : AppCompatActivity() {
             var y: Boolean = false
             var z: Boolean = true
             for (c in id) {
-                if (c in 'a'..'z')
+                if (c in 'a'..'z' || c in 'A'..'Z')
                     x = true
                 else if (c in '0'..'9')
                     y = true
@@ -87,4 +127,10 @@ class ChangePassword : AppCompatActivity() {
             return false
         }
     }
+
+
+/*
+
+
+ */
 
