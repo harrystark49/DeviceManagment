@@ -46,11 +46,6 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        val text: String = os_type_spinner.getSelectedItem().toString()
-
-        if (text=="IOS"){
-            Manufacture.setText("Apple")
-        }
 
     }
 
