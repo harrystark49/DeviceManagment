@@ -47,6 +47,7 @@
             android:layout_margin="20dp"
             app:layout_constraintStart_toEndOf="@+id/os_type"
             app:layout_constraintTop_toBottomOf="@+id/deviceID"></Spinner>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/os_version_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -61,7 +62,8 @@
                 android:id="@+id/os_version"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
-                android:hint="OS Version"></EditText>
+                android:hint="OS Version">'
+            </EditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -80,8 +82,8 @@
                 android:id="@+id/Manufacture"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:paddingLeft="20dp"
-                android:hint="Manufacture"></AutoCompleteTextView>
+                android:hint="Manufacture"
+                android:paddingLeft="20dp"></AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -108,10 +110,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="add new device"
-            app:layout_constraintTop_toTopOf="@+id/phoneType_spinner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/phoneType_spinner">
 
         </Button>
 
@@ -119,10 +121,11 @@
             android:id="@+id/Manufacture_Devices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintEnd_toEndOf="@id/Manufacture"
+
+            app:layout_constraintTop_toBottomOf="@+id/phoneType_spinner">
+
+
         </TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

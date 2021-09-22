@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
 
 class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
-
+    var manufacturedevices:String="MI"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,11 +35,15 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         var arr = arrayOf("Android","IOS", )
         var arr2 = arrayOf("Phone","Tablet")
         var manufactures= arrayOf("Honor","Samsung","Oppo","Realme","Redme","Vivo")
+        for(i in manufactures){
+            manufacturedevices=manufacturedevices+"\n"+i
+        }
         var adap =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr)
         view.os_type_spinner.adapter = adap
         var adap2 = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr2)
         view.phoneType_spinner.adapter = adap2
+
 
         var adapt = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, manufactures)
         view.Manufacture.setAdapter(adapt)
@@ -54,7 +58,8 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         if (text=="IOS"){
             Manufacture.setText("Apple")
         }else{
-
+            Manufacture_Devices.visibility=View.VISIBLE
+         Manufacture_Devices.setText(manufacturedevices)
         }
 
     }
