@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.mini_proect.Activities.Home_screen_admin
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
@@ -45,11 +46,15 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         return view
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
         val text: String = os_type_spinner.getSelectedItem().toString()
+       var s= parent?.getItemAtPosition(pos)
 
+        Toast.makeText(context, "${s.toString()}", Toast.LENGTH_SHORT).show()
         if (text=="IOS"){
             Manufacture.setText("Apple")
+        }else{
+
         }
 
     }

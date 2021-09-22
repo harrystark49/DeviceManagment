@@ -114,6 +114,17 @@
             app:layout_constraintStart_toStartOf="parent">
 
         </Button>
+
+        <TextView
+            android:id="@+id/Manufacture_Devices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+        </TextView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
