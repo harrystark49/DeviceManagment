@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/emp_all_devices"
-        android:title="All Devices">
+        android:title="@string/all_devices">
     </item>
     <item
         android:id="@+id/emp_mydevices"
-        android:title="My Devices">
+        android:title="@string/my_devices">
     </item>
     <item
         android:id="@+id/emp_myhistory"
-        android:title="My History">
+        android:title="@string/my_history">
     </item>
     <item
         android:id="@+id/emp_settings"
-        android:title="Settings">
+        android:title="@string/settings">
     </item>
     <item
         android:id="@+id/emp_logout"
-        android:title="Logout">
+        android:title="@string/logout">
     </item>
 </menu>

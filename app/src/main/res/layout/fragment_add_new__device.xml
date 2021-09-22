@@ -25,7 +25,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Device ID"></EditText>
+                android:hint="@string/device_id"></EditText>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:text="OS Type:"
+            android:text="@string/os_type"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deviceID"></TextView>
@@ -62,7 +62,7 @@
                 android:id="@+id/os_version"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
-                android:hint="OS Version"></EditText>
+                android:hint="@string/os_version"></EditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +81,7 @@
                 android:id="@+id/Manufacture"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Manufacture"
+                android:hint="@string/manufactue"
                 android:paddingLeft="20dp"></AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:text="Phone Type:"
+            android:text="@string/phone_type"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/manufacture_layout"></TextView>
