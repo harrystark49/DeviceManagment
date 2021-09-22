@@ -47,7 +47,6 @@
             android:layout_margin="20dp"
             app:layout_constraintStart_toEndOf="@+id/os_type"
             app:layout_constraintTop_toBottomOf="@+id/deviceID"></Spinner>
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/os_version_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -61,7 +60,7 @@
             <EditText
                 android:id="@+id/os_version"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="61dp"
                 android:hint="OS Version"></EditText>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,18 +70,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/os_version_layout"
             tools:ignore="MissingConstraints">
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/Manufacture"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Manufacture"
-                android:onClick="list"
-                ></EditText>
+                android:layout_height="50dp"
+                android:paddingLeft="20dp"
+                android:hint="Manufacture"></AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -115,7 +114,6 @@
             app:layout_constraintStart_toStartOf="parent">
 
         </Button>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
