@@ -15,6 +15,7 @@ import androidx.core.view.get
 import androidx.core.view.isVisible
 import com.example.mini_proect.Activities.Home_screen_admin
 import com.example.mini_proect.R
+import com.example.mini_proect.finish_Activity
 import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
@@ -51,6 +52,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
                                 .show()
                             var intent = Intent(view.context, Home_screen_admin::class.java)
                             startActivity(intent)
+                            activity?.finish()
                         })
                     .setNegativeButton("No",
                         DialogInterface.OnClickListener { dialog, id ->
