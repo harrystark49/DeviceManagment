@@ -44,4 +44,25 @@
     <string name="update_profile">Update Profile</string>
     <string name="change_password">Change Password</string>
     <string name="admin_details">Admin Details</string>
+    <string name="alert">Do you want to exit the Inventory App?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="EmailisMandatory">Email is Mandatory</string>
+    <string name="gmailcom">"@gmail.com"</string>
+    <string name="EntervalidEmail">Enter valid Email</string>
+    <string name="PleaseprovidePassword">Please provide Password</string>
+    <string name="Employee">Employee</string>
+    <string name="AdminalreadyCreated">Admin already Created</string>
+    <string name="IDcantbeEmpty">ID cannot be Empty</string>
+    <string name="IDshouldbeAlphaNumberic">ID should be AlphaNumberic</string>
+    <string name="NameisMandatory">Name is Mandatory</string>
+    <string name="Emailalreadyexists">Email already exists</string>
+    <string name="MobilenumberisMandatory">Mobile number is Mandatory</string>
+    <string name="Entervalidmobilenumber">Enter valid mobile number</string>
+    <string name="ProvidePassword">Provide Password</string>
+    <string name="Passwordshouldbealphanumeric">Password should be alphanumeric</string>
+    <string name="Passwordshouldbeinbetween8and10">Password should be inbetween  8 and 10</string>
+    <string name="Passwordmismatch">Password mismatch</string>
+    <string name="AdminsuccessfullyAdded">Admin successfully Added</string>
+    <string name="EmployeesuccessfullyAdded">Employee successfully Added</string>
 </resources>
