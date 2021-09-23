@@ -132,8 +132,4 @@ class ChangePassword : AppCompatActivity() {
     }
 
 
-/*
-
-
- */
 
