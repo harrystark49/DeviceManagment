@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -39,7 +40,6 @@ class Home_screen_admin : AppCompatActivity() {
                     fragmets(AdminRequestDevices())
                 }
                 R.id.add_newDevice->{
-                    Toast.makeText(this, "fafb", Toast.LENGTH_SHORT).show()
                     fragmets(AddNewDevice())
                 }
                 R.id.admin_settings->{
@@ -87,11 +87,11 @@ class Home_screen_admin : AppCompatActivity() {
     }
     protected fun alertDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Do you want to exit Inventory app?")
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+        builder.setTitle(R.string.alert)
+        builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
             finish()
         }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
 
         }
         builder.create()

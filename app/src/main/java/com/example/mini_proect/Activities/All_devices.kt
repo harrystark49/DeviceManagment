@@ -2,6 +2,7 @@ package com.example.mini_proect.fragments
 
 import android.app.Application
 import android.os.Bundle
+import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
+import kotlinx.android.synthetic.main.activity_home_screen_admin.*
+import kotlinx.android.synthetic.main.fragment_all_devices.*
 
 
 class all_devices(var adminOremp:String) : Fragment() {
@@ -31,6 +34,7 @@ class all_devices(var adminOremp:String) : Fragment() {
     ): View? {
         var view = inflater.inflate(R.layout.fragment_all_devices, container, false)
         intiData(view)
+
 
         return view
     }

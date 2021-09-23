@@ -4,16 +4,19 @@ import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_change_password.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 class ChangePassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_password)
-
+        val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
+        password_main.startAnimation(anim)
         var helper = dbHelper(this)
         var db = helper.readableDatabase
 
