@@ -38,7 +38,6 @@ class Home_screen_admin : AppCompatActivity() {
                     fragmets(AdminRequestDevices())
                 }
                 R.id.add_newDevice->{
-                    Toast.makeText(this, "fafb", Toast.LENGTH_SHORT).show()
                     fragmets(AddNewDevice())
                 }
                 R.id.admin_settings->{

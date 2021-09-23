@@ -1,6 +1,7 @@
 package com.example.mini_proect.fragments
 
 import android.os.Bundle
+import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import android.widget.Adapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.R
+import kotlinx.android.synthetic.main.activity_home_screen_admin.*
+import kotlinx.android.synthetic.main.fragment_all_devices.*
 
 
 class all_devices : Fragment() {
@@ -35,6 +38,7 @@ class all_devices : Fragment() {
         recycle.layoutManager = LLM
         var adapter = Adapter(Devices)
         recycle.adapter = adapter
+
 
 
         return view

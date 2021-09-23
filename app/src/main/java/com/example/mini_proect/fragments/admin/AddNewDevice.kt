@@ -1,19 +1,26 @@
 package com.example.mini_proect.fragments.admin
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.widget.*
+import androidx.core.view.get
+import androidx.core.view.isVisible
 import com.example.mini_proect.Activities.Home_screen_admin
 import com.example.mini_proect.R
+import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
+import kotlinx.android.synthetic.main.fragment_device_details.*
+import java.util.Arrays.asList
+import kotlin.collections.ArrayList
 
 
 class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
@@ -22,6 +29,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
     }
 
     override fun onCreateView(
@@ -29,33 +37,129 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_new__device, container, false)
+        view.add_new_device_button.setOnClickListener {
+            var devId = device_id.text.toString()
+            var osVer = os_version.text.toString()
+            var manu = Manufacture.text.toString()
+            val y = Error(devId, osVer, manu)
+            if (y) {
+                val builder = AlertDialog.Builder(view.context)
+                builder.setTitle(R.string.Devicemessage)
+                    .setPositiveButton("Yes",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            Toast.makeText(view.context, R.string.DeviceToast, Toast.LENGTH_SHORT)
+                                .show()
+                            var intent = Intent(view.context, Home_screen_admin::class.java)
+                            startActivity(intent)
+                        })
+                    .setNegativeButton("No",
+                        DialogInterface.OnClickListener { dialog, id ->
+                        })
+                builder.create()
+                builder.show()
+            }
+        }
+
         view.os_type_spinner.onItemSelectedListener = this
-        view.phoneType_spinner.onItemSelectedListener = this
-        var arr = arrayOf("Android","IOS", )
-        var arr2 = arrayOf("Phone","Tablet")
-        var manufactures= arrayOf("Honor","Samsung","Oppo","Realme","Redme","Vivo")
+        view.phoneType_spinner.onItemSelectedListener
+
+        var arr = arrayOf("Type", "Android", "IOS")
+        var arr2 = arrayOf("Phone", "Tablet")
+
         var adap =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr)
         view.os_type_spinner.adapter = adap
+
         var adap2 = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr2)
         view.phoneType_spinner.adapter = adap2
 
-        var adapt = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, manufactures)
-        view.Manufacture.setAdapter(adapt)
+        var manufactures = arrayOf("Honor", "Samsung", "Oppo", "Realme", "RedMi", "Vivo")
+        val adapter = ArrayAdapter(
+            view.context,
+            R.layout.list_view_items, manufactures
+        )
+        view.listview_1.adapter = adapter
+
         return view
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        val text: String = os_type_spinner.getSelectedItem().toString()
+        val text: String = os_type_spinner.selectedItem.toString()
+        if (text == "Type") {
+            Manufacture.setText("")
+            constraintLayout2.isVisible = false
 
-        if (text=="IOS"){
-            Manufacture.setText("Apple")
         }
+
+        if (text == "IOS") {
+            constraintLayout2.isVisible = false
+            Manufacture.setText("Apple")
+            manufacture_layout.setEndIconOnClickListener {
+                Manufacture.setText("Apple")
+                Toast.makeText(view?.context, R.string.OStype, Toast.LENGTH_SHORT).show()
+                constraintLayout2.isVisible = false
+            }
+        }
+        if (text == "Android") {
+            Manufacture.setText("")
+            constraintLayout2.isVisible = true
+            display()
+            manufacture_layout.setEndIconOnClickListener {
+                Manufacture.setText("")
+                constraintLayout2.isVisible = true
+                display()
+            }
+        }
+
 
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
+    }
 
+    private fun display() {
+        listview_1.onItemClickListener = object : AdapterView.OnItemClickListener {
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                var x = p0?.getItemAtPosition(p2).toString()
+                Toast.makeText(view?.context, "$x", Toast.LENGTH_SHORT).show()
+                if (constraintLayout2.isVisible == true) {
+                    val itemvalue = listview_1.getItemAtPosition(p2) as String
+                    Manufacture.setText(itemvalue)
+                    constraintLayout2.isVisible = false
+                }
+            }
+
+        }
+
+    }
+
+    private fun Error(deviceId: String, osVersion: String, manufacture: String): Boolean {
+        var y = 0
+        if (deviceId.isEmpty()) {
+            deviceID.error = "Enter Device ID"
+            deviceID.isErrorEnabled = true
+        } else {
+            deviceID.isErrorEnabled = false
+            y++
+        }
+        if (osVersion.isEmpty()) {
+            os_version_layout.error = "Enter OS Version"
+            os_version_layout.isErrorEnabled = true
+        } else {
+            os_version_layout.isErrorEnabled = false
+            y++
+        }
+        if (manufacture.isEmpty()) {
+            manufacture_layout.error = "Select Manufacture"
+            manufacture_layout.isErrorEnabled = true
+        } else {
+            manufacture_layout.isErrorEnabled = false
+            y++
+        }
+        if (y == 3) {
+            return true
+        }
+        return false
     }
 
 }
