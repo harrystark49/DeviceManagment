@@ -6,23 +6,24 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layout_margin="20dp"
-    tools:context=".Activities.login">
+    tools:context=".Activities.login"
+    android:id="@+id/c1"
+    >
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/material_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-150dp"
+        android:layout_marginTop="200dp"
         app:endIconMode="clear_text"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/email_logo">
 
         <EditText
             android:id="@+id/email_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:hint="@string/Email"></EditText>
     </com.google.android.material.textfield.TextInputLayout>
 

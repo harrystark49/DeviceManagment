@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -22,12 +23,14 @@ class login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
+
         var helper = dbHelper(this)
         var db = helper.readableDatabase
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
+        c1.startAnimation(anim)
         login_btn.setOnClickListener {
 
 

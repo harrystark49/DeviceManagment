@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp"
-    tools:context=".Activities.Register">
+    tools:context=".Activities.Register"
+    android:id="@+id/c2">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/material_emp_id"

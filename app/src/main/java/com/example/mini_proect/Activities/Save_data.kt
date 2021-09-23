@@ -4,15 +4,19 @@ import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.example.mini_proect.Activities.login
 import com.example.mini_proect.DataBase.dbHelper
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_save_data.*
 
 class save_data : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_save_data)
+        val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
+        c3.startAnimation(anim)
         var helper = dbHelper(this)
         var db = helper.readableDatabase
         var cv = ContentValues()

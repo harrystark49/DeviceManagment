@@ -19,7 +19,6 @@ import com.example.mini_proect.finish_Activity
 import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
-import kotlinx.android.synthetic.main.fragment_device_details.*
 import java.util.Arrays.asList
 import kotlin.collections.ArrayList
 
@@ -65,8 +64,9 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         view.os_type_spinner.onItemSelectedListener = this
         view.phoneType_spinner.onItemSelectedListener
 
-        var arr = arrayOf(getString(R.string.Type1),getString(R.string.Android),getString(R.string.iOS))
-        var arr2 = arrayOf(getString(R.string.Phone),getString(R.string.Tablet))
+        var arr =
+            arrayOf(getString(R.string.Type1), getString(R.string.Android), getString(R.string.iOS))
+        var arr2 = arrayOf(getString(R.string.Phone), getString(R.string.Tablet))
 
         var adap =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr)
@@ -75,7 +75,20 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         var adap2 = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr2)
         view.phoneType_spinner.adapter = adap2
 
-        var manufactures = arrayOf("Honor", "Samsung", "Oppo", "Realme", "RedMi", "Vivo","One Plus+","Nokia","Motto","Sony","Lava","Lenovo")
+        var manufactures = arrayOf(
+            "Honor",
+            "Samsung",
+            "Oppo",
+            "Realme",
+            "RedMi",
+            "Vivo",
+            "One Plus+",
+            "Nokia",
+            "Motto",
+            "Sony",
+            "Lava",
+            "Lenovo"
+        )
         val adapter = ArrayAdapter(
             view.context,
             R.layout.list_view_items, manufactures
@@ -87,13 +100,13 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val text: String = os_type_spinner.selectedItem.toString()
-        if (text == "Type") {
+        if (text == getString(R.string.Type)) {
             Manufacture.setText("")
             constraintLayout2.isVisible = false
 
         }
 
-        if (text == "IOS") {
+        if (text == getString(R.string.iOS)) {
             constraintLayout2.isVisible = false
             Manufacture.setText(getString(R.string.Apple))
             manufacture_layout.setEndIconOnClickListener {
@@ -102,7 +115,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
                 constraintLayout2.isVisible = false
             }
         }
-        if (text == "Android") {
+        if (text == getString(R.string.Android)) {
             Manufacture.setText("")
             constraintLayout2.isVisible = true
             display()
@@ -145,7 +158,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
             y++
         }
         if (osVersion.isEmpty()) {
-            os_version_layout.error =getString(R.string.EnterOSVersion)
+            os_version_layout.error = getString(R.string.EnterOSVersion)
             os_version_layout.isErrorEnabled = true
         } else {
             os_version_layout.isErrorEnabled = false

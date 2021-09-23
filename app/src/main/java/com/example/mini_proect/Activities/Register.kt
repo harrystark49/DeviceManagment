@@ -4,12 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.save_data
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -20,11 +22,10 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
+        val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
+        c2.startAnimation(anim)
         var helper= dbHelper(this)
         var db=helper.readableDatabase
-
-
         spin.onItemSelectedListener=this
         var arr=arrayOf(getString(R.string.Admin),getString(R.string.Employee))
         var adap= ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,arr)
