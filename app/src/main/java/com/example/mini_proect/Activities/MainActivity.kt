@@ -3,6 +3,7 @@ package com.example.mini_proect.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_Entity
@@ -39,16 +40,13 @@ class MainActivity : AppCompatActivity() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(All_Devices_view_Model::class.java)
 
-        viewModel.insertData(this, "1", "Nokia", "Android", "Mini")
-        viewModel.insertData(this, "2", "Samsung", "Android", "Phone")
-        viewModel.insertData(this, "3", "Huweii", "Andoird", "Tablet")
-        viewModel.insertData(this, "4", "Redmi", "Android", "Book")
-        viewModel.insertData(this, "5", "Apple13", "IOS", "Phone")
-
-
         viewModel.getLoginDetails(this)?.observe(this, Observer {
+            if(it.isNotEmpty()){
             devicesList = it
-            Adapter(devicesList)
+            Adapter(this,devicesList)
+        }else{
+            Toast.makeText(this,"No Device Available",Toast.LENGTH_SHORT).show()
+            }
         })
 
 
