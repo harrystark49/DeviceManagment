@@ -30,9 +30,11 @@ class emp_settings : Fragment() {
         val b = arguments
         val email = b!!.getString("EmpEmail").toString()
         val pass = b!!.getString("EmpPass").toString()
+        val id = b!!.getString("EmpID").toString()
 
         view.emp_update_profile.setOnClickListener {
-                    val intent=Intent(context,Register::class.java)
+            val intent=Intent(context,Register::class.java)
+            intent.putExtra("EmpEmail",email)
             startActivity(intent)
         }
         view.emp_change_password.setOnClickListener {

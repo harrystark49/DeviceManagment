@@ -29,6 +29,8 @@ class save_data : AppCompatActivity() {
 
 
 
+
+
         emp_submit.setOnClickListener {
            if( pass_check(emp_pass.text.toString())){
 
@@ -47,7 +49,7 @@ class save_data : AppCompatActivity() {
                 db.insert("ADD_EMPLOYEE",null,cv)
                 Toast.makeText(this,"Employee successfully Added", Toast.LENGTH_SHORT).show()
                 var intent= Intent(this, login::class.java)
-                startActivity(intent)
+                    startActivity(intent)
             }}
         }}
     }

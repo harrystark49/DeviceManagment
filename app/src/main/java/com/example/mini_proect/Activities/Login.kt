@@ -28,6 +28,9 @@ class login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        var b:Bundle? = intent.extras
+        var empId = b?.getString("EmpID")
+        var adminId = b?.getString("AdminID")
         login_btn.setOnClickListener {
 
 

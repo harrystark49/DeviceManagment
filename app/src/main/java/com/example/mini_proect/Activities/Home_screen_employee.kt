@@ -44,10 +44,12 @@ class Home_screen_employee : AppCompatActivity() {
                     var b: Bundle? = intent.extras
                     var email = b?.getString("EmpEmail").toString()
                     var pass = b?.getString("EmpPass").toString()
+
                     val myFrag = emp_settings()
                     val mBundle = Bundle()
                     mBundle.putString("EmpEmail", email)
                     mBundle.putString("EmpPass", pass)
+
                     myFrag.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag)
