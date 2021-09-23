@@ -8,7 +8,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/manufacture_layout"
+        app:layout_constraintTop_toBottomOf="@+id/manufacture_layout">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/deviceID"
@@ -47,6 +49,7 @@
             android:layout_margin="20dp"
             app:layout_constraintStart_toEndOf="@+id/os_type"
             app:layout_constraintTop_toBottomOf="@+id/deviceID"></Spinner>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/os_version_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -80,9 +83,14 @@
                 android:id="@+id/Manufacture"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:paddingLeft="20dp"
-                android:hint="Manufacture"></AutoCompleteTextView>
+                android:hint="Manufacture"
+                android:paddingLeft="20dp">
+
+            </AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
         <TextView
             android:id="@+id/phone_type"
@@ -93,7 +101,9 @@
             android:text="Phone Type:"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/manufacture_layout"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/manufacture_layout">
+
+        </TextView>
 
         <Spinner
             android:id="@+id/phoneType_spinner"
@@ -101,19 +111,23 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             app:layout_constraintStart_toEndOf="@+id/phone_type"
-            app:layout_constraintTop_toBottomOf="@+id/manufacture_layout"></Spinner>
+            app:layout_constraintTop_toBottomOf="@+id/manufacture_layout">
+
+        </Spinner>
 
         <Button
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="add new device"
-            app:layout_constraintTop_toTopOf="@+id/phoneType_spinner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/phoneType_spinner">
 
         </Button>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

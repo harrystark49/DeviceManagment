@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.mini_proect.Activities.Home_screen_admin
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
@@ -37,6 +38,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         var adap =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr)
         view.os_type_spinner.adapter = adap
+
         var adap2 = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr2)
         view.phoneType_spinner.adapter = adap2
 
@@ -46,6 +48,10 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        var x=p1
+        p1?.setOnClickListener {
+            Toast.makeText(view?.context, "${x}", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
