@@ -18,6 +18,10 @@ class Home_screen_employee : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_employee)
 
+        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+
+
         toggle= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
@@ -37,6 +41,8 @@ class Home_screen_employee : AppCompatActivity() {
                     Fragments(emp_settings())
                 }
                 R.id.emp_logout->{
+                    edit.clear()
+                    edit.commit()
                     alertDialog()
                 }
             }

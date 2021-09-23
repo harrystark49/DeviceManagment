@@ -21,6 +21,9 @@ class login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
+        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+
         var helper= dbHelper(this)
         var db=helper.readableDatabase
 
@@ -41,6 +44,11 @@ class login : AppCompatActivity() {
                     if(cursor.moveToNext()){
                         var pass=cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if(pass==password.text.toString()){
+
+                            edit.putBoolean("isLogged",true)
+                            edit.putString("AdminOrEmp","Employee")
+                            edit.commit()
+
                             var intent = Intent(this, Home_screen_employee::class.java)
                             startActivity(intent)
                             finish()
@@ -62,6 +70,13 @@ class login : AppCompatActivity() {
                     if(cursor.moveToNext()){
                         var pass=cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if(pass==password.text.toString()){
+
+
+                            edit.putBoolean("isLogged",true)
+                            edit.putString("AdminOrEmp","Admin")
+                            edit.commit()
+
+
                             var intent = Intent(this, Home_screen_admin::class.java)
                             startActivity(intent)
                             finish()

@@ -20,6 +20,11 @@ class Home_screen_admin : AppCompatActivity() {
 
         setContentView(R.layout.activity_home_screen_admin)
 
+
+        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+
+
         togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
         togglebtn.syncState()
@@ -36,6 +41,8 @@ class Home_screen_admin : AppCompatActivity() {
                     fragmets(My_devices())
                 }
                 R.id.admin_logout->{
+                    edit.clear()
+                    edit.commit()
                     alertDialog()
                 }
             }
