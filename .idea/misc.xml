@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_home_screen_admin.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_add_new__device.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_all_devices.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_device__details.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_emp_device_details.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_my_devices.xml" value="0.12182971014492754" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/menu/admin_menu.xml" value="0.1" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/drawable/title_bg.xml" value="0.2128205128205128" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/layout/activity_home_screen.xml" value="0.15625" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/layout/activity_home_screen_admin.xml" value="0.15625" />

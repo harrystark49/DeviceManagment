@@ -2,6 +2,7 @@ package com.example.mini_proect.fragments
 
 import android.app.Application
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.fragment_all_devices.*
 
 
-class all_devices(var adminOremp:String) : Fragment() {
+class all_devices(var adminOremp:String,var email:String) : Fragment() {
 
     private lateinit var viewModel: All_Devices_view_Model
 
@@ -50,7 +51,7 @@ class all_devices(var adminOremp:String) : Fragment() {
             var LLM: LinearLayoutManager = LinearLayoutManager(context)
             LLM.orientation = RecyclerView.VERTICAL
             recycle.layoutManager = LLM
-            var adapter = context?.let { it1 -> Adapter(it1,it,adminOremp) }
+            var adapter = context?.let { it1 -> Adapter(it1,it,adminOremp,email) }
             recycle.adapter = adapter
 
 

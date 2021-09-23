@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
 class Adapter(
     var context: Context,
     var Devices: List<All_Devices_Entity>,
-    var AdminOrEmp: String = "emp"
+    var AdminOrEmp: String = "emp",
+    var email:String
 ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
 
@@ -41,6 +42,7 @@ class Adapter(
                     var b: Bundle = Bundle()
                     b.putString("DeviceId", Devices[position].device_Id)
                     var frag = Device_Details()
+                    b.putString("Email",email)
                     frag.arguments = b
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
@@ -50,7 +52,8 @@ class Adapter(
                 } else {
                     var b: Bundle = Bundle()
                     b.putString("DeviceId", Devices[position].device_Id)
-                    var frag = emp_device_details()
+                    //b.putString("Email",email)
+                    var frag = emp_device_details(email)
                     frag.arguments = b
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {

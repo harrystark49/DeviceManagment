@@ -35,19 +35,19 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        ).get(All_Devices_view_Model::class.java)
-
-        viewModel.getLoginDetails(this)?.observe(this, Observer {
-            if(it.isNotEmpty()){
-            devicesList = it
-            Adapter(this,devicesList)
-        }else{
-            Toast.makeText(this,"No Device Available",Toast.LENGTH_SHORT).show()
-            }
-        })
+//        viewModel = ViewModelProvider(
+//            this,
+//            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+//        ).get(All_Devices_view_Model::class.java)
+//
+//        viewModel.getLoginDetails(this)?.observe(this, Observer {
+//            if(it.isNotEmpty()){
+//            devicesList = it
+//            Adapter(this,devicesList)
+//        }else{
+//            Toast.makeText(this,"No Device Available",Toast.LENGTH_SHORT).show()
+//            }
+//        })
 
 
     }

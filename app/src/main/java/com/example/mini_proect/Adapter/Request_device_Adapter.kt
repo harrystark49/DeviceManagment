@@ -1,15 +1,14 @@
-package com.example.mini_proect.fragments.admin
+package com.example.mini_proect.Adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mini_proect.Activities.dataclass
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.dataclass
 
-class adapter(var list:ArrayList<dataclass>) :RecyclerView.Adapter<adapter.ViewHolder>(){
+class Request_device_Adapter(var list:ArrayList<dataclass>) :RecyclerView.Adapter<Request_device_Adapter.ViewHolder>(){
     class ViewHolder( itemView: View):RecyclerView.ViewHolder(itemView) {
 
         var id=itemView.findViewById<TextView>(R.id.deviceId)
@@ -19,7 +18,7 @@ class adapter(var list:ArrayList<dataclass>) :RecyclerView.Adapter<adapter.ViewH
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var vie: View =
             LayoutInflater.from(parent.context).inflate(R.layout.requestdevicelist, parent, false)
         var view = ViewHolder(vie)
@@ -27,7 +26,7 @@ class adapter(var list:ArrayList<dataclass>) :RecyclerView.Adapter<adapter.ViewH
         return view
     }
 
-    override fun onBindViewHolder(holder: adapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var Id:String=list?.get(position)!!.device_Id
         var emid: String =list?.get(position)!!.emid
         var manu: String =list.get(position)!!.Manufacture
