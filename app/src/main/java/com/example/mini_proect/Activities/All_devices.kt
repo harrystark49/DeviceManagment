@@ -16,7 +16,7 @@ import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 
 
-class all_devices : Fragment() {
+class all_devices(var adminOremp:String) : Fragment() {
 
     private lateinit var viewModel: All_Devices_view_Model
 
@@ -49,7 +49,7 @@ class all_devices : Fragment() {
             var LLM: LinearLayoutManager = LinearLayoutManager(context)
             LLM.orientation = RecyclerView.VERTICAL
             recycle.layoutManager = LLM
-            var adapter = context?.let { it1 -> Adapter(it1,it) }
+            var adapter = context?.let { it1 -> Adapter(it1,it,adminOremp) }
             recycle.adapter = adapter
 
 
