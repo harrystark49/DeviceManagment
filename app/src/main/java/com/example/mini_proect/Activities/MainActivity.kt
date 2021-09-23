@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getLoginDetails(this)?.observe(this, Observer {
             if(it.isNotEmpty()){
             devicesList = it
-            Adapter(devicesList)
+            Adapter(this,devicesList)
         }else{
             Toast.makeText(this,"No Device Available",Toast.LENGTH_SHORT).show()
             }

@@ -12,11 +12,12 @@ class All_Devices_Repository {
 
         private var data: All_Devices_Db? = null
         private lateinit var livedata: LiveData<List<All_Devices_Entity>>
+        private lateinit var ldata: LiveData<All_Devices_Entity>
         private lateinit var AllDeviceslivedata: LiveData<List<All_Devices_Entity>>
 
 
-        private fun initializeDb(context: Context): All_Devices_Db {
-            return All_Devices_Db.databaseclient(context)
+        private fun initializeDb(context: Context?): All_Devices_Db {
+            return All_Devices_Db.databaseclient(context!!)
         }
 
         fun insertData(
@@ -37,13 +38,13 @@ class All_Devices_Repository {
 
         }
 
-        fun getLoginDetailsById(context: Context, id: String): LiveData<List<All_Devices_Entity>> {
+        fun getLoginDetailsById(context: Context?, id: String): LiveData<All_Devices_Entity> {
 
             data = initializeDb(context)
 
-            livedata = data!!.All_Devices_Dao().getDetailsById(id)
+            ldata = data!!.All_Devices_Dao().getDetailsById(id)
 
-            return livedata
+            return ldata
         }
 
         fun DeviceDetails(context: Context): LiveData<List<All_Devices_Entity>> {

@@ -49,7 +49,7 @@ class all_devices : Fragment() {
             var LLM: LinearLayoutManager = LinearLayoutManager(context)
             LLM.orientation = RecyclerView.VERTICAL
             recycle.layoutManager = LLM
-            var adapter = Adapter(it)
+            var adapter = context?.let { it1 -> Adapter(it1,it) }
             recycle.adapter = adapter
 
 

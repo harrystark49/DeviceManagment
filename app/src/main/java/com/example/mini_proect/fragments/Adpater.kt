@@ -1,44 +1,56 @@
 package com.example.mini_proect.fragments
 
+import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.LiveData
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.R
+import com.example.mini_proect.fragments.admin.Device_Details
+import com.example.mini_proect.fragments.emp.emp_device_details
 
-class Adapter(var Devices: List<All_Devices_Entity>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(var context: Context,var Devices: List<All_Devices_Entity>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var ID = itemView.findViewById<TextView>(R.id.deviceId)
-        var Phone_type = itemView.findViewById<TextView>(R.id.phoneType)
-        var MAnufacturer = itemView.findViewById<TextView>(R.id.manu)
-        var Version = itemView.findViewById<TextView>(R.id.version)
+        fun setdata(data: All_Devices_Entity, position: Int) {
+
+            data.device_Id=Devices[position].device_Id
+            data.Manufacture=Devices[position].Manufacture
+            data.Version=Devices[position].Version
+            data.phonetype=Devices[position].phonetype
+
+            itemView.setOnClickListener {
+                var b:Bundle= Bundle()
+                b.putString("DeviceId",Devices[position].device_Id)
+                var frag=Device_Details()
+                frag.arguments=b
+                var activity=itemView.context as AppCompatActivity
+                activity.supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.fragment_replacer,frag)
+                    commit()
+                }
+            }
+
+        }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var isvisible = true
-        var vie: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.alldeviceviewitem, parent, false)
-        var view = ViewHolder(vie)
+        var v: View =
+            LayoutInflater.from(parent.context).inflate(com.example.mini_proect.R.layout.alldeviceviewitem, parent, false)
+        var view = ViewHolder(v)
 
         return view
     }
 
     override fun onBindViewHolder(holder: Adapter.ViewHolder, position: Int) {
-        var id: String = Devices?.get(position)!!.device_Id
-        var phonetype:String = Devices?.get(position)!!.phonetype
-        var manufacture:String = Devices?.get(position)!!.Manufacture
-        var version:String = Devices?.get(position)!!.Version
-
-
-        holder.ID.text = id
-        holder.Phone_type.text = phonetype
-        holder.MAnufacturer.text = manufacture
-        holder.Version.text = version
+        var data=Devices[position]
+        holder.setdata(data,position)
     }
 
     override fun getItemCount(): Int {

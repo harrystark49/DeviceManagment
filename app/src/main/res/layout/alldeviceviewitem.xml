@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:backgroundTint="#CBD5D4"
     android:padding="10dp"
     android:layout_margin="7dp"
     android:layout_height="wrap_content"
-    android:background="#6666">
+    android:background="#21D61C"
+  >
 
 
     <TextView
         android:id="@+id/deviceId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="5dp"
         android:padding="5dp"
         android:text="DeviceId"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,7 +26,7 @@
         android:id="@+id/phoneType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="5dp"
         android:padding="5dp"
         android:text="PhoneType"
         android:textSize="13sp"
