@@ -22,10 +22,15 @@ class Home_screen_admin : AppCompatActivity() {
     lateinit var togglebtn:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_home_screen_admin)
 
-        togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
+        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_replacer,all_devices("Admin")).commit()
+
+            togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
         togglebtn.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -59,6 +64,8 @@ class Home_screen_admin : AppCompatActivity() {
                     }
                 }
                 R.id.admin_logout->{
+                    edit.clear()
+                    edit.commit()
                     alertDialog()
                 }
             }

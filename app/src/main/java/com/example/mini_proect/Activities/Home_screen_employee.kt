@@ -1,6 +1,7 @@
 package com.example.mini_proect.Activities
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -21,6 +22,14 @@ class Home_screen_employee : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_employee)
+
+
+        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_replacer,all_devices("Employee")).commit()
+
 
         var b:Bundle? = intent.extras
         var emails = b?.getString("Email")
@@ -56,7 +65,10 @@ class Home_screen_employee : AppCompatActivity() {
                     }
                 }
                 R.id.emp_logout->{
-                    alertDialog()
+                    edit.clear()
+                    edit.commit()
+                    startActivity(Intent(this,login::class.java))
+                    finish()
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)
