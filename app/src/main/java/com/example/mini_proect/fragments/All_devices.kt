@@ -1,22 +1,27 @@
 package com.example.mini_proect.fragments
 
+import android.app.Application
 import android.os.Bundle
 import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mini_proect.DataBase.All_Devices_Entity
+import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.fragment_all_devices.*
 
 
 class all_devices : Fragment() {
-    var Devices: ArrayList<dataclass> = arrayListOf()
 
+    private lateinit var viewModel: All_Devices_view_Model
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,30 +32,32 @@ class all_devices : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_all_devices, container, false)
-
-        initRecycler()
-        val recycler = view.findViewById<RecyclerView>(R.id.recyclerView)
-        var recycle: RecyclerView = recycler
-        var LLM: LinearLayoutManager = LinearLayoutManager(context)
-        LLM.orientation = RecyclerView.VERTICAL
-        recycle.layoutManager = LLM
-        var adapter = Adapter(Devices)
-        recycle.adapter = adapter
-
+        intiData(view)
 
 
         return view
     }
 
 
-    private fun initRecycler() {
-        Devices.add(dataclass("Trychup Herbal", "hcvjd", "hjfqe", "gqfqjfq"))
-        Devices.add(dataclass("Trychup Herbal", "hcvjd", "hjfqe", "gqfqjfq"))
-        Devices.add(dataclass("Trychup Herbal", "hcvjd", "hjfqe", "gqfqjfq"))
-        Devices.add(dataclass("Trychup Herbal", "hcvjd", "hjfqe", "gqfqjfq"))
+    private fun intiData(view: View) {
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(Application())
+        ).get(All_Devices_view_Model::class.java)
 
+        viewModel.getDeviceDetails(requireContext())!!.observe(requireActivity(), Observer {
+
+            val recycler = view.findViewById<RecyclerView>(R.id.recyclerView)
+            var recycle: RecyclerView = recycler
+            var LLM: LinearLayoutManager = LinearLayoutManager(context)
+            LLM.orientation = RecyclerView.VERTICAL
+            recycle.layoutManager = LLM
+            var adapter = Adapter(it)
+            recycle.adapter = adapter
+
+
+        })
     }
 
 

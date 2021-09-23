@@ -14,6 +14,11 @@ interface All_Devices_Dao {
 
 
     @Query("SELECT * FROM all_Devices_Details WHERE device_Id=:id")
-    fun getDetails(id:String): LiveData<All_Devices_Entity>
+    fun getDetailsById(id:String): LiveData<List<All_Devices_Entity>>
+
+    @Query("SELECT * FROM all_Devices_Details ORDER BY device_Id")
+    fun getDetails(): LiveData<List<All_Devices_Entity>>
+
+
 
 }

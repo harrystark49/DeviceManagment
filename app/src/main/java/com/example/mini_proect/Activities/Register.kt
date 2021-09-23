@@ -16,6 +16,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     lateinit var user:String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -23,22 +24,25 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         var helper= dbHelper(this)
         var db=helper.readableDatabase
 
+
         spin.onItemSelectedListener=this
-        var arr=arrayOf("Admin","Employee")
+        var arr=arrayOf(getString(R.string.Admin),getString(R.string.Employee))
         var adap= ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,arr)
         spin.adapter=adap
 
             emp_register_btn.setOnClickListener {
 
                 var cursor=db.rawQuery("SELECT * FROM ADD_ADMIN",null)
-                if(cursor.moveToNext()&&user=="Admin"){
-                    Toast.makeText(this,"Admin already Created",Toast.LENGTH_SHORT).show()
+                if(cursor.moveToNext() && user==getString(R.string.Admin)){
+                    Toast.makeText(this,R.string.AdminalreadyCreated,Toast.LENGTH_SHORT).show()
                     emp_name.setText("")
                     emp_mobile.setText("")
                     emp_id.setText("")
                     emp_email.setText("")
                     emp_id.requestFocus()
-                }else{
+                }
+
+                    else{
                         if(Check_for_empty_fields(emp_id.text.toString()
                             ,emp_name.text.toString()
                             ,emp_email.text.toString()
@@ -58,10 +62,10 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun Check_for_empty_fields(id: String,name : String, email: String, mobile: String):Boolean {
         var x=0;
         if(id.isEmpty()){
-            material_emp_id.error="ID can't be Empty"
+            material_emp_id.error=getString(R.string.IDcantbeEmpty)
             material_emp_id.isErrorEnabled=true
         }else if(!IsAlphaNumeric(id)){
-            material_emp_id.error="ID should be AlphaNumberic"
+            material_emp_id.error=getString(R.string.IDshouldbeAlphaNumberic)
             material_emp_id.isErrorEnabled=true
         }
         else {
@@ -70,28 +74,44 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
         if(name.isEmpty()){
-            material_emp_name.error="Name is Mandatory"
+            material_emp_name.error=getString(R.string.NameisMandatory)
             material_emp_name.isErrorEnabled=true
         }else{
             material_emp_name.isErrorEnabled=false
             x++
         }
+
+
         if(email.isEmpty()){
-            material_emp_email.error="Email is Mandatory"
+            material_emp_email.error=getString(R.string.EmailisMandatory)
             material_emp_email.isErrorEnabled=true
         }
-        else if(!email.contains("@gmail.com")){
-            material_emp_email.error="Enter valid Email"
+        else if(!email.contains(getString(R.string.gmailcom))){
+            material_emp_email.error=getString(R.string.EntervalidEmail)
             material_emp_email.isErrorEnabled=true
         }else{
-            material_emp_email.isErrorEnabled=false
-            x++
+
+            var helper= dbHelper(this)
+            var db=helper.readableDatabase
+
+            var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_email.text.toString()))
+            if(cursor.moveToNext()){
+                material_emp_email.error=getString(R.string.Emailalreadyexists)
+                material_emp_email.isErrorEnabled=true
+            }else{
+                material_emp_email.isErrorEnabled=false
+                x++
+            }
+
+
         }
+
+
         if(mobile.isEmpty()){
-            material_emp_mobile.error="Mobile number is Mandatory"
+            material_emp_mobile.error=getString(R.string.MobilenumberisMandatory)
             material_emp_mobile.isErrorEnabled=true
         }else if(! isDigit(mobile)){
-            material_emp_mobile.error="Enter valid mobile number"
+            material_emp_mobile.error=getString(R.string.Entervalidmobilenumber)
             material_emp_mobile.isErrorEnabled=true
         }else{
             material_emp_mobile.isErrorEnabled=false

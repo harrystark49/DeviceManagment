@@ -4,12 +4,14 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.*
+import com.example.mini_proect.fragments.admin.AdminSettings
 import com.example.mini_proect.fragments.emp.MyDevices
 import kotlinx.android.synthetic.main.activity_home_screen_employee.*
 
@@ -18,6 +20,10 @@ class Home_screen_employee : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_employee)
+
+        var b:Bundle? = intent.extras
+        var emails = b?.getString("Email")
+        Toast.makeText(this, "$emails", Toast.LENGTH_SHORT).show()
 
         toggle= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(toggle)
@@ -34,8 +40,19 @@ class Home_screen_employee : AppCompatActivity() {
                 R.id.emp_myhistory->{
                     Fragments(emp_myhistory())
                 }
-                R.id.emp_settings->{
-                    Fragments(emp_settings())
+                R.id.emp_settings-> {
+                    var b: Bundle? = intent.extras
+                    var email = b?.getString("EmpEmail").toString()
+                    var pass = b?.getString("EmpPass").toString()
+                    val myFrag = emp_settings()
+                    val mBundle = Bundle()
+                    mBundle.putString("EmpEmail", email)
+                    mBundle.putString("EmpPass", pass)
+                    myFrag.arguments = mBundle
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.emp_fragment_replacer, myFrag)
+                        commit()
+                    }
                 }
                 R.id.emp_logout->{
                     alertDialog()
@@ -61,11 +78,11 @@ class Home_screen_employee : AppCompatActivity() {
     }
     private fun alertDialog(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Do you want to exit Inventory app?")
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+        builder.setTitle(R.string.alert)
+        builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
             finish()
         }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
 
         }
         builder.create()
