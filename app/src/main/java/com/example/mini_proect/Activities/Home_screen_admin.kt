@@ -19,46 +19,43 @@ import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.activity_login.*
 
 class Home_screen_admin : AppCompatActivity() {
-    lateinit var togglebtn:ActionBarDrawerToggle
+    lateinit var togglebtn: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_home_screen_admin)
-
-        togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
+        togglebtn = ActionBarDrawerToggle(this, drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
         togglebtn.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         navigation_tool.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.admin_all_devices ->{
-                     fragmets(all_devices())
+            when (it.itemId) {
+                R.id.admin_all_devices -> {
+                    fragmets(all_devices())
 
                 }
-                R.id.request_devices ->{
+                R.id.request_devices -> {
                     fragmets(AdminRequestDevices())
                 }
-                R.id.add_newDevice->{
+                R.id.add_newDevice -> {
                     fragmets(AddNewDevice())
                 }
-                R.id.admin_settings->{
-                    var b:Bundle? = intent.extras
+                R.id.admin_settings -> {
+                    var b: Bundle? = intent.extras
                     var email = b?.getString("AdminEmail").toString()
                     var pass = b?.getString("AdminPass").toString()
 
                     val myFrag = AdminSettings()
-                    val mBundle=Bundle()
-                    mBundle.putString("AdminEmail",email)
-                    mBundle.putString("AdminPass",pass)
+                    val mBundle = Bundle()
+                    mBundle.putString("AdminEmail", email)
+                    mBundle.putString("AdminPass", pass)
 
                     myFrag.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.fragment_replacer,myFrag)
+                        replace(R.id.fragment_replacer, myFrag)
                         commit()
                     }
                 }
-                R.id.admin_logout->{
+                R.id.admin_logout -> {
                     alertDialog()
                 }
             }
@@ -68,15 +65,15 @@ class Home_screen_admin : AppCompatActivity() {
 
     }
 
-    fun fragmets(frag:Fragment){
+    fun fragmets(frag: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_replacer,frag)
+            replace(R.id.fragment_replacer, frag)
             commit()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(togglebtn.onOptionsItemSelected(item)){
+        if (togglebtn.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -85,6 +82,7 @@ class Home_screen_admin : AppCompatActivity() {
     override fun onBackPressed() {
         alertDialog()
     }
+
     protected fun alertDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.alert)

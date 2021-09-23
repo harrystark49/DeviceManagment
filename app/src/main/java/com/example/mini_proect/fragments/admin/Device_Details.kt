@@ -40,7 +40,7 @@ class Device_Details : Fragment() {
                 vi.emp_phn_type_value.setText(it.phonetype)
             }
             else{
-                Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.Nodata), Toast.LENGTH_SHORT).show()
 
             }
           })

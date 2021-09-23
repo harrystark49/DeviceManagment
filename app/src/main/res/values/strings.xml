@@ -77,4 +77,5 @@
     <string name="iOS">iOS</string>
     <string name="Phone">Phone</string>
     <string name="Tablet">Tablet</string>
+    <string name="Nodata">No Data</string>
 </resources>
