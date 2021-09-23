@@ -40,7 +40,8 @@
             android:text="OS Type:"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deviceID"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/deviceID">
+        </TextView>
 
         <Spinner
             android:id="@+id/os_type_spinner"
@@ -48,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             app:layout_constraintStart_toEndOf="@+id/os_type"
-            app:layout_constraintTop_toBottomOf="@+id/deviceID"></Spinner>
+            app:layout_constraintTop_toBottomOf="@+id/deviceID">
+        </Spinner>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/os_version_layout"
@@ -103,8 +105,9 @@
             <ListView
                 android:id="@+id/listview_1"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:backgroundTint="@color/white"
+                android:layout_height="150dp"
+                android:backgroundTint="#E6E2E2"
+                android:background="#DAD5D5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

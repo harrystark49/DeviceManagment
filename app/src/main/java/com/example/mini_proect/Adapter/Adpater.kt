@@ -11,6 +11,7 @@ import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.emp.emp_device_details
+import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
 
 class Adapter(
     var context: Context,
@@ -27,6 +28,11 @@ class Adapter(
             data.Manufacture = Devices[position].Manufacture
             data.Version = Devices[position].Version
             data.phonetype = Devices[position].phonetype
+
+            itemView.deviceId.text="Device id: "+Devices[position].device_Id
+            itemView.phoneType.text="Phone type: "+Devices[position].phonetype
+            itemView.manu.text="Manufacture: "+Devices[position].Manufacture
+            itemView.version.text=Devices[position].Version
 
 
             itemView.setOnClickListener {

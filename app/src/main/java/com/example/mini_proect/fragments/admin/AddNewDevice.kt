@@ -1,10 +1,14 @@
 package com.example.mini_proect.fragments.admin
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +17,11 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.get
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.Activities.Home_screen_admin
+import com.example.mini_proect.DataBase.All_Devices_view_Model
+import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.finish_Activity
 import kotlinx.android.synthetic.main.activity_change_password.*
@@ -25,9 +33,10 @@ import kotlin.collections.ArrayList
 
 class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
-
+    lateinit var vm:All_Devices_view_Model
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
 
     }
@@ -37,18 +46,22 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_new__device, container, false)
+
+
         view.add_new_device_button.setOnClickListener {
+            vm=ViewModelProvider(this).get(All_Devices_view_Model::class.java)
             var devId = device_id.text.toString()
             var osVer = os_version.text.toString()
             var manu = Manufacture.text.toString()
-            val y = Error(devId, osVer, manu)
-            if (y) {
+            var phn_type=view.phoneType_spinner.selectedItem.toString()
+            if (Error(devId, osVer, manu)) {
                 val builder = AlertDialog.Builder(view.context)
                 builder.setTitle(R.string.Devicemessage)
                     .setPositiveButton(getString(R.string.yes),
                         DialogInterface.OnClickListener { dialog, id ->
                             Toast.makeText(view.context, R.string.DeviceToast, Toast.LENGTH_SHORT)
                                 .show()
+                            vm.insertData(view.context,devId,phn_type,manu,osVer)
                             var intent = Intent(view.context, Home_screen_admin::class.java)
                             startActivity(intent)
                             activity?.finish()
@@ -65,7 +78,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         view.phoneType_spinner.onItemSelectedListener
 
         var arr =
-            arrayOf(getString(R.string.Type1), getString(R.string.Android), getString(R.string.iOS))
+            arrayOf( getString(R.string.Android), getString(R.string.iOS))
         var arr2 = arrayOf(getString(R.string.Phone), getString(R.string.Tablet))
 
         var adap =
