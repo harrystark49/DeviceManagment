@@ -7,12 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
@@ -45,7 +43,6 @@ class all_devices(var adminOremp:String) : Fragment() {
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(Application())
         ).get(All_Devices_view_Model::class.java)
-
         viewModel.getDeviceDetails(requireContext())!!.observe(requireActivity(), Observer {
 
             val recycler = view.findViewById<RecyclerView>(R.id.recyclerView)
