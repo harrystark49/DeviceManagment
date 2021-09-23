@@ -61,8 +61,20 @@
     <string name="Entervalidmobilenumber">Enter valid mobile number</string>
     <string name="ProvidePassword">Provide Password</string>
     <string name="Passwordshouldbealphanumeric">Password should be alphanumeric</string>
-    <string name="Passwordshouldbeinbetween8and10">Password should be inbetween  8 and 10</string>
+    <string name="Passwordshouldbeinbetween8and10">Password length should be in between  8 and 10</string>
     <string name="Passwordmismatch">Password mismatch</string>
     <string name="AdminsuccessfullyAdded">Admin successfully Added</string>
     <string name="EmployeesuccessfullyAdded">Employee successfully Added</string>
+    <string name="Devicemessage">Do you want to add the device?</string>
+    <string name="DeviceToast">Device added Successfully</string>
+    <string name="OStype">Change OS Type</string>
+    <string name="Apple">Apple</string>
+    <string name="EnterDeviceID">Enter Device ID</string>
+    <string name="EnterOSVersion">Enter OS Version</string>
+    <string name="SelectManufacture">Select Manufacture</string>
+    <string name="Type1">Type</string>
+    <string name="Android">Android</string>
+    <string name="iOS">iOS</string>
+    <string name="Phone">Phone</string>
+    <string name="Tablet">Tablet</string>
 </resources>
