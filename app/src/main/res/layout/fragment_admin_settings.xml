@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="Fragments.admin_Settings">
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,7 +12,7 @@
             android:id="@+id/update_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update Profile"
+            android:text="@string/update_profile"
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="30dp"
             android:textColor="@color/black"
@@ -24,7 +24,7 @@
             android:id="@+id/change_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Change Password"
+            android:text="@string/change_password"
             android:textSize="30dp"
             android:textColor="@color/black"
             android:layout_marginTop="20dp"

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mini_proect">
         <activity
+            android:name=".Activities.AdminDetails"
+            android:exported="true" />
+        <activity
             android:name=".Activities.Home_screen_employee"
             android:exported="true" />
         <activity

@@ -1,22 +1,25 @@
 package com.example.mini_proect.fragments
 
-import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
+import kotlinx.android.synthetic.main.activity_home_screen_admin.*
+import kotlinx.android.synthetic.main.fragment_all_devices.*
 
 
-class all_devices(var name: String) : Fragment(){
+class all_devices(var adminOremp:String) : Fragment() {
 
     private lateinit var viewModel: All_Devices_view_Model
 
@@ -31,6 +34,7 @@ class all_devices(var name: String) : Fragment(){
     ): View? {
         var view = inflater.inflate(R.layout.fragment_all_devices, container, false)
         intiData(view)
+
 
         return view
     }
@@ -49,10 +53,12 @@ class all_devices(var name: String) : Fragment(){
             var LLM: LinearLayoutManager = LinearLayoutManager(context)
             LLM.orientation = RecyclerView.VERTICAL
             recycle.layoutManager = LLM
-            var adapter = Adapter(it)
+            var adapter = context?.let { it1 -> Adapter(it1,it,adminOremp) }
             recycle.adapter = adapter
 
 
         })
     }
+
+
 }
