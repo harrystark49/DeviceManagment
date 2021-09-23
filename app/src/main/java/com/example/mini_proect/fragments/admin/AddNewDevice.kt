@@ -46,7 +46,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
             if (y) {
                 val builder = AlertDialog.Builder(view.context)
                 builder.setTitle(R.string.Devicemessage)
-                    .setPositiveButton("Yes",
+                    .setPositiveButton(getString(R.string.yes),
                         DialogInterface.OnClickListener { dialog, id ->
                             Toast.makeText(view.context, R.string.DeviceToast, Toast.LENGTH_SHORT)
                                 .show()
@@ -54,7 +54,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
                             startActivity(intent)
                             activity?.finish()
                         })
-                    .setNegativeButton("No",
+                    .setNegativeButton(getString(R.string.no),
                         DialogInterface.OnClickListener { dialog, id ->
                         })
                 builder.create()
@@ -65,8 +65,8 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         view.os_type_spinner.onItemSelectedListener = this
         view.phoneType_spinner.onItemSelectedListener
 
-        var arr = arrayOf("Type", "Android", "IOS")
-        var arr2 = arrayOf("Phone", "Tablet")
+        var arr = arrayOf(getString(R.string.Type1),getString(R.string.Android),getString(R.string.iOS))
+        var arr2 = arrayOf(getString(R.string.Phone),getString(R.string.Tablet))
 
         var adap =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr)
@@ -75,7 +75,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         var adap2 = ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arr2)
         view.phoneType_spinner.adapter = adap2
 
-        var manufactures = arrayOf("Honor", "Samsung", "Oppo", "Realme", "RedMi", "Vivo")
+        var manufactures = arrayOf("Honor", "Samsung", "Oppo", "Realme", "RedMi", "Vivo","One Plus+","Nokia","Motto","Sony","Lava","Lenovo")
         val adapter = ArrayAdapter(
             view.context,
             R.layout.list_view_items, manufactures
@@ -95,9 +95,9 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
         if (text == "IOS") {
             constraintLayout2.isVisible = false
-            Manufacture.setText("Apple")
+            Manufacture.setText(getString(R.string.Apple))
             manufacture_layout.setEndIconOnClickListener {
-                Manufacture.setText("Apple")
+                Manufacture.setText(getString(R.string.Apple))
                 Toast.makeText(view?.context, R.string.OStype, Toast.LENGTH_SHORT).show()
                 constraintLayout2.isVisible = false
             }
@@ -138,21 +138,21 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
     private fun Error(deviceId: String, osVersion: String, manufacture: String): Boolean {
         var y = 0
         if (deviceId.isEmpty()) {
-            deviceID.error = "Enter Device ID"
+            deviceID.error = getString(R.string.EnterDeviceID)
             deviceID.isErrorEnabled = true
         } else {
             deviceID.isErrorEnabled = false
             y++
         }
         if (osVersion.isEmpty()) {
-            os_version_layout.error = "Enter OS Version"
+            os_version_layout.error =getString(R.string.EnterOSVersion)
             os_version_layout.isErrorEnabled = true
         } else {
             os_version_layout.isErrorEnabled = false
             y++
         }
         if (manufacture.isEmpty()) {
-            manufacture_layout.error = "Select Manufacture"
+            manufacture_layout.error = getString(R.string.SelectManufacture)
             manufacture_layout.isErrorEnabled = true
         } else {
             manufacture_layout.isErrorEnabled = false
