@@ -11,8 +11,9 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.*
-import com.example.mini_proect.fragments.admin.AdminSettings
-import com.example.mini_proect.fragments.emp.MyDevices
+import com.example.mini_proect.fragments.emp.My_devices
+import com.example.mini_proect.fragments.emp.emp_myhistory
+import com.example.mini_proect.fragments.emp.emp_settings
 import kotlinx.android.synthetic.main.activity_home_screen_employee.*
 
 class Home_screen_employee : AppCompatActivity() {
@@ -32,7 +33,7 @@ class Home_screen_employee : AppCompatActivity() {
         emp_navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.emp_all_devices->{
-                   Fragments(all_devices())
+                   Fragments(all_devices("emp"))
                 }
                 R.id.emp_mydevices->{
                     Fragments(My_devices())

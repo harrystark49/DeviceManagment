@@ -44,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:hint="@string/Password"
-            android:inputType="textPassword"></EditText>
+            android:inputType="textPassword">
+        </EditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
@@ -55,7 +56,8 @@
         android:text="@string/Admin"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/material_password"></CheckBox>
+        app:layout_constraintTop_toBottomOf="@id/material_password">
+    </CheckBox>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_btn"
@@ -67,7 +69,8 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_check"></com.google.android.material.button.MaterialButton>
+        app:layout_constraintTop_toBottomOf="@+id/admin_check">
+    </com.google.android.material.button.MaterialButton>
 
     <TextView
         android:id="@+id/Register_btn"
@@ -80,5 +83,6 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/login_btn">
+    </TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>

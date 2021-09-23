@@ -1,4 +1,4 @@
-package com.example.mini_proect.fragments
+package com.example.mini_proect.fragments.emp
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,6 @@ import com.example.mini_proect.Activities.AdminDetails
 import com.example.mini_proect.Activities.ChangePassword
 import com.example.mini_proect.Activities.Register
 import com.example.mini_proect.R
-import kotlinx.android.synthetic.main.fragment_admin_settings.view.*
 import kotlinx.android.synthetic.main.fragment_emp_settings.view.*
 
 

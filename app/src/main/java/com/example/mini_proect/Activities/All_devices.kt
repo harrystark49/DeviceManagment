@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.fragment_all_devices.*
 
 
-class all_devices : Fragment() {
+class all_devices(var adminOremp:String) : Fragment() {
 
     private lateinit var viewModel: All_Devices_view_Model
 
@@ -53,7 +53,7 @@ class all_devices : Fragment() {
             var LLM: LinearLayoutManager = LinearLayoutManager(context)
             LLM.orientation = RecyclerView.VERTICAL
             recycle.layoutManager = LLM
-            var adapter = context?.let { it1 -> Adapter(it1,it) }
+            var adapter = context?.let { it1 -> Adapter(it1,it,adminOremp) }
             recycle.adapter = adapter
 
 

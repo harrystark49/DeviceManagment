@@ -41,13 +41,6 @@ class MainActivity : AppCompatActivity() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(All_Devices_view_Model::class.java)
 
-        viewModel.insertData(this, "1", "Nokia", "Android", "Mini")
-        viewModel.insertData(this, "2", "Samsung", "Android", "Phone")
-        viewModel.insertData(this, "3", "Huweii", "Andoird", "Tablet")
-        viewModel.insertData(this, "4", "Redmi", "Android", "Book")
-        viewModel.insertData(this, "5", "Apple13", "IOS", "Phone")
-
-
         viewModel.getLoginDetails(this)?.observe(this, Observer {
             if(it.isNotEmpty()){
             devicesList = it
