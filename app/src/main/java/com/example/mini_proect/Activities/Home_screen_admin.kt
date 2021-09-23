@@ -33,7 +33,7 @@ class Home_screen_admin : AppCompatActivity() {
         navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.admin_all_devices ->{
-                    fragmets(all_devices())
+                     fragmets(all_devices())
 
                 }
                 R.id.request_devices ->{
@@ -46,10 +46,6 @@ class Home_screen_admin : AppCompatActivity() {
                     var b:Bundle? = intent.extras
                     var email = b?.getString("AdminEmail").toString()
                     var pass = b?.getString("AdminPass").toString()
-
-
-
-
 
                     val myFrag = AdminSettings()
                     val mBundle=Bundle()
