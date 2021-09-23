@@ -25,7 +25,7 @@ class Home_screen_employee : AppCompatActivity() {
         emp_navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.emp_all_devices->{
-                   Fragments(all_devices())
+                   Fragments(all_devices("Employee"))
                 }
                 R.id.emp_mydevices->{
                     Fragments(MyDevices())

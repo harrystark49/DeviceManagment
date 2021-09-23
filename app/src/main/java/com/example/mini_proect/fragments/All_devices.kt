@@ -1,22 +1,22 @@
 package com.example.mini_proect.fragments
 
+import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 
 
-class all_devices : Fragment() {
+class all_devices(var name: String) : Fragment(){
 
     private lateinit var viewModel: All_Devices_view_Model
 
@@ -55,6 +55,4 @@ class all_devices : Fragment() {
 
         })
     }
-
-
 }
