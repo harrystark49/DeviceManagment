@@ -65,6 +65,10 @@ class Home_screen_employee : AppCompatActivity() {
             true
 
         }
+
+    }
+    override fun onBackPressed() {
+        alertDialog()
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)){
@@ -76,9 +80,6 @@ class Home_screen_employee : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.drawer_layout,frag).commit()
     }
 
-    override fun onBackPressed() {
-        alertDialog()
-    }
     private fun alertDialog(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.alert)

@@ -1,5 +1,4 @@
 package com.example.mini_proect.Activities
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,9 +11,9 @@ import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.Adapter
 import kotlinx.android.synthetic.main.activity_main.*
+import java.time.LocalDateTime
 
 class MainActivity : AppCompatActivity() {
-
 
 
     private lateinit var viewModel: All_Devices_view_Model
