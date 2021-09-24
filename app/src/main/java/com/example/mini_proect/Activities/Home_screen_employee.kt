@@ -32,7 +32,9 @@ class Home_screen_employee : AppCompatActivity() {
         emp_navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.emp_all_devices->{
-                   Fragments(all_devices("emp",emails!!))
+                    var b:Bundle? = intent.extras
+                    var email = b?.getString("EmpEmail")
+                   Fragments(all_devices("emp",email!!))
                 }
                 R.id.emp_mydevices->{
                     Fragments(My_devices())
@@ -44,13 +46,14 @@ class Home_screen_employee : AppCompatActivity() {
                     var b: Bundle? = intent.extras
                     var email = b?.getString("EmpEmail").toString()
                     var pass = b?.getString("EmpPass").toString()
-                    val myFrag = emp_settings()
+
+                    val myFrag1 = emp_settings()
                     val mBundle = Bundle()
                     mBundle.putString("EmpEmail", email)
                     mBundle.putString("EmpPass", pass)
-                    myFrag.arguments = mBundle
+                    myFrag1.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.emp_fragment_replacer, myFrag)
+                        replace(R.id.emp_fragment_replacer, myFrag1)
                         commit()
                     }
                 }

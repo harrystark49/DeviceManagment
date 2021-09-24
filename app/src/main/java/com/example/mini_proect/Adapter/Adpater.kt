@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_Entity
+import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.emp.emp_device_details
 import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
+import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 
 class Adapter(
     var context: Context,
@@ -20,12 +22,20 @@ class Adapter(
     var email:String
 ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-
+    lateinit var db:dbHelper
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        var helper=dbHelper(context)
+        var db=helper.readableDatabase
+
         fun setdata(data: All_Devices_Entity, position: Int) {
-
-
+            var s=Devices[position].device_Id
             data.device_Id = Devices[position].device_Id
+            var cursor=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
+            if(cursor!=null && cursor.moveToNext() ){
+                itemView.setBackgroundColor(-7829368)
+            }
+
             data.Manufacture = Devices[position].Manufacture
             data.Version = Devices[position].Version
             data.phonetype = Devices[position].phonetype

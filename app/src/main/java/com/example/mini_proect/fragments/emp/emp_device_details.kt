@@ -50,7 +50,14 @@ class emp_device_details(var email:String) : Fragment() {
                 Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show()
             }
         })
+        Toast.makeText(context, "$id", Toast.LENGTH_SHORT).show()
 
+        var cursor=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
+        if(cursor!=null && cursor.moveToNext() ){
+            vi.register_device.setText("STATUS PENDING")
+        }else{
+            vi.register_device.setText("register device")
+        }
         vi.register_device.setOnClickListener {
             loginViewModel.getLoginDetailsById(context,id)!!.observe(this.viewLifecycleOwner, Observer {
                 var cv=ContentValues()
@@ -63,6 +70,7 @@ class emp_device_details(var email:String) : Fragment() {
                     cv.put("EMAIL",email)
                     db.insert("REQUESTED_DEVICES",null,cv)
                     vi.register_device.setText("STATUS PENDING")
+
 
                 }
                 else{
