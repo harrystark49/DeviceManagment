@@ -1,5 +1,6 @@
 package com.example.mini_proect.Activities
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,18 +25,137 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         setContentView(R.layout.activity_register)
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         c2.startAnimation(anim)
-        var helper= dbHelper(this)
-        var db=helper.readableDatabase
-        spin.onItemSelectedListener=this
-        var arr=arrayOf(getString(R.string.Admin),getString(R.string.Employee))
-        var adap= ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,arr)
-        spin.adapter=adap
+        var helper = dbHelper(this)
+        var db = helper.readableDatabase
+        spin.onItemSelectedListener = this
+        var arr = arrayOf(getString(R.string.Admin), getString(R.string.Employee))
+        var adap = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, arr)
+        spin.adapter = adap
+
+        // For updating the profile
+        var b :Bundle? = intent.extras
+        var adminEmail = b?.getString("AdminEmail")
+        var empEmail = b?.getString("EmpEmail")
+
+        if(adminEmail!=null) {
+            Toast.makeText(this, "a", Toast.LENGTH_LONG).show()
+            spin.setSelection(0)
+            spin.isEnabled= false
+            var cursor = db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?", arrayOf(adminEmail))
+            if (cursor.moveToFirst()) {
+
+                var id_index = cursor.getColumnIndex("ID")
+                var id = cursor.getString(id_index).toString()
+                emp_id.setText(id)
+                emp_id.isEnabled= false
+
+                var name_index = cursor.getColumnIndex("NAME")
+                var name = cursor.getString(name_index).toString()
+                emp_name.setText(name)
+
+                var email_index = cursor.getColumnIndex("EMAIL")
+                var email = cursor.getString(email_index).toString()
+                emp_email.setText(email)
+
+                var mobile_index = cursor.getColumnIndex("MOBILE")
+                var mobile = cursor.getString(mobile_index).toString()
+                emp_mobile.setText(mobile)
+
+                cursor.close()
+
+
+
+                emp_register_btn.setOnClickListener{
+
+                    var Name =emp_name.text.toString()
+                    var Email = emp_email.text.toString()
+                    var MobileNo = emp_mobile.text.toString()
+
+                    if(Check_for_empty_fields(id,Name,Email,MobileNo,adminEmail)) {
+
+                        var cv=ContentValues()
+                        cv.put("NAME",Name)
+                        cv.put("EMAIL",Email)
+                        cv.put("MOBILE",MobileNo)
+                        db.update("ADD_ADMIN",cv,"ID=?", arrayOf(id))
+
+                        Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
+                        var i = Intent(this,login::class.java)
+                        startActivity(i)
+
+                    }
+
+
+
+                }
+
+            }
+        }
+
+        else if(empEmail!=null) {
+            Toast.makeText(this, "b", Toast.LENGTH_LONG).show()
+
+            spin.setSelection(1)
+            spin.isEnabled = false
+
+            var cursor = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(empEmail))
+            if (cursor.moveToNext()) {
+
+                var id_index = cursor.getColumnIndex("ID")
+                var id = cursor.getString(id_index).toString()
+                emp_id.setText(id)
+                emp_id.isEnabled = false
+
+                var name_index = cursor.getColumnIndex("NAME")
+                var name = cursor.getString(name_index).toString()
+                emp_name.setText(name)
+
+                var email_index = cursor.getColumnIndex("EMAIL")
+                var email = cursor.getString(email_index).toString()
+                emp_email.setText(email)
+
+                var mobile_index = cursor.getColumnIndex("MOBILE")
+                var mobile = cursor.getString(mobile_index).toString()
+                emp_mobile.setText(mobile)
+
+                cursor.close()
+
+
+                emp_register_btn.setOnClickListener {
+
+                    var Name = emp_name.text.toString()
+                    var Email = emp_email.text.toString()
+                    var MobileNo = emp_mobile.text.toString()
+
+                    if (Check_for_empty_fields(id,Name, Email, MobileNo,empEmail)) {
+
+                        var cv = ContentValues()
+                        cv.put("NAME", Name)
+                        cv.put("EMAIL", Email)
+                        cv.put("MOBILE", MobileNo)
+                        db.update("ADD_EMPLOYEE", cv, "ID=?", arrayOf(id))
+                        Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
+                        var i = Intent(this,login::class.java)
+                        startActivity(i)
+
+                    }
+                }
+            }
+        }
+
+
+
+        //For registering a new user
+
+        else{
+            Toast.makeText(this, "New user", Toast.LENGTH_SHORT).show()
 
             emp_register_btn.setOnClickListener {
 
+
                 var cursor=db.rawQuery("SELECT * FROM ADD_ADMIN",null)
-                if(cursor.moveToNext() && user==getString(R.string.Admin)){
-                    Toast.makeText(this,R.string.AdminalreadyCreated,Toast.LENGTH_SHORT).show()
+                if(cursor.moveToNext() && user=="Admin"){
+                    Toast.makeText(this,"Admin already Created",Toast.LENGTH_SHORT).show()
                     emp_name.setText("")
                     emp_mobile.setText("")
                     emp_id.setText("")
@@ -43,24 +163,28 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     emp_id.requestFocus()
                 }
 
-                    else{
-                        if(Check_for_empty_fields(emp_id.text.toString()
+                else{
+                    if(Check_for_empty_fields(emp_id.text.toString()
                             ,emp_name.text.toString()
                             ,emp_email.text.toString()
-                            ,emp_mobile.text.toString()
+                            ,emp_mobile.text.toString(),null
                         )){
+
                         var intent=Intent(this, save_data::class.java)
                         intent.putExtra("ID",emp_id.text.toString())
                         intent.putExtra("NAME",emp_name.text.toString())
                         intent.putExtra("EMAIL",emp_email.text.toString())
                         intent.putExtra("MOBILE",emp_mobile.text.toString())
                         startActivity(intent)
-        }}
-
-    }}
+                    }}
 
 
-    private fun Check_for_empty_fields(id: String,name : String, email: String, mobile: String):Boolean {
+            }
+        }
+    }
+
+
+    private fun Check_for_empty_fields(id: String,name : String, email: String, mobile: String,personEmail:String?):Boolean {
         var x=0;
         if(id.isEmpty()){
             material_emp_id.error=getString(R.string.IDcantbeEmpty)
@@ -96,7 +220,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             var db=helper.readableDatabase
 
             var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_email.text.toString()))
-            if(cursor.moveToNext()){
+            if(cursor.moveToNext()&& (!email.equals(personEmail))){
                 material_emp_email.error=getString(R.string.Emailalreadyexists)
                 material_emp_email.isErrorEnabled=true
             }else{
@@ -160,11 +284,10 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         return false
 
     }
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        user=p0?.getItemAtPosition(p2).toString()
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+        user=parent?.getItemAtPosition(pos).toString()
     }
 
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("Not yet implemented")
+    override fun onNothingSelected(parent: AdapterView<*>?) {
     }
 }
