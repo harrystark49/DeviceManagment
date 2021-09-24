@@ -23,6 +23,10 @@ class Home_screen_admin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        var b:Bundle? = intent.extras
+        var emails = b?.getString("AdminEmail").toString()
+        Toast.makeText(this, "$emails", Toast.LENGTH_SHORT).show()
+
         setContentView(R.layout.activity_home_screen_admin)
 
         togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
@@ -33,7 +37,7 @@ class Home_screen_admin : AppCompatActivity() {
         navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.admin_all_devices ->{
-                     fragmets(all_devices("Admin"))
+                     fragmets(all_devices("Admin",emails!!))
 
                 }
                 R.id.request_devices ->{
@@ -71,6 +75,7 @@ class Home_screen_admin : AppCompatActivity() {
     fun fragmets(frag:Fragment){
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_replacer,frag)
+            addToBackStack(null)
             commit()
         }
     }
@@ -83,6 +88,7 @@ class Home_screen_admin : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+
         alertDialog()
     }
     protected fun alertDialog() {

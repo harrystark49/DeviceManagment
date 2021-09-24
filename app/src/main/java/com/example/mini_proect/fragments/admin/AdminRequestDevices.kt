@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.R
 
 class AdminRequestDevices : Fragment() {
@@ -20,7 +21,12 @@ class AdminRequestDevices : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =inflater.inflate(R.layout.fragment_admin_request_devices, container, false)
+        var view= inflater.inflate(R.layout.fragment_admin_request_devices, container, false)
+
+
+
+        val recycler = view.findViewById<RecyclerView>(R.id.recyclerView2)
+
         return view
     }
 
