@@ -144,7 +144,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         var y:Boolean=false
         var z=true
         for(c in id){
-
             if(c in 'a'..'z' || c in 'A'..'Z'){
                 x=true
             }

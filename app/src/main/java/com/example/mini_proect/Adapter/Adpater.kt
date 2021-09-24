@@ -1,60 +1,58 @@
 package com.example.mini_proect.fragments
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_Entity
+import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.emp.emp_device_details
 import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
+import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 
 class Adapter(
     var context: Context,
     var Devices: List<All_Devices_Entity>,
     var AdminOrEmp: String = "emp",
-    ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    var email:String
+) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-
+    lateinit var db:dbHelper
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        var helper=dbHelper(context)
+        var db=helper.readableDatabase
+
         fun setdata(data: All_Devices_Entity, position: Int) {
-
-
-//            data.device_Id = Devices[position].device_Id
-//            data.Manufacture = Devices[position].Manufacture
-//            data.Version = Devices[position].Version
-//            data.phonetype = Devices[position].phonetype
-//
-//
-
-            Devices[1].isAllocated = true
-
-
-            if (!data.isAllocated) {
-                itemView.CL.setBackgroundColor(Color.parseColor("Silver"))
-            } else {
-                itemView.findViewById<ConstraintLayout>(R.id.CL)
-                    .setBackgroundColor(Color.parseColor("Green"))
-
+            var s=Devices[position].device_Id
+            data.device_Id = Devices[position].device_Id
+            var cursor=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
+            if(cursor!=null && cursor.moveToNext() ){
+                itemView.setBackgroundColor(-7829368)
             }
 
-            itemView.deviceId.text = "Device id: " + Devices[position].device_Id
-            itemView.phoneType.text = "Phone type: " + Devices[position].phonetype
-            itemView.manu.text = "Manufacture: " + Devices[position].Manufacture
-            itemView.version.text = "Version: " + Devices[position].Version
+            data.Manufacture = Devices[position].Manufacture
+            data.Version = Devices[position].Version
+            data.phonetype = Devices[position].phonetype
+
+            itemView.deviceId.text="Device id: "+Devices[position].device_Id
+            itemView.phoneType.text="Phone type: "+Devices[position].phonetype
+            itemView.manu.text="Manufacture: "+Devices[position].Manufacture
+            itemView.version.text=Devices[position].Version
 
 
             itemView.setOnClickListener {
+
                 if (AdminOrEmp == "Admin") {
                     var b: Bundle = Bundle()
                     b.putString("DeviceId", Devices[position].device_Id)
                     var frag = Device_Details()
+                    b.putString("Email",email)
                     frag.arguments = b
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
@@ -62,23 +60,23 @@ class Adapter(
                         commit()
                     }
                 } else {
-
                     var b: Bundle = Bundle()
                     b.putString("DeviceId", Devices[position].device_Id)
-
-                    var frag = emp_device_details()
+                    //b.putString("Email",email)
+                    var frag = emp_device_details(email)
                     frag.arguments = b
                     var activity = itemView.context as AppCompatActivity
-
-
-
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, frag)
                         commit()
                     }
                 }
+
+
             }
         }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -98,7 +96,5 @@ class Adapter(
     override fun getItemCount(): Int {
         return Devices!!.size
     }
-
 }
-
 
