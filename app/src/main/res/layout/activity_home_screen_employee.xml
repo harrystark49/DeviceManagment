@@ -2,18 +2,22 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/drawer_layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.Home_screen_admin">
 
-    <androidx.fragment.app.FragmentContainerView
+
+
+
+    <FrameLayout
         android:id="@+id/emp_fragment_replacer"
-        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-         />
+        />
+
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/emp_navigation_tool"
@@ -21,9 +25,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:menu="@menu/employee_menu">
+        app:menu="@menu/employee_menu"/>
 
-
-    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

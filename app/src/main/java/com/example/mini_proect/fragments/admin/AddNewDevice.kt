@@ -61,7 +61,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
                         DialogInterface.OnClickListener { dialog, id ->
                             Toast.makeText(view.context, R.string.DeviceToast, Toast.LENGTH_SHORT)
                                 .show()
-                            vm.insertData(view.context,devId,phn_type,manu,osVer)
+                            vm.insertData(view.context,devId,phn_type,manu,osVer,false)
                             var intent = Intent(view.context, Home_screen_admin::class.java)
                             startActivity(intent)
                             activity?.finish()

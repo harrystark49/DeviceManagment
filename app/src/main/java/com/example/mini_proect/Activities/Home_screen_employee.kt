@@ -1,7 +1,6 @@
 package com.example.mini_proect.Activities
 
 import android.content.DialogInterface
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -23,20 +22,12 @@ class Home_screen_employee : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_employee)
 
-
-        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
-        var edit = sharedPreferences.edit()
-
-
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_replacer,all_devices("Employee")).commit()
-
-
         var b:Bundle? = intent.extras
         var emails = b?.getString("Email")
         Toast.makeText(this, "$emails", Toast.LENGTH_SHORT).show()
 
-        toggle= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
-        drawer_layout.addDrawerListener(toggle)
+        toggle= ActionBarDrawerToggle(this,drawer_layout1, R.string.open, R.string.close)
+        drawer_layout1.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         emp_navigation_tool.setNavigationItemSelectedListener {
@@ -65,13 +56,10 @@ class Home_screen_employee : AppCompatActivity() {
                     }
                 }
                 R.id.emp_logout->{
-                    edit.clear()
-                    edit.commit()
-                    startActivity(Intent(this,login::class.java))
-                    finish()
+                    alertDialog()
                 }
             }
-            drawer_layout.closeDrawer(GravityCompat.START)
+            drawer_layout1.closeDrawer(GravityCompat.START)
             true
 
         }
@@ -83,7 +71,7 @@ class Home_screen_employee : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     private fun Fragments(frag:Fragment){
-        supportFragmentManager.beginTransaction().replace(R.id.drawer_layout,frag).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.emp_fragment_replacer,frag).commit()
     }
 
     override fun onBackPressed() {

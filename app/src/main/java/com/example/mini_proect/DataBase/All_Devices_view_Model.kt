@@ -10,8 +10,8 @@ class All_Devices_view_Model:ViewModel() {
     var logindata: LiveData<All_Devices_Entity>?=null
     var Devicedata: LiveData<List<All_Devices_Entity>>?=null
 
-    fun insertData(context: Context, phn_id:String, phn_type: String, manufacture: String,version:String) {
-        All_Devices_Repository.insertData(context,phn_id,phn_type,manufacture,version)
+    fun insertData(context: Context, phn_id:String, phn_type: String, manufacture: String,version:String,isAllocated:Boolean) {
+        All_Devices_Repository.insertData(context,phn_id,phn_type,manufacture,version,isAllocated)
     }
 
     fun getLoginDetailsById(context: Context?, id: String) : LiveData<All_Devices_Entity>? {

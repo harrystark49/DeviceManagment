@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.mini_proect.R
 
 
-class   My_devices : Fragment() {
+class My_devices : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

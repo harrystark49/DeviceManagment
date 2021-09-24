@@ -24,18 +24,11 @@ class login : AppCompatActivity() {
 
 
 
-
         var helper = dbHelper(this)
         var db = helper.readableDatabase
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
-        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
-        var edit = sharedPreferences.edit()
-
-
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         c1.startAnimation(anim)
         login_btn.setOnClickListener {
@@ -55,12 +48,6 @@ class login : AppCompatActivity() {
                     if (cursor.moveToNext()) {
                         var pass = cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if (pass == password.text.toString()) {
-
-
-                            edit.putBoolean("isLogged",true)
-                            edit.putString("AdminOrEmployee","Employee")
-                            edit.commit()
-
 
                             var intent = Intent(this, Home_screen_employee::class.java)
                             intent.putExtra("EmpEmail", email_id.text.toString())
@@ -89,11 +76,6 @@ class login : AppCompatActivity() {
 
                         var pass = cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if (pass == password.text.toString()) {
-
-                            edit.putBoolean("isLogged",true)
-                            edit.putString("AdminOrEmployee","Admin")
-                            edit.commit()
-
 
                             var intent = Intent(this, Home_screen_admin::class.java)
                             intent.putExtra("AdminEmail", email_id.text.toString())

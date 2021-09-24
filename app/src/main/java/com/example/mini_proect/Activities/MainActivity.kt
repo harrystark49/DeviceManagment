@@ -3,6 +3,7 @@ package com.example.mini_proect.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -25,29 +26,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
-        var edit = sharedPreferences.edit()
-
-
-
-        var isLogged = sharedPreferences.getBoolean("isLogged",false)
-        var AdminOrEmployee = sharedPreferences.getString("AdminOrEmployee",null)
-
-
-
         project_title.animate().setDuration(1000).rotationYBy(360f)
         app_title.alpha = 0f
         app_title.animate().setDuration(3000).alpha(1f).withEndAction {
 
-            if(!isLogged) {
-                var intent = Intent(this, login::class.java)
-                startActivity(intent)
-                finish()
-            }else if(AdminOrEmployee.equals("Employee")){
-                startActivity(Intent(this,Home_screen_employee::class.java))
-            }else{
-                startActivity(Intent(this,Home_screen_admin::class.java))
-            }
+            var intent = Intent(this, login::class.java)
+            startActivity(intent)
+            finish()
         }
 
 
