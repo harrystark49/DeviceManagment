@@ -144,6 +144,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
 
+
         //For registering a new user
 
         else if(empEmail== null && adminEmail==null){
