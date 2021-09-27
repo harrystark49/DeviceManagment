@@ -4,7 +4,6 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -40,13 +39,21 @@ class Home_screen_employee : AppCompatActivity() {
                     Fragments(My_devices())
                 }
                 R.id.emp_myhistory->{
-                    Fragments(emp_myhistory())
+                    var b: Bundle? = intent.extras
+                    var email = b?.getString("EmpEmail")
+                    val myFrag1 = emp_myhistory()
+                    val mBundle = Bundle()
+                    mBundle.putString("EmpEmail", email)
+                    myFrag1.arguments = mBundle
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.emp_fragment_replacer, myFrag1)
+                        commit()
+                    }
                 }
                 R.id.emp_settings-> {
                     var b: Bundle? = intent.extras
-                    var email = b?.getString("EmpEmail").toString()
-                    var pass = b?.getString("EmpPass").toString()
-
+                    var email = b?.getString("EmpEmail")
+                    var pass = b?.getString("EmpPass")
                     val myFrag1 = emp_settings()
                     val mBundle = Bundle()
                     mBundle.putString("EmpEmail", email)
@@ -90,7 +97,6 @@ class Home_screen_employee : AppCompatActivity() {
             finish()
         }
         builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
-
         }
         builder.create()
         builder.show()

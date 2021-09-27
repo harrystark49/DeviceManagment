@@ -30,8 +30,6 @@ class requested_device_details : Fragment() {
         var id_device = args?.get("DeviceId").toString()
         var mail = args?.get("Email").toString()
 
-        Toast.makeText(context, "$id_device and $mail", Toast.LENGTH_SHORT).show()
-        Log.d("id and mail","$id_device and $mail")
 
             var cv = ContentValues()
             var gmail=""
@@ -41,10 +39,10 @@ class requested_device_details : Fragment() {
             )
 
             if (cursor.moveToNext()) {
-                Toast.makeText(context, "11", Toast.LENGTH_SHORT).show()
+
                 var gmailid=cursor.getColumnIndex("EMAIL")
                  gmail=cursor.getString(gmailid)
-                Toast.makeText(context, "$gmail", Toast.LENGTH_SHORT).show()
+
                 var db_id = cursor.getColumnIndex("DEVICE_ID")
                 var idd = cursor.getString(db_id)
 
@@ -59,7 +57,7 @@ class requested_device_details : Fragment() {
 
                 var PHN_TYPE_db = cursor.getColumnIndex("PHN_TYPE")
                 var PHN_TYPE = cursor.getString(PHN_TYPE_db)
-                Toast.makeText(context, "$PHN_TYPE $VERSION $OS_TYPE", Toast.LENGTH_LONG).show()
+
                 cv.put("DEVICE_ID", idd)
                 view.emp_device_id_value2.setText(idd)
                 view.emp_os_type_value2.setText(OS_TYPE)
@@ -71,7 +69,7 @@ class requested_device_details : Fragment() {
             }
             var cursor1 = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(gmail))
             if (cursor1.moveToNext()) {
-                Toast.makeText(context, "22", Toast.LENGTH_SHORT).show()
+
                 var name_db = cursor1.getColumnIndex("NAME")
                 var name = cursor1.getString(name_db)
 
@@ -88,8 +86,7 @@ class requested_device_details : Fragment() {
                 view.empID_value.setText(id)
                 view.mobile_number_value.setText(number)
 
-                var SimpleDataFormat= SimpleDateFormat("dd.MM.dd \n HH:mm:ss")
-
+                var SimpleDataFormat= SimpleDateFormat("dd.MM.dd HH:mm:ss")
 
                 view.accept.setOnClickListener {
                     var date=SimpleDataFormat.format(Date())
