@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-@Database(entities = arrayOf(All_Devices_Entity::class),version = 1,exportSchema = false)
+@Database(entities = arrayOf(All_Devices_Entity::class),version = 2,exportSchema = false)
 abstract class All_Devices_Db: RoomDatabase(){
 
     abstract fun All_Devices_Dao():All_Devices_Dao

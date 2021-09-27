@@ -41,7 +41,7 @@ class emp_device_details(var email:String) : Fragment() {
 
             if(it != null){
                 vi.emp_device_id_value1.setText(it.device_Id)
-                vi.emp_os_type_value1.setText("Android")
+                vi.emp_os_type_value1.setText(it.os_type)
                 vi.emp_manufacture_value1.setText(it.Manufacture)
                 vi.emp_os_version_value1.setText(it.Version)
                 vi.emp_phn_type_value1.setText(it.phonetype)
@@ -66,7 +66,7 @@ class emp_device_details(var email:String) : Fragment() {
                     cv.put("MANUFACTURE",it.Manufacture)
                     cv.put("VERSION",it.Version)
                     cv.put("PHN_TYPE",it.phonetype)
-                    cv.put("OS_TYPE","Android")
+                    cv.put("OS_TYPE",it.os_type)
                     cv.put("EMAIL",email)
                     db.insert("REQUESTED_DEVICES",null,cv)
                     vi.register_device.setText("STATUS PENDING")

@@ -31,9 +31,12 @@ class Adapter(
         fun setdata(data: All_Devices_Entity, position: Int) {
             var s=Devices[position].device_Id
             data.device_Id = Devices[position].device_Id
-            var cursor=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
-            if(cursor!=null && cursor.moveToNext() ){
+            var cursor1=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
+            var cursor=db.rawQuery("SELECT DEVICE_ID FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
+            if(cursor1.moveToNext() || cursor.moveToNext() ){
                 itemView.setBackgroundColor(-7829368)
+            }else{
+                itemView.setBackgroundColor(-16711936)
             }
 
             data.Manufacture = Devices[position].Manufacture
@@ -62,7 +65,7 @@ class Adapter(
                 } else {
                     var b: Bundle = Bundle()
                     b.putString("DeviceId", Devices[position].device_Id)
-                    //b.putString("Email",email)
+                    b.putString("Email",email)
                     var frag = emp_device_details(email)
                     frag.arguments = b
                     var activity = itemView.context as AppCompatActivity
