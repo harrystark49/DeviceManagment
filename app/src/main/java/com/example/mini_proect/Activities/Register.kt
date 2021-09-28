@@ -19,23 +19,26 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     lateinit var user:String
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         c2.startAnimation(anim)
+
         var helper = dbHelper(this)
         var db = helper.readableDatabase
+
         spin.onItemSelectedListener = this
         var arr = arrayOf(getString(R.string.Admin), getString(R.string.Employee))
         var adap = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, arr)
         spin.adapter = adap
 
-        // For updating the profile
         var b :Bundle? = intent.extras
         var adminEmail = b?.getString("AdminEmail")
         var empEmail = b?.getString("EmpEmail")
+
+        // For updating the admin profile
 
         if(adminEmail!=null) {
             Toast.makeText(this, "a", Toast.LENGTH_LONG).show()
@@ -92,6 +95,8 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         }
 
+        //For updating the employee profile
+
         else if(empEmail!=null) {
             Toast.makeText(this, "b", Toast.LENGTH_LONG).show()
 
@@ -142,8 +147,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 }
             }
         }
-
-
 
         //For registering a new user
 
@@ -220,10 +223,19 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             var db=helper.readableDatabase
 
             var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_email.text.toString()))
-            if(cursor.moveToNext()&& (!email.equals(personEmail))){
+
+            var cursor1=db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?",arrayOf(emp_email.text.toString()))
+
+            if((cursor.moveToNext()&& (!email.equals(personEmail))) || cursor1.moveToNext()){
                 material_emp_email.error=getString(R.string.Emailalreadyexists)
                 material_emp_email.isErrorEnabled=true
-            }else{
+            }
+            else if(cursor1.moveToNext()) {
+                material_emp_email.error=getString(R.string.Emailalreadyexists)
+                material_emp_email.isErrorEnabled=true
+
+            }else
+            {
                 material_emp_email.isErrorEnabled=false
                 x++
             }
