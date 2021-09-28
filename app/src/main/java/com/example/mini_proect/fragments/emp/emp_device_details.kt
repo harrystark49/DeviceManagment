@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
+import com.example.mini_proect.fragments.admin.Device_Details
 import kotlinx.android.synthetic.main.fragment_device__details.view.*
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 import java.text.SimpleDateFormat
@@ -38,6 +39,49 @@ class emp_device_details(var email:String) : Fragment() {
         var id=args?.getString("DeviceId")
         var mail=args?.getString("Email")
 
+
+        Toast.makeText(vi.context, "$mail", Toast.LENGTH_SHORT).show()
+
+        var c1=db.rawQuery("SELECT * FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
+        var c2=db.rawQuery("SELECT * FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
+
+
+        var mail1=""
+        var mail2=""
+        var mail3=""
+        if(c1.moveToFirst()){
+             mail1=c1.getString(c1.getColumnIndex("EMAIL"))
+
+        }
+        if(c2.moveToFirst()){
+             mail2=c2.getString(c2.getColumnIndex("EMP_ID"))
+
+            var c3=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE ID=?", arrayOf(mail2))
+
+
+            if(c3.moveToFirst()){
+                mail3=c3.getString(c3.getColumnIndex("EMAIL"))
+            }
+        }
+
+        var b: Bundle = Bundle()
+        b.putString("DeviceId", id)
+        b.putString("Email",mail)
+        var frag = Device_Details()
+        frag.arguments = b
+
+        if(((mail==mail1) || (mail==mail3))){
+
+            Toast.makeText(vi.context, "sdfadhryrdrhrdth", Toast.LENGTH_SHORT).show()
+            activity?.supportFragmentManager?.beginTransaction()?.apply {
+                replace(R.id.emp_fragment_replacer, frag)
+                commit()
+            }
+
+        }
+
+
+
         loginViewModel = ViewModelProvider(this).get(All_Devices_view_Model::class.java)
 
         loginViewModel.getLoginDetailsById(context,id.toString())!!.observe(this.viewLifecycleOwner, Observer {
@@ -58,11 +102,14 @@ class emp_device_details(var email:String) : Fragment() {
         var cursor=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
         var cursor1=db.rawQuery("SELECT DEVICE_ID FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
         if(cursor!=null && cursor.moveToNext() ){
+            vi.register_device.visibility=View.VISIBLE
             vi.register_device.setText("STATUS PENDING")
-        }else if(cursor1.moveToNext()){
+        }
+        else if(cursor1.moveToNext()){
             vi.register_device.setText("RETURN DEVICE")
         }
         else{
+            vi.register_device.visibility=View.VISIBLE
             vi.register_device.setText("REGISTER DEVICE")
         }
 
@@ -86,7 +133,8 @@ class emp_device_details(var email:String) : Fragment() {
                         Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show()
                     }
                 })
-        }    else if(reg=="RETURN DEVICE"){
+        }
+            else if(reg=="RETURN DEVICE"){
                 Toast.makeText(vi.context, "return", Toast.LENGTH_SHORT).show()
                 var cv1=ContentValues()
                 cv1.put("DEVICE_ID",id)
@@ -105,7 +153,9 @@ class emp_device_details(var email:String) : Fragment() {
                 Toast.makeText(vi.context, "Succesfully Returned", Toast.LENGTH_SHORT).show()
                 db.insert("DEVICE_HISTORY",null,cv1)
                 db.delete("ACCEPTED_DEVICES","DEVICE_ID=?",arrayOf(id))
-            }else{
+            }
+
+            else{
                 var cursor=db.rawQuery("SELECT * FROM REQUESTED_DEVICES WHERE DEVICE_ID=?",arrayOf(id))
                 var cursor1=db.rawQuery("SELECT START_TIME FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?",arrayOf(id))
                 if(!(cursor.moveToNext() || cursor1.moveToNext())){
