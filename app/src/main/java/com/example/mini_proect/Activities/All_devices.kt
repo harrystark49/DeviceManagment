@@ -33,18 +33,26 @@ class all_devices(var adminOremp:String,var email:String) : Fragment() {
     ): View? {
         var view = inflater.inflate(R.layout.fragment_all_devices, container, false)
         intiData(view)
-
-
         return view
     }
 
 
     private fun intiData(view: View) {
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(Application())
-        ).get(All_Devices_view_Model::class.java)
-        viewModel.getDeviceDetails(requireContext())!!.observe(requireActivity(), Observer {
+//        viewModel = ViewModelProvider(
+//            this,
+//            ViewModelProvider.AndroidViewModelFactory.getInstance(Application())
+//        ).get(All_Devices_view_Model::class.java)
+//
+//
+
+        viewModel = All_Devices_view_Model()
+
+
+        viewModel.getDeviceDetails(requireContext())!!
+            .observe(requireActivity(), Observer {
+
+
+
 
             val recycler = view.findViewById<RecyclerView>(R.id.recyclerView)
             var recycle: RecyclerView = recycler
@@ -53,7 +61,6 @@ class all_devices(var adminOremp:String,var email:String) : Fragment() {
             recycle.layoutManager = LLM
             var adapter = context?.let { it1 -> Adapter(it1,it,adminOremp,email) }
             recycle.adapter = adapter
-
 
         })
     }

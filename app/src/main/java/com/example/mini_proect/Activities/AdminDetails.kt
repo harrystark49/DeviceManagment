@@ -32,8 +32,8 @@ class AdminDetails : AppCompatActivity() {
 //            var cal = Calendar.getInstance()
 //            var t : String = cal.time.toString()
 //            mobile_dispaly_replace.setText(t)
-            var currentDateTime=LocalDateTime.now()
-            mobile_dispaly_replace.setText(currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"+"\n"+"HH:mm:ss")))
+//            var currentDateTime=LocalDateTime.now()
+//            mobile_dispaly_replace.setText(currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"+"\n"+"HH:mm:ss")))
         }
 
     }

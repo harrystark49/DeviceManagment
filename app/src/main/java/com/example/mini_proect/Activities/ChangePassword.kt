@@ -81,6 +81,7 @@ class ChangePassword : AppCompatActivity() {
 
 
         }
+        finish()
     }
 
     private fun checkDetails(newPass:String,conPass:String):Boolean {

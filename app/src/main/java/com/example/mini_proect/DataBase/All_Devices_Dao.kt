@@ -9,7 +9,9 @@ import androidx.room.Query
 @Dao()
 interface All_Devices_Dao {
 
-    @Insert(onConflict =  OnConflictStrategy.REPLACE)
+
+
+      @Insert(onConflict =  OnConflictStrategy.REPLACE)
     fun insertData(All_Devices_Entity:All_Devices_Entity)
 
 
@@ -18,6 +20,7 @@ interface All_Devices_Dao {
 
     @Query("SELECT * FROM all_Devices_Details ORDER BY device_Id")
     fun getDetails(): LiveData<List<All_Devices_Entity>>
+
 
 
 

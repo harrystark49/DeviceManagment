@@ -1,6 +1,7 @@
 package com.example.mini_proect.Activities
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -35,6 +36,7 @@ class Home_screen_employee : AppCompatActivity() {
                     var b:Bundle? = intent.extras
                     var email = b?.getString("EmpEmail")
                    Fragments(all_devices("emp",email!!))
+                    onBackPressed().apply { alertDialog() }
                 }
                 R.id.emp_mydevices->{
                     Fragments(My_devices())
@@ -63,7 +65,6 @@ class Home_screen_employee : AppCompatActivity() {
             }
             drawer_layout.closeDrawer(GravityCompat.START)
             true
-
         }
 
     }

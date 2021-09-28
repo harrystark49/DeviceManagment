@@ -38,7 +38,6 @@ class Home_screen_admin : AppCompatActivity() {
             when(it.itemId){
                 R.id.admin_all_devices ->{
                      fragmets(all_devices("Admin",emails!!))
-
                 }
                 R.id.request_devices ->{
                     fragmets(AdminRequestDevices())

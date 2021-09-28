@@ -8,6 +8,9 @@ import androidx.room.RoomDatabase
 abstract class All_Devices_Db: RoomDatabase(){
 
     abstract fun All_Devices_Dao():All_Devices_Dao
+
+
+
     companion object{
         @Volatile
         private var INSTACE:All_Devices_Db?=null
