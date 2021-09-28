@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "all_Devices_Details")
 data class All_Devices_Entity(
     @PrimaryKey
-    @ColumnInfo(name = "DEVICE_ID")var device_Id:String,
+    var device_Id:String,
     var phonetype:String,
     var Manufacture:String,
     var Version:String
