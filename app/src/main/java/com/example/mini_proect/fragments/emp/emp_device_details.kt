@@ -72,7 +72,6 @@ class emp_device_details(var email:String) : Fragment() {
 
         if(((mail==mail1) || (mail==mail3))){
 
-            Toast.makeText(vi.context, "sdfadhryrdrhrdth", Toast.LENGTH_SHORT).show()
             activity?.supportFragmentManager?.beginTransaction()?.apply {
                 replace(R.id.emp_fragment_replacer, frag)
                 commit()

@@ -36,7 +36,16 @@ class Home_screen_employee : AppCompatActivity() {
                    Fragments(all_devices("emp",email!!))
                 }
                 R.id.emp_mydevices->{
-                    Fragments(My_devices())
+                    var b: Bundle? = intent.extras
+                    var email = b?.getString("EmpEmail")
+                    val myFrag1 = My_devices()
+                    val mBundle = Bundle()
+                    mBundle.putString("EmpEmail", email)
+                    myFrag1.arguments = mBundle
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.emp_fragment_replacer, myFrag1)
+                        commit()
+                    }
                 }
                 R.id.emp_myhistory->{
                     var b: Bundle? = intent.extras
