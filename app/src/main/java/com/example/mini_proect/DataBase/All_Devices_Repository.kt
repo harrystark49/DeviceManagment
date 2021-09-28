@@ -24,16 +24,17 @@ class All_Devices_Repository {
             context: Context,
             id: String,
             phn_type: String,
+            os_type:String,
             maufacture: String,
             version: String,
-            isAllocated:Boolean
+            isAllocated: String
         ) {
 
             data = initializeDb(context)
 
             CoroutineScope(Dispatchers.IO).launch {
 
-                val loginDetails = All_Devices_Entity(id, phn_type, maufacture, version,false)
+                val loginDetails = All_Devices_Entity(id, phn_type,os_type, maufacture, version, "false")
                 data!!.All_Devices_Dao().insertData(loginDetails)
             }
 
@@ -43,9 +44,8 @@ class All_Devices_Repository {
 
             data = initializeDb(context)
 
-            ldata = data!!.All_Devices_Dao().getDetailsById(id)
+            return data!!.All_Devices_Dao().getDetailsById(id)
 
-            return ldata
         }
 
         fun DeviceDetails(context: Context): LiveData<List<All_Devices_Entity>> {
@@ -66,5 +66,50 @@ class All_Devices_Repository {
 
             return livedata
         }
+
+
+        fun UpdateDevieAllocation(context: Context?, emp_id: String?, dev_id: String) {
+
+            data = initializeDb(context)
+            data!!.All_Devices_Dao().Update(emp_id, dev_id)
+
+
+
+
+        }
+
+
+        fun InsertIntoPending(
+            context: Context?,
+            pendingDevices: Pending_Devices
+        ) {
+            data = initializeDb(context)
+            data!!.All_Devices_Dao().insertIntoPending(pendingDevices)
+
+        }
+
+        fun getDetailsById(context: Context, id: String): Pending_Devices {
+            data = initializeDb(context)
+
+            return data!!.All_Devices_Dao().getDetailsByid1(id)
+        }
+
+
+        fun getPendingDevices(context: Context): LiveData<List<Pending_Devices>> {
+            data = initializeDb(context)
+
+
+            return data!!.All_Devices_Dao().getPendingDevices()
+        }
+
+
+
+        fun getDeviceDetailsById(context: Context,dev_id:String): LiveData<All_Devices_Entity> {
+            data = initializeDb(context)
+
+            return  data!!.All_Devices_Dao().getDetailsById(dev_id)
+        }
+
+
     }
 }

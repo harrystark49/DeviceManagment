@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-@Database(entities = arrayOf(All_Devices_Entity::class,Pending_Devices::class),version = 3,exportSchema = false)
+@Database(entities = arrayOf(All_Devices_Entity::class,Pending_Devices::class,History::class),version = 13,exportSchema = false)
 abstract class All_Devices_Db: RoomDatabase(){
 
     abstract fun All_Devices_Dao():All_Devices_Dao
@@ -20,11 +20,10 @@ abstract class All_Devices_Db: RoomDatabase(){
                 INSTACE = Room
                     .databaseBuilder(context,All_Devices_Db::class.java,"emp_database")
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build()
                 return INSTACE!!
             }
         }
     }
-
-
 }

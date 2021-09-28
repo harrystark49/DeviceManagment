@@ -25,13 +25,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+       var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+
         project_title.animate().setDuration(1000).rotationYBy(360f)
         app_title.alpha = 0f
         app_title.animate().setDuration(3000).alpha(1f).withEndAction {
 
-            var intent = Intent(this, login::class.java)
-            startActivity(intent)
-            finish()
+            val islooged = sharedPreferences.getBoolean("isLogged",false)
+            val adminoremp = sharedPreferences.getString("AdminOrEmp",null)
+
+            if(!islooged) {
+                var intent = Intent(this, login::class.java)
+                startActivity(intent)
+                finish()
+            }else if(adminoremp.equals("Employee")){
+                startActivity(Intent(this,Home_screen_employee::class.java))
+                finish()
+            }else{
+                startActivity(Intent(this,Home_screen_admin::class.java))
+                finish()
+            }
         }
 
 

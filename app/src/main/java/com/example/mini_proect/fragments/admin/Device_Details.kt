@@ -34,13 +34,13 @@ class Device_Details : Fragment() {
 
             if(it != null){
                 vi.emp_device_id_value.setText(it.device_Id)
-                vi.emp_os_type_value.setText("Android")
+                vi.emp_os_type_value.setText(it.OsType)
                 vi.emp_manufacture_value.setText(it.Manufacture)
                 vi.emp_os_version_value.setText(it.Version)
                 vi.emp_phn_type_value.setText(it.phonetype)
             }
             else{
-                Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "No data!!", Toast.LENGTH_SHORT).show()
 
             }
           })

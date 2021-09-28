@@ -1,11 +1,11 @@
 package com.example.mini_proect.Activities
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -16,53 +16,65 @@ import com.example.mini_proect.fragments.admin.AdminRequestDevices
 import com.example.mini_proect.fragments.admin.AdminSettings
 import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 class Home_screen_admin : AppCompatActivity() {
-    lateinit var togglebtn:ActionBarDrawerToggle
+    lateinit var togglebtn: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        var b:Bundle? = intent.extras
-        var emails = b?.getString("AdminEmail").toString()
-        Toast.makeText(this, "$emails", Toast.LENGTH_SHORT).show()
-
         setContentView(R.layout.activity_home_screen_admin)
 
-        togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
+
+
+
+        var b: Bundle? = intent.extras
+
+
+
+        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+
+
+
+        togglebtn = ActionBarDrawerToggle(this, drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
         togglebtn.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navigation_tool.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.admin_all_devices ->{
-                     fragmets(all_devices("Admin",emails!!))
-
+            when (it.itemId) {
+                R.id.admin_all_devices -> {
+                    var b = Bundle()
+                    b.putString("adminOrEmp","Admin")
+                    var frag = all_devices()
+                    frag.arguments = b
+                    fragmets(frag)
                 }
-                R.id.request_devices ->{
+                R.id.request_devices -> {
                     fragmets(AdminRequestDevices())
                 }
-                R.id.add_newDevice->{
+                R.id.add_newDevice -> {
                     fragmets(AddNewDevice())
                 }
-                R.id.admin_settings->{
-                    var b:Bundle? = intent.extras
+                R.id.admin_settings -> {
+                    var b: Bundle? = intent.extras
                     var email = b?.getString("AdminEmail").toString()
                     var pass = b?.getString("AdminPass").toString()
 
                     val myFrag = AdminSettings()
-                    val mBundle=Bundle()
-                    mBundle.putString("AdminEmail",email)
-                    mBundle.putString("AdminPass",pass)
+                    val mBundle = Bundle()
+                    mBundle.putString("AdminEmail", email)
+                    mBundle.putString("AdminPass", pass)
 
                     myFrag.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.fragment_replacer,myFrag)
+                        replace(R.id.fragment_replacer, myFrag)
                         commit()
                     }
                 }
-                R.id.admin_logout->{
+                R.id.admin_logout -> {
+                    edit.clear()
+                    edit.commit()
+                    startActivity(Intent(this, login::class.java))
                     alertDialog()
                 }
             }
@@ -72,16 +84,16 @@ class Home_screen_admin : AppCompatActivity() {
 
     }
 
-    fun fragmets(frag:Fragment){
+    fun fragmets(frag: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_replacer,frag)
+            replace(R.id.fragment_replacer, frag)
             addToBackStack(null)
             commit()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(togglebtn.onOptionsItemSelected(item)){
+        if (togglebtn.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -91,6 +103,7 @@ class Home_screen_admin : AppCompatActivity() {
 
         alertDialog()
     }
+
     protected fun alertDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.alert)
