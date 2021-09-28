@@ -53,6 +53,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
             var devId = device_id.text.toString()
             var osVer = os_version.text.toString()
             var manu = Manufacture.text.toString()
+            var os_type=os_type_spinner.selectedItem.toString()
             var phn_type=view.phoneType_spinner.selectedItem.toString()
             if (Error(devId, osVer, manu)) {
                 val builder = AlertDialog.Builder(view.context)
@@ -61,7 +62,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
                         DialogInterface.OnClickListener { dialog, id ->
                             Toast.makeText(view.context, R.string.DeviceToast, Toast.LENGTH_SHORT)
                                 .show()
-                            vm.insertData(view.context,devId,phn_type,manu,osVer)
+                            vm.insertData(view.context,devId,phn_type,manu,osVer,os_type)
                             var intent = Intent(view.context, Home_screen_admin::class.java)
                             startActivity(intent)
                             activity?.finish()

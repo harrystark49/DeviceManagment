@@ -46,6 +46,7 @@ class ChangePassword : AppCompatActivity() {
                         Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
                         var i=Intent(this,Home_screen_employee::class.java)
                         startActivity(i)
+                        finish()
                     }
                 }
 
@@ -64,6 +65,7 @@ class ChangePassword : AppCompatActivity() {
                         Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
                         var i=Intent(this,Home_screen_admin::class.java)
                         startActivity(i)
+                        finish()
                     }
 
                     else

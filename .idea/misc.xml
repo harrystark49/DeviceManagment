@@ -3,12 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_admin_details.xml" value="0.1" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_home_screen_admin.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_home_screen_employee.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/alldeviceviewitem.xml" value="0.1" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_add_new__device.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_admin_request_devices.xml" value="0.11820652173913043" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_admin_settings.xml" value="0.1" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_all_devices.xml" value="0.1" />
-        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_device__details.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_device__details.xml" value="0.12" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_emp_device_details.xml" value="0.1" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_my_devices.xml" value="0.12182971014492754" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_requested_device_details.xml" value="0.11820652173913043" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/list_view_items.xml" value="0.1" />
+        <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/requestdevicelist.xml" value="0.1" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/Device_Magagemet/app/src/main/res/menu/admin_menu.xml" value="0.1" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/drawable/title_bg.xml" value="0.2128205128205128" />
         <entry key="..\:/Users/Hari Krishna A/AndroidStudioProjects/mini_proect/app/src/main/res/layout/activity_home_screen.xml" value="0.15625" />

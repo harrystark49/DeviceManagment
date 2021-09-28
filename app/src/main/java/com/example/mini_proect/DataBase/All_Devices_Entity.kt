@@ -9,6 +9,6 @@ data class All_Devices_Entity(
     var device_Id:String,
     var phonetype:String,
     var Manufacture:String,
-    var Version:String
-
+    var Version:String,
+    var os_type:String
 )

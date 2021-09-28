@@ -1,6 +1,7 @@
 package com.example.mini_proect.fragments.admin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,16 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_view_Model
+import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.fragment_device__details.*
 import kotlinx.android.synthetic.main.fragment_device__details.view.*
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 
 class Device_Details : Fragment() {
 
+    lateinit var helper: dbHelper
 
     lateinit var loginViewModel: All_Devices_view_Model
     override fun onCreateView(
@@ -22,29 +27,67 @@ class Device_Details : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var vi=inflater.inflate(R.layout.fragment_device__details, container, false)
 
+        var vi = inflater.inflate(R.layout.fragment_device__details, container, false)
+        helper = dbHelper(vi.context)
+        var db = helper.readableDatabase
 
-        var args=arguments
-        var id=args?.get("DeviceId").toString()
+        var args = arguments
+        var id = args?.get("DeviceId").toString()
+        var emp_id = args?.get("Email").toString()
 
         loginViewModel = ViewModelProvider(this).get(All_Devices_view_Model::class.java)
 
-        loginViewModel.getLoginDetailsById(context,id)!!.observe(this.viewLifecycleOwner, Observer {
+        loginViewModel.getLoginDetailsById(context, id)!!
+            .observe(this.viewLifecycleOwner, Observer {
 
-            if(it != null){
-                vi.emp_device_id_value.setText(it.device_Id)
-                vi.emp_os_type_value.setText("Android")
-                vi.emp_manufacture_value.setText(it.Manufacture)
-                vi.emp_os_version_value.setText(it.Version)
-                vi.emp_phn_type_value.setText(it.phonetype)
+                if (it != null) {
+                    vi.emp_device_id_value.setText(it.device_Id)
+                    vi.emp_os_type_value.setText(it.os_type)
+                    vi.emp_manufacture_value.setText(it.Manufacture)
+                    vi.emp_os_version_value.setText(it.Version)
+                    vi.emp_phn_type_value.setText(it.phonetype)
+                } else {
+                    Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show()
+
+                }
+            })
+
+        var cursor = db.rawQuery("SELECT * FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
+        var cursor1 = db.rawQuery("SELECT * FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
+
+
+        if (cursor.moveToFirst() || cursor1.moveToFirst()) {
+            vi.emp_details.visibility = View.VISIBLE
+            if (cursor.moveToFirst()) {
+                vi.start.setText("--")
+                vi.statusvalue.setText("Pending")
+
             }
-            else{
-                Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show()
+            if (cursor1.moveToFirst()) {
+
+                var time_index = cursor1.getColumnIndex("START_TIME")
+                var time = cursor1.getString(time_index)
+                vi.start.setText(time)
+                vi.statusvalue.setText("Assigned")
 
             }
-          })
 
+
+            var cursor2 = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_id))
+
+            if (cursor2.moveToFirst()) {
+                var name_index = cursor2.getColumnIndex("NAME")
+                var name = cursor2.getString(name_index)
+                var id_index = cursor2.getColumnIndex("ID")
+                var idv = cursor2.getString(id_index)
+                var mobile_index = cursor2.getColumnIndex("MOBILE")
+                var mobile = cursor2.getString(mobile_index)
+                vi.device_used_value1.setText(name)
+                vi.empID_value1.setText(idv)
+                vi.mobile_number_value1.setText(mobile)
+            }
+        }
 
         return vi
     }
