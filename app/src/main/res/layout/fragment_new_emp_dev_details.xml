@@ -110,6 +110,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emp_manufacture_value1"/>
 
+        <Button
+            android:id="@+id/retur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return device"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+        </Button>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

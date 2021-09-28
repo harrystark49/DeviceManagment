@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
 class adap(
     var context: Context,
     var Devices: List<All_Devices_Entity>,
-
+    var history:Boolean=false,
     var email: String
 ) : RecyclerView.Adapter<adap.ViewHolder>() {
 
@@ -55,7 +55,7 @@ class adap(
                 var b = Bundle()
                 b.putString("DeviceId", Devices[position].device_Id)
                 b.putString("Email", email)
-                var frag = NewEmpDevDetails()
+                var frag = NewEmpDevDetails(history)
                 frag.arguments = b
                 var activity = itemView.context as AppCompatActivity
                 activity.supportFragmentManager.beginTransaction().apply {

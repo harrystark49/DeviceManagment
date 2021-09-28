@@ -35,6 +35,45 @@ class emp_myhistory : Fragment() {
         // Inflate the layout for this fragment
 
 
-        return view
+        var view= inflater.inflate(R.layout.fragment_my_devices, container, false)
+
+        var list=ArrayList<All_Devices_Entity>()
+
+        helper=dbHelper(view.context)
+        var db=helper.readableDatabase
+
+        var id=""
+        var args=arguments
+        var mail=args?.getString("EmpEmail")
+
+        var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(mail))
+        if(cursor.moveToFirst()){
+
+            id=cursor.getString(cursor.getColumnIndex("ID"))
+        }
+
+
+        var cursor1=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_ID=?", arrayOf(id))
+
+        while(cursor1.moveToNext()){
+
+            var idd=cursor1.getString(cursor1.getColumnIndex("DEVICE_ID"))
+
+            viewModel = ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(Application())
+            ).get(All_Devices_view_Model::class.java)
+            viewModel.getLoginDetailsById(requireContext(),idd)!!.observe(requireActivity(), Observer {
+                list.add(it)
+                val recyc = view.findViewById<RecyclerView>(R.id.recyclerView3)
+                var recycle: RecyclerView = recyc
+                var LLM: LinearLayoutManager = LinearLayoutManager(context)
+                LLM.orientation = RecyclerView.VERTICAL
+                recycle.layoutManager = LLM
+                var adapter =  adap(view.context,list,true,mail.toString())
+                recycle.adapter = adapter
+            })
+        }
+        return  view
     }
 }
