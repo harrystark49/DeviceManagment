@@ -25,14 +25,16 @@ class All_Devices_Repository {
             id: String,
             phn_type: String,
             maufacture: String,
-            version: String
+            version: String,
+            ostype:String
         ) {
 
             data = initializeDb(context)
 
             CoroutineScope(Dispatchers.IO).launch {
 
-                val loginDetails = All_Devices_Entity(id, phn_type, maufacture, version)
+                val loginDetails = All_Devices_Entity(id, phn_type, maufacture, version,ostype)
+
                 data!!.All_Devices_Dao().insertData(loginDetails)
             }
 

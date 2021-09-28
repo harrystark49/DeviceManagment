@@ -40,7 +40,7 @@ class Home_screen_admin : AppCompatActivity() {
                      fragmets(all_devices("Admin",emails!!))
                 }
                 R.id.request_devices ->{
-                    fragmets(AdminRequestDevices())
+                    fragmets(AdminRequestDevices("Admin",emails!!))
                 }
                 R.id.add_newDevice->{
                     fragmets(AddNewDevice())
