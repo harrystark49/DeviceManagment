@@ -108,6 +108,13 @@ class All_Devices_view_Model : ViewModel() {
     }
 
 
+    fun getPendingDevicesById(context: Context,dev_id: String): Pending_Devices{
+        data = initializeDb(context)
+        return data!!.All_Devices_Dao().getPendingDevicesById(dev_id)
+    }
+
+
+
     fun UpdateEndTime(context: Context, emp_id: String, dev_id: String, endtime: String) {
         data = initializeDb(context)
         data!!.All_Devices_Dao().UpdateEndTime(emp_id, dev_id, endtime)
@@ -118,4 +125,13 @@ class All_Devices_view_Model : ViewModel() {
         return data!!.All_Devices_Dao().getHistory(dev_id)
 
     }
+
+
+
+    fun getAllDevicesHistory(context: Context,emp_id: String):List<History>{
+        data = initializeDb(context)
+        return data!!.All_Devices_Dao().getAllDevicesHistory(emp_id)
+
+    }
+
 }

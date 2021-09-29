@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_Entity
+import com.example.mini_proect.DataBase.History
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
+import com.example.mini_proect.deviceDetails
 import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.emp.emp_device_details
 import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
@@ -25,8 +27,6 @@ class Adapter(
 
 ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-    
-    
 
     lateinit var db: dbHelper
 
@@ -62,6 +62,9 @@ class Adapter(
             itemView.setOnClickListener {
                 if (AdminOrEmp == "Admin") {
 
+
+
+
                     var b = Bundle()
                     b.putString("DeviceId", Devices[position].device_Id)
 
@@ -79,7 +82,7 @@ class Adapter(
                     var b = Bundle()
 //                    b.putString("email", email)
                     b.putString("DeviceId", Devices[position].device_Id)
-                    b.putString("empid",id1)
+                    b.putString("empid", id1)
 
 
                     var frag = emp_device_details()
@@ -95,10 +98,11 @@ class Adapter(
 
                     var b = Bundle()
                     b.putString("DeviceId", Devices[position].device_Id)
-                    b.putString("empid",id1)
+                    b.putString("empid", id1)
 
                     var frag = emp_device_details()
                     frag.arguments = b
+
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, frag)
@@ -106,19 +110,27 @@ class Adapter(
                     }
 
 
-                } else {
-                    Toast.makeText(
-                        itemView.context,
-                        "You Don't Have Access To Particular Device!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+                } else if (Devices[position].isAllocated != "false") {
 
+                    var b = Bundle()
+                    b.putString("deviceid", Devices[position].device_Id)
+                    b.putString("isallocated", Devices[position].isAllocated)
+                    b.putString("phonetype", Devices[position].phonetype)
+                    b.putString("version", Devices[position].Version)
+                    b.putString("manufacturer", Devices[position].Manufacture)
+                    b.putString("ostype", Devices[position].OsType)
 
+                    var frag = deviceDetails()
+                    frag.arguments = b
+
+                    var activity = itemView.context as AppCompatActivity
+                    activity.supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.emp_fragment_replacer, frag)
+                        commit()
+                    }
+                } else { }
             }
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -139,19 +151,4 @@ class Adapter(
         return Devices!!.size
     }
 
-//
-//    fun isAlreadyAssigned(dev_id: String): Boolean {
-//        var result = null
-//        All_Devices_view_Model().getDetailsBydevId(this.context, dev_id).observe(this, Observer {
-//            if (it.isAllocated.equals("false")) {
-//                result = false
-//            } else if (it.isAllocated == "Pending") {
-//                result = false
-//            } else {
-//                result = true
-//            }
-//        })
-//        return result
-//    }
 }
-

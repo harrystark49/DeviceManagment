@@ -23,7 +23,11 @@ class Home_screen_admin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_admin)
 
-
+        var b1 = Bundle()
+        b1.putString("adminOrEmp","Admin")
+        var frag = all_devices()
+        frag.arguments = b1
+        fragmets(frag)
 
 
         var b: Bundle? = intent.extras

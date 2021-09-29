@@ -69,13 +69,8 @@ class All_Devices_Repository {
 
 
         fun UpdateDevieAllocation(context: Context?, emp_id: String?, dev_id: String) {
-
             data = initializeDb(context)
             data!!.All_Devices_Dao().Update(emp_id, dev_id)
-
-
-
-
         }
 
 

@@ -27,20 +27,24 @@
         <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_change_password.xml" value="0.1" />
         <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_admin_settings.xml" value="0.1" />
         <entry key="..\:/Users/Pudindi Durga Prasad/AndroidStudioProjects/Device_Magagemet/app/src/main/res/menu/admin_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/drawable/loginback.xml" value="0.16927083333333334" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_home_screen_admin.xml" value="0.14010416666666667" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_home_screen_employee.xml" value="0.1" />
-        <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_login.xml" value="0.15885416666666666" />
-        <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/alldeviceviewitem.xml" value="0.2" />
+        <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/activity_login.xml" value="0.18" />
+        <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/alldeviceviewitem.xml" value="0.22" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/emp_my_devices.xml" value="0.25" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_admin__device__check.xml" value="0.16" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_admin_request_devices.xml" value="0.12135416666666667" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_all_devices.xml" value="0.1" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_device__details.xml" value="0.25" />
+        <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_device_details.xml" value="0.22" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_device_details_temp.xml" value="0.22" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_emp_device_details.xml" value="0.22" />
+        <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_emp_my_history.xml" value="0.11666666666666667" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_emp_myhistory.xml" value="0.25" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_emp_settings.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_my_devices.xml" value="0.25" />
+        <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/fragment_myhist.xml" value="0.25" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/list_view_items.xml" value="0.1" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/layout/requestdevicelist.xml" value="0.25" />
         <entry key="..\:/Users/Vishal/AndroidStudioProjects/Device_Magagemet/app/src/main/res/menu/emp_menu.xml" value="0.1" />

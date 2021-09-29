@@ -22,10 +22,17 @@ class Home_screen_employee : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_employee)
 
+        var b1 = Bundle()
+        b1.putString("adminOrEmp", "Employee")
+        var frag = all_devices()
+        frag.arguments = b1
+        Fragments(frag)
 
         var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
         var edit = sharedPreferences.edit()
 
+
+        var emp_id = sharedPreferences.getString("empid",null)
 
 
 
@@ -40,7 +47,7 @@ class Home_screen_employee : AppCompatActivity() {
                 R.id.emp_all_devices -> {
 
                     var empAllDevicesBundle = Bundle()
-                    empAllDevicesBundle.putString("adminOrEmp","Employee")
+                    empAllDevicesBundle.putString("adminOrEmp", "Employee")
 
                     var frag = all_devices()
                     frag.arguments = empAllDevicesBundle
@@ -55,9 +62,10 @@ class Home_screen_employee : AppCompatActivity() {
 
 
                     var myhistorybundle = Bundle()
-                    myhistorybundle.putString("text","History")
+                    myhistorybundle.putString("text", "History")
+                    myhistorybundle.putString("empid",emp_id)
 
-                    var frag = My_devices()
+                    var frag = EmpMyHistory()
                     frag.arguments = myhistorybundle
 
                     Fragments(frag)

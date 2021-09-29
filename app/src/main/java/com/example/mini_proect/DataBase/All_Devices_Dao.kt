@@ -42,6 +42,11 @@ interface All_Devices_Dao {
     fun getPendingDevices() : LiveData<List<Pending_Devices>>
 
 
+    @Query("SELECT * FROM Pending_Devices where device_Id = :id")
+    fun getPendingDevicesById(id: String) : Pending_Devices
+
+
+
     @Query("SELECT * FROM all_Devices_Details where isAllocated=:emp_id")
     fun getMyDevices(emp_id: String) : LiveData<List<All_Devices_Entity>>
 
@@ -65,6 +70,10 @@ interface All_Devices_Dao {
 
     @Query("SELECT * from History  where device_Id=:dev_id")
     fun getHistory(dev_id: String):History
+
+
+    @Query("SELECT * from History  WHERE emp_id=:emp_id")
+    fun getAllDevicesHistory(emp_id: String):List<History>
 
 }
 
