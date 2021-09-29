@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -22,6 +23,10 @@ class Home_screen_admin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        var b:Bundle? = intent.extras
+        var emails = b?.getString("AdminEmail").toString()
+        Toast.makeText(this, "$emails", Toast.LENGTH_SHORT).show()
+
         setContentView(R.layout.activity_home_screen_admin)
 
         togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
@@ -32,24 +37,19 @@ class Home_screen_admin : AppCompatActivity() {
         navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.admin_all_devices ->{
-                    fragmets(all_devices("Admin"))
+                     fragmets(all_devices("Admin",emails!!))
 
                 }
                 R.id.request_devices ->{
-                    fragmets(AdminRequestDevices())
+                    fragmets(AdminRequestDevices("Admin",emails!!))
                 }
                 R.id.add_newDevice->{
-                    Toast.makeText(this, "fafb", Toast.LENGTH_SHORT).show()
                     fragmets(AddNewDevice())
                 }
                 R.id.admin_settings->{
                     var b:Bundle? = intent.extras
                     var email = b?.getString("AdminEmail").toString()
                     var pass = b?.getString("AdminPass").toString()
-
-
-
-
 
                     val myFrag = AdminSettings()
                     val mBundle=Bundle()
@@ -75,6 +75,7 @@ class Home_screen_admin : AppCompatActivity() {
     fun fragmets(frag:Fragment){
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_replacer,frag)
+            addToBackStack(null)
             commit()
         }
     }
@@ -87,15 +88,16 @@ class Home_screen_admin : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+
         alertDialog()
     }
     protected fun alertDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Do you want to exit Inventory app?")
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+        builder.setTitle(R.string.alert)
+        builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
             finish()
         }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
 
         }
         builder.create()

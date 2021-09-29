@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    tools:context=".save_data">
+    tools:context=".save_data"
+    android:id="@+id/c3"
+    >
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/material_emp_password"
@@ -25,7 +27,7 @@
             android:id="@+id/emp_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter new Password"
+            android:hint="@string/new_pass"
             android:inputType="textPassword">
         </EditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -48,7 +50,7 @@
             android:id="@+id/emp_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm new Password"
+            android:hint="@string/con_pass"
             android:inputType="textPassword">
         </EditText>
     </com.google.android.material.textfield.TextInputLayout>

@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="@+id/manufacture_layout"
-        app:layout_constraintTop_toBottomOf="@+id/manufacture_layout">
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout2">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/deviceID"
@@ -40,7 +40,8 @@
             android:text="OS Type:"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deviceID"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/deviceID">
+        </TextView>
 
         <Spinner
             android:id="@+id/os_type_spinner"
@@ -48,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             app:layout_constraintStart_toEndOf="@+id/os_type"
-            app:layout_constraintTop_toBottomOf="@+id/deviceID"></Spinner>
+            app:layout_constraintTop_toBottomOf="@+id/deviceID">
+        </Spinner>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/os_version_layout"
@@ -89,19 +91,40 @@
             </AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/manufacture_layout">
 
+            <ListView
+                android:id="@+id/listview_1"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:backgroundTint="#E6E2E2"
+                android:background="#DAD5D5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/phone_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_margin="20dp"
             android:layout_marginTop="30dp"
-            android:text="Phone Type:"
+            android:text="Phone Type  :"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/manufacture_layout">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         </TextView>
 
@@ -111,12 +134,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             app:layout_constraintStart_toEndOf="@+id/phone_type"
-            app:layout_constraintTop_toBottomOf="@+id/manufacture_layout">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         </Spinner>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/add_new_device_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -124,10 +147,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/phoneType_spinner">
+            app:layout_constraintTop_toBottomOf="@+id/phoneType_spinner">
 
         </Button>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

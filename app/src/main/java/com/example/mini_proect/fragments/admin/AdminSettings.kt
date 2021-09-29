@@ -19,7 +19,6 @@ class AdminSettings : Fragment() {
         super.onCreate(savedInstanceState)
 
 
-
     }
 
     override fun onCreateView(
@@ -35,13 +34,15 @@ class AdminSettings : Fragment() {
         val pass = b!!.getString("AdminPass").toString()
 
         view.update_profile.setOnClickListener {
-
+            val i = Intent(context,Register::class.java)
+            i.putExtra("AdminEmail",email)
+            startActivity(i)
         }
         view.change_password.setOnClickListener {
 
             val intent = Intent(context, ChangePassword::class.java)
-            intent.putExtra("AdminEmail",email)
-            intent.putExtra("AdminPass",email)
+            intent.putExtra("AdminEmail", email)
+            intent.putExtra("AdminPass", pass)
 
             startActivity(intent)
         }
