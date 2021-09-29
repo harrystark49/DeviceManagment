@@ -32,7 +32,7 @@ class Home_screen_admin : AppCompatActivity() {
         navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.admin_all_devices ->{
-                    fragmets(all_devices())
+                    fragmets(all_devices("Admin"))
 
                 }
                 R.id.request_devices ->{

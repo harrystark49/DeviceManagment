@@ -58,7 +58,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     }}
 
-
     private fun Check_for_empty_fields(id: String,name : String, email: String, mobile: String):Boolean {
         var x=0;
         if(id.isEmpty()){
