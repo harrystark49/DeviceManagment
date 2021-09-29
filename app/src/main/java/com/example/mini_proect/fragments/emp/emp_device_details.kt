@@ -139,7 +139,7 @@ class emp_device_details(var email:String , var details:String="details") : Frag
                 cv1.put("DEVICE_ID",id)
                 cv1.put("EMP_MAIL",mail)
 
-                val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss")
+                val simpleDateFormat = SimpleDateFormat("MM.dd.yyyy HH:mm:ss")
                 val currentDateAndTime: String = simpleDateFormat.format(Date())
                 cv1.put("END_TIME",currentDateAndTime)
 

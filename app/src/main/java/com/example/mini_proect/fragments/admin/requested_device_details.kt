@@ -86,7 +86,7 @@ class requested_device_details : Fragment() {
                 view.empID_value.setText(id)
                 view.mobile_number_value.setText(number)
 
-                var SimpleDataFormat= SimpleDateFormat("dd.MM.dd HH:mm:ss")
+                var SimpleDataFormat= SimpleDateFormat("MM.dd.yyyy HH:mm:ss")
 
                 view.accept.setOnClickListener {
                     var date=SimpleDataFormat.format(Date())

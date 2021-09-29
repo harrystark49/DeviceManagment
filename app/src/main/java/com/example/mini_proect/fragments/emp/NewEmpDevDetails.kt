@@ -14,6 +14,7 @@ import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
+import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.emp_device_id_value1
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.emp_manufacture_value1
@@ -39,18 +40,31 @@ class NewEmpDevDetails (var history:Boolean=false): Fragment() {
         var helper= dbHelper(view.context)
         var db=helper.readableDatabase
 
-        if(history){
-            view.retur.visibility=View.GONE
-        }
-
         var args=arguments
         var id=args?.getString("DeviceId")
         var mail=args?.getString("Email")
         var idd=""
         var c1=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(mail))
+
         if(c1.moveToFirst()){
             idd=c1.getString(c1.getColumnIndex("ID"))
         }
+        if(history){
+            view.retur.visibility=View.GONE
+            view.starttime.visibility=View.VISIBLE
+            view.endtime.visibility=View.VISIBLE
+
+            var c3=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_ID=?", arrayOf(idd))
+            while(c3.moveToNext()){
+                var start_time=c3.getString(c3.getColumnIndex("START_TIME"))
+                var end_time=c3.getString(c3.getColumnIndex("END_TIME"))
+                view.starttime_value.setText(start_time)
+                view.endtime_value.setText(end_time)
+            }
+
+        }
+
+
         var loginViewModel = ViewModelProvider(this).get(All_Devices_view_Model::class.java)
 
         loginViewModel.getLoginDetailsById(context,id.toString())!!.observe(this.viewLifecycleOwner, Observer {
@@ -82,12 +96,13 @@ class NewEmpDevDetails (var history:Boolean=false): Fragment() {
 
                 db.delete("ACCEPTED_DEVICES","DEVICE_ID=?", arrayOf(id))
 
+                Toast.makeText(view.context, "success retured", Toast.LENGTH_SHORT).show()
+
                 activity?.supportFragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.fragment_replacer,Device_Details())
+                    replace(R.id.emp_fragment_replacer, all_devices("emp", ""))
                     commit()
                 }
 
-                Toast.makeText(view.context, "success retured", Toast.LENGTH_SHORT).show()
             }
         }
 
