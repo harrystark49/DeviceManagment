@@ -21,8 +21,6 @@ class Home_screen_employee : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_employee)
 
-        var b:Bundle? = intent.extras
-        var emails = b?.getString("EmpEmail")
 
         toggle= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(toggle)
