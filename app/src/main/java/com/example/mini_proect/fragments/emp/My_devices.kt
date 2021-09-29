@@ -64,13 +64,10 @@ class My_devices : Fragment() {
                 var LLM: LinearLayoutManager = LinearLayoutManager(context)
                 LLM.orientation = RecyclerView.VERTICAL
                 recycle.layoutManager = LLM
-                var adapter =  adap(view.context,list,mail.toString())
+                var adapter =  adap(view.context,list,false,mail.toString())
                 recycle.adapter = adapter
             })
         }
-
-
-
         return  view
     }
 }
