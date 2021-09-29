@@ -14,14 +14,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:errorIconDrawable="@null"
+        android:layout_marginTop="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:passwordToggleEnabled="true"
-        app:errorIconDrawable="@null"
-        >
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/emp_pass"
@@ -29,6 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/new_pass"
             android:inputType="textPassword">
+
         </EditText>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,7 +36,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/material_emp_password"
@@ -74,6 +73,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="351dp" />
+        app:layout_constraintGuide_percent="0.0729927" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

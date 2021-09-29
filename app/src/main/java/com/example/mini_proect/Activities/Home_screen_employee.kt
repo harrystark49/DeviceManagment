@@ -20,6 +20,9 @@ class Home_screen_employee : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_employee)
+        var b:Bundle? = intent.extras
+        var email = b?.getString("EmpEmail")
+        Fragments(all_devices("emp",email!!))
 
 
         toggle= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)

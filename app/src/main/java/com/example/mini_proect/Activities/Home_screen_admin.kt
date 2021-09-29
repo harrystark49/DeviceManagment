@@ -28,12 +28,12 @@ class Home_screen_admin : AppCompatActivity() {
         Toast.makeText(this, "$emails", Toast.LENGTH_SHORT).show()
 
         setContentView(R.layout.activity_home_screen_admin)
+        fragmets(all_devices("Admin",emails!!))
 
         togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
         togglebtn.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.admin_all_devices ->{

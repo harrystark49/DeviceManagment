@@ -23,7 +23,9 @@
             android:id="@+id/emp_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Employee_ID"></EditText>
+            android:hint="@string/Employee_ID">
+
+        </EditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -42,7 +44,9 @@
             android:id="@+id/emp_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Employee_Name"></EditText>
+            android:hint="@string/Employee_Name">
+
+        </EditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,7 +64,10 @@
             android:id="@+id/emp_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Email"></EditText>
+            android:inputType="textEmailAddress"
+            android:hint="@string/Email">
+
+        </EditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +86,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/Mobile"
-            android:inputType="phone"></EditText>
+            android:inputType="phone">
+
+        </EditText>
     </com.google.android.material.textfield.TextInputLayout>
 
 

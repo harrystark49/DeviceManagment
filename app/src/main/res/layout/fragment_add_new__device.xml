@@ -27,7 +27,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Device ID"></EditText>
+                android:inputType="number"
+                android:hint="Device ID">
+
+            </EditText>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +69,10 @@
                 android:id="@+id/os_version"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
-                android:hint="OS Version"></EditText>
+                android:inputType="numberDecimal"
+                android:hint="OS Version">
+
+            </EditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

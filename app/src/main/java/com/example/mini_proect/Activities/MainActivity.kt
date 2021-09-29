@@ -3,6 +3,8 @@ package com.example.mini_proect.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
@@ -19,8 +21,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var anim=AnimationUtils.loadAnimation(this,R.anim.dropdown)
 
-        project_title.animate().setDuration(1000).rotationYBy(360f)
+        project_title.startAnimation(anim)
         app_title.alpha = 0f
         app_title.animate().setDuration(3000).alpha(1f).withEndAction {
 
