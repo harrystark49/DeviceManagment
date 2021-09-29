@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class emp_device_details(var email:String) : Fragment() {
+class emp_device_details(var email:String , var details:String="details") : Fragment() {
 
     lateinit var helper: dbHelper
     lateinit var loginViewModel: All_Devices_view_Model
@@ -29,11 +29,11 @@ class emp_device_details(var email:String) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment\hw
 
         var vi=inflater.inflate(R.layout.fragment_emp_device_details, container, false)
         helper=dbHelper(vi.context)
         var db=helper.readableDatabase
+
 
         var args=arguments
         var id=args?.getString("DeviceId")
@@ -64,7 +64,7 @@ class emp_device_details(var email:String) : Fragment() {
             }
         }
 
-        var b: Bundle = Bundle()
+        var b = Bundle()
         b.putString("DeviceId", id)
         b.putString("Email",mail)
         var frag = Device_Details()
@@ -72,7 +72,6 @@ class emp_device_details(var email:String) : Fragment() {
 
         if(((mail==mail1) || (mail==mail3))){
 
-            Toast.makeText(vi.context, "sdfadhryrdrhrdth", Toast.LENGTH_SHORT).show()
             activity?.supportFragmentManager?.beginTransaction()?.apply {
                 replace(R.id.emp_fragment_replacer, frag)
                 commit()
@@ -140,7 +139,7 @@ class emp_device_details(var email:String) : Fragment() {
                 cv1.put("DEVICE_ID",id)
                 cv1.put("EMP_MAIL",mail)
 
-                val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss")
+                val simpleDateFormat = SimpleDateFormat("MM.dd.yyyy HH:mm:ss")
                 val currentDateAndTime: String = simpleDateFormat.format(Date())
                 cv1.put("END_TIME",currentDateAndTime)
 
@@ -163,6 +162,7 @@ class emp_device_details(var email:String) : Fragment() {
                 }
             }
         }
+
 
         return vi
     }

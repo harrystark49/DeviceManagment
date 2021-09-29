@@ -70,7 +70,7 @@ class Request_device_Adapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var v: View =
             LayoutInflater.from(parent.context)
-                .inflate(com.example.mini_proect.R.layout.alldeviceviewitem, parent, false)
+                .inflate(R.layout.alldeviceviewitem, parent, false)
         var view = ViewHolder(v)
 
         return view

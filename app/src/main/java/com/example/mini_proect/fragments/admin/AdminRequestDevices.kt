@@ -12,6 +12,7 @@ import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.Adapter
+import kotlinx.android.synthetic.main.fragment_admin_request_devices.view.*
 
 class AdminRequestDevices(var adminOremp:String,var email:String) : Fragment() {
 
@@ -52,15 +53,19 @@ class AdminRequestDevices(var adminOremp:String,var email:String) : Fragment() {
             var data=All_Devices_Entity(id,phntype,manufacacture,version,ostype)
             list.add(data)
         }
-        val recyc = view.findViewById<RecyclerView>(R.id.recyclerView2)
-        var recycle: RecyclerView = recyc
-        var LLM: LinearLayoutManager = LinearLayoutManager(context)
-        LLM.orientation = RecyclerView.VERTICAL
-        recycle.layoutManager = LLM
-        var adapter =  Request_device_Adapter(view.context,list,"Admin",email)
-        recycle.adapter = adapter
+        if(list.isEmpty()){
+            view.no_device.visibility=View.VISIBLE
+        }else {
+            view.no_device.visibility=View.GONE
+            val recyc = view.findViewById<RecyclerView>(R.id.recyclerView2)
+            var recycle: RecyclerView = recyc
+            var LLM: LinearLayoutManager = LinearLayoutManager(context)
+            LLM.orientation = RecyclerView.VERTICAL
+            recycle.layoutManager = LLM
+            var adapter = Request_device_Adapter(view.context, list, "Admin", email)
+            recycle.adapter = adapter
 
-
+        }
 
         return view
     }

@@ -5,12 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.save_data
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -21,22 +23,30 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
+        c2.startAnimation(anim)
 
-        // For updating the profile
+        var helper = dbHelper(this)
+        var db = helper.readableDatabase
+
+        spin.onItemSelectedListener = this
+        var arr = arrayOf(getString(R.string.Admin), getString(R.string.Employee))
+        var adap = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, arr)
+        spin.adapter = adap
+
         var b :Bundle? = intent.extras
         var adminEmail = b?.getString("AdminEmail")
-        var empEmail = b?.getString("EmpEmail").toString()
+        var empEmail = b?.getString("EmpEmail")
 
-        var helper= dbHelper(this)
-        var db=helper.readableDatabase
-
-        spin.onItemSelectedListener=this
-        var arr=arrayOf("Admin","Employee")
-        var adap= ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,arr)
-        spin.adapter=adap
+        // For updating the admin profile
 
         if(adminEmail!=null) {
-            Toast.makeText(this, "$adminEmail", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "a", Toast.LENGTH_LONG).show()
+            spin.setSelection(0)
+            spin.isEnabled= false
+            spin.visibility=View.GONE
+            type.visibility=View.GONE
+
             var cursor = db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?", arrayOf(adminEmail))
             if (cursor.moveToFirst()) {
 
@@ -59,14 +69,14 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
                 cursor.close()
 
-                spin.setSelection(0)
-                spin.isEnabled= false
+
 
                 emp_register_btn.setOnClickListener{
 
                     var Name =emp_name.text.toString()
                     var Email = emp_email.text.toString()
                     var MobileNo = emp_mobile.text.toString()
+
 
                     if(Check_for_empty_fields(id,Name,Email,MobileNo,adminEmail)) {
 
@@ -84,13 +94,18 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
 
-                    }
-
                 }
+
             }
+        }
+
+        //For updating the employee profile
 
         else if(empEmail!=null) {
-            Toast.makeText(this, "$empEmail", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "b", Toast.LENGTH_LONG).show()
+
+            spin.setSelection(1)
+            spin.isEnabled = false
 
             var cursor = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(empEmail))
             if (cursor.moveToNext()) {
@@ -114,8 +129,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
                 cursor.close()
 
-                spin.setSelection(0)
-                spin.isEnabled = false
 
                 emp_register_btn.setOnClickListener {
 
@@ -135,23 +148,17 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         startActivity(i)
 
                     }
-
-
-
-
                 }
             }
         }
 
-
-
         //For registering a new user
 
-        else if(empEmail== null && adminEmail==null){
-
-
+        else{
+            Toast.makeText(this, "New user", Toast.LENGTH_SHORT).show()
 
             emp_register_btn.setOnClickListener {
+
 
                 var cursor=db.rawQuery("SELECT * FROM ADD_ADMIN",null)
                 if(cursor.moveToNext() && user=="Admin"){
@@ -163,8 +170,8 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     emp_id.requestFocus()
                 }
 
-                    else{
-                        if(Check_for_empty_fields(emp_id.text.toString()
+                else{
+                    if(Check_for_empty_fields(emp_id.text.toString()
                             ,emp_name.text.toString()
                             ,emp_email.text.toString()
                             ,emp_mobile.text.toString(),null
@@ -176,7 +183,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         intent.putExtra("EMAIL",emp_email.text.toString())
                         intent.putExtra("MOBILE",emp_mobile.text.toString())
                         startActivity(intent)
-        }}
+                    }}
 
 
             }
@@ -185,12 +192,12 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
     private fun Check_for_empty_fields(id: String,name : String, email: String, mobile: String,personEmail:String?):Boolean {
-        var x=0
+        var x=0;
         if(id.isEmpty()){
-            material_emp_id.error="ID can't be Empty"
+            material_emp_id.error=getString(R.string.IDcantbeEmpty)
             material_emp_id.isErrorEnabled=true
         }else if(!IsAlphaNumeric(id)){
-            material_emp_id.error="ID should be AlphaNumberic"
+            material_emp_id.error=getString(R.string.IDshouldbeAlphaNumberic)
             material_emp_id.isErrorEnabled=true
         }
         else {
@@ -199,7 +206,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
         if(name.isEmpty()){
-            material_emp_name.error="Name is Mandatory"
+            material_emp_name.error=getString(R.string.NameisMandatory)
             material_emp_name.isErrorEnabled=true
         }else{
             material_emp_name.isErrorEnabled=false
@@ -208,11 +215,11 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
         if(email.isEmpty()){
-            material_emp_email.error="Email is Mandatory"
+            material_emp_email.error=getString(R.string.EmailisMandatory)
             material_emp_email.isErrorEnabled=true
         }
-        else if(!email.contains("@gmail.com")){
-            material_emp_email.error="Enter valid Email"
+        else if(!email.contains(getString(R.string.gmailcom))){
+            material_emp_email.error=getString(R.string.EntervalidEmail)
             material_emp_email.isErrorEnabled=true
         }else{
 
@@ -220,11 +227,14 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             var db=helper.readableDatabase
 
             var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_email.text.toString()))
-            if(cursor.moveToNext() && (!email.equals(personEmail))){
-                material_emp_email.error="Email already exists"
+
+            var cursor1=db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?",arrayOf(emp_email.text.toString()))
+
+            if((cursor.moveToNext()&& (!email.equals(personEmail))) ){
+                material_emp_email.error=getString(R.string.Emailalreadyexists)
                 material_emp_email.isErrorEnabled=true
-            }
-            else{
+            }else
+            {
                 material_emp_email.isErrorEnabled=false
                 x++
             }
@@ -234,12 +244,17 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
         if(mobile.isEmpty()){
-            material_emp_mobile.error="Mobile number is Mandatory"
+            material_emp_mobile.error=getString(R.string.MobilenumberisMandatory)
             material_emp_mobile.isErrorEnabled=true
         }else if(! isDigit(mobile)){
-            material_emp_mobile.error="Enter valid mobile number"
+            material_emp_mobile.error=getString(R.string.Entervalidmobilenumber)
             material_emp_mobile.isErrorEnabled=true
-        }else{
+        }
+        else if(mobile.length!=10){
+            material_emp_mobile.error= "Mobile number must contain 10 digits"
+            material_emp_mobile.isErrorEnabled=true
+        }
+        else{
             material_emp_mobile.isErrorEnabled=false
             x++
         }
@@ -269,7 +284,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         var y:Boolean=false
         var z=true
         for(c in id){
-
             if(c in 'a'..'z' || c in 'A'..'Z'){
                 x=true
             }
@@ -286,7 +300,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         return false
 
     }
-
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
         user=parent?.getItemAtPosition(pos).toString()
     }

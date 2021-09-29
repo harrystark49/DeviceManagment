@@ -34,7 +34,9 @@ class AdminSettings : Fragment() {
         val pass = b!!.getString("AdminPass").toString()
 
         view.update_profile.setOnClickListener {
-
+            val i = Intent(context,Register::class.java)
+            i.putExtra("AdminEmail",email)
+            startActivity(i)
         }
         view.change_password.setOnClickListener {
 

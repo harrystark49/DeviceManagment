@@ -14,6 +14,7 @@ import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.AddNewDevice
 import com.example.mini_proect.fragments.admin.AdminRequestDevices
 import com.example.mini_proect.fragments.admin.AdminSettings
+import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.activity_login.*
@@ -25,8 +26,13 @@ class Home_screen_admin : AppCompatActivity() {
 
         var b:Bundle? = intent.extras
         var emails = b?.getString("AdminEmail").toString()
-        Toast.makeText(this, "$emails", Toast.LENGTH_SHORT).show()
 
+
+
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_replacer, all_devices("Admin",emails))
+            commit()
+        }
         setContentView(R.layout.activity_home_screen_admin)
 
         togglebtn= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)

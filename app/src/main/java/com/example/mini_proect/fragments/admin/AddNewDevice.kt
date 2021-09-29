@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.get
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.Activities.Home_screen_admin
@@ -27,17 +28,15 @@ import com.example.mini_proect.finish_Activity
 import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
-import java.util.Arrays.asList
-import kotlin.collections.ArrayList
 
 
 class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
+
     lateinit var vm:All_Devices_view_Model
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
     }
 
@@ -55,7 +54,11 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
             var manu = Manufacture.text.toString()
             var os_type=os_type_spinner.selectedItem.toString()
             var phn_type=view.phoneType_spinner.selectedItem.toString()
+
+
+
             if (Error(devId, osVer, manu)) {
+
                 val builder = AlertDialog.Builder(view.context)
                 builder.setTitle(R.string.Devicemessage)
                     .setPositiveButton(getString(R.string.yes),
@@ -167,9 +170,16 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         if (deviceId.isEmpty()) {
             deviceID.error = getString(R.string.EnterDeviceID)
             deviceID.isErrorEnabled = true
-        } else {
+        }
+        else if(deviceId.length<3){
+            deviceID.error = "device id should be of minimum 3 Digits"
+            deviceID.isErrorEnabled = true
+        }
+        else {
+
             deviceID.isErrorEnabled = false
             y++
+
         }
         if (osVersion.isEmpty()) {
             os_version_layout.error = getString(R.string.EnterOSVersion)
