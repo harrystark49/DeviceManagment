@@ -17,6 +17,7 @@ import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
+import kotlinx.android.synthetic.main.fragment_my_devices.view.*
 
 
 class emp_myhistory : Fragment() {
@@ -62,14 +63,20 @@ class emp_myhistory : Fragment() {
                 ViewModelProvider.AndroidViewModelFactory.getInstance(Application())
             ).get(All_Devices_view_Model::class.java)
             viewModel.getLoginDetailsById(requireContext(),idd)!!.observe(requireActivity(), Observer {
-                list.add(it)
-                val recyc = view.findViewById<RecyclerView>(R.id.recyclerView3)
-                var recycle: RecyclerView = recyc
-                var LLM: LinearLayoutManager = LinearLayoutManager(context)
-                LLM.orientation = RecyclerView.VERTICAL
-                recycle.layoutManager = LLM
-                var adapter =  adap(view.context,list,true,mail.toString())
-                recycle.adapter = adapter
+                if(it==null){
+                  view.nodevice.visibility=View.VISIBLE
+                }else{
+                    view.nodevice.visibility=View.GONE
+                    list.add(it)
+                    val recyc = view.findViewById<RecyclerView>(R.id.recyclerView3)
+                    var recycle: RecyclerView = recyc
+                    var LLM: LinearLayoutManager = LinearLayoutManager(context)
+                    LLM.orientation = RecyclerView.VERTICAL
+                    recycle.layoutManager = LLM
+                    var adapter =  adap(view.context,list,true,mail.toString())
+                    recycle.adapter = adapter
+                }
+
             })
         }
         return  view

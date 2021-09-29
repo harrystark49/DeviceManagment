@@ -10,17 +10,26 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.*
+import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.emp.My_devices
 import com.example.mini_proect.fragments.emp.emp_myhistory
 import com.example.mini_proect.fragments.emp.emp_settings
+import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.activity_home_screen_employee.*
+import kotlinx.android.synthetic.main.activity_home_screen_employee.drawer_layout
 
 class Home_screen_employee : AppCompatActivity() {
     lateinit var toggle:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_screen_employee)
 
+        setContentView(R.layout.activity_home_screen_employee)
+        var b:Bundle? = intent.extras
+        var email = b?.getString("EmpEmail")
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.emp_fragment_replacer, all_devices("emp",email.toString()))
+            commit()
+        }
 
         toggle= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(toggle)
@@ -97,7 +106,9 @@ class Home_screen_employee : AppCompatActivity() {
     override fun onBackPressed() {
         alertDialog()
     }
+
     private fun alertDialog(){
+
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.alert)
         builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->

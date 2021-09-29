@@ -8,6 +8,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
+import com.example.mini_proect.fragments.admin.AdminSettings
+import com.example.mini_proect.fragments.emp.emp_settings
 import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -37,8 +39,8 @@ class ChangePassword : AppCompatActivity() {
 
             if(OldPass==empPass){
                 oldpassword.isErrorEnabled = false
-                if(checkDetails(NewPass,ConNew)) {
-                    if (!OldPass.equals(NewPass)) {
+                if(checkDetails(NewPass,ConNew,OldPass)) {
+                    if (OldPass!=NewPass) {
                         var cv = ContentValues()
                         cv.put("PASSWORD", NewPass)
                         db.update("ADD_EMPLOYEE", cv, "EMAIL=?", arrayOf(empEmail))
@@ -49,14 +51,11 @@ class ChangePassword : AppCompatActivity() {
                         finish()
                     }
                 }
-
-                else
-                    Toast.makeText(this, "Old password and New password can't be same", Toast.LENGTH_SHORT).show()
             }
 
             else if(OldPass==adminPass){
                 oldpassword.isErrorEnabled = false
-                if(checkDetails(NewPass,ConNew) ) {
+                if(checkDetails(NewPass,ConNew,OldPass) ) {
                     if (!OldPass.equals(NewPass)) {
                         var cv = ContentValues()
                         cv.put("PASSWORD", NewPass)
@@ -85,7 +84,7 @@ class ChangePassword : AppCompatActivity() {
         }
     }
 
-    private fun checkDetails(newPass:String,conPass:String):Boolean {
+    private fun checkDetails(newPass:String,conPass:String,oldpass:String):Boolean {
         if(newPass.isEmpty()){
             New_password.error = "Enter password"
             New_password.isErrorEnabled = true
@@ -96,12 +95,16 @@ class ChangePassword : AppCompatActivity() {
         } else if (!(newPass.length >= 8 && newPass.length <= 10)) {
             New_password.error = "Password should be in between 8 and 10 characters"
             New_password.isErrorEnabled = true
-        } else if (!newPass.equals(conPass)) {
+        } else if(oldpass.equals(newPass)){
+            New_password.error = "old password and new password should not be same"
+            New_password.isErrorEnabled = true
+        }else if (!newPass.equals(conPass)) {
             New_password.isErrorEnabled=false
             confirm_new_layout.error = "New Password and Confirm Password are mis-matched"
             confirm_new_layout.isErrorEnabled = true
 
-        } else {
+        }
+        else {
             confirm_new_layout.isErrorEnabled = false
             New_password.isErrorEnabled=false
             return true

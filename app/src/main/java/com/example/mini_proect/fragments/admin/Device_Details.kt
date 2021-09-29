@@ -1,5 +1,6 @@
 package com.example.mini_proect.fragments.admin
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,12 +17,14 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_device__details.*
 import kotlinx.android.synthetic.main.fragment_device__details.view.*
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
+import kotlinx.android.synthetic.main.fragment_requested_device_details.*
 
 class Device_Details : Fragment() {
 
     lateinit var helper: dbHelper
 
     lateinit var loginViewModel: All_Devices_view_Model
+    @SuppressLint("Range")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +37,8 @@ class Device_Details : Fragment() {
 
         var args = arguments
         var id = args?.get("DeviceId").toString()
-        var emp_id = args?.get("Email").toString()
+        var emp_id = args?.getString("Email")
+
 
         loginViewModel = ViewModelProvider(this).get(All_Devices_view_Model::class.java)
 
@@ -56,7 +60,10 @@ class Device_Details : Fragment() {
         var cursor = db.rawQuery("SELECT * FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
         var cursor1 = db.rawQuery("SELECT * FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
 
-
+        var mailid=""
+        if(cursor1.moveToNext()){
+            mailid=cursor1.getString(cursor1.getColumnIndex("EMP_ID"))
+        }
         if (cursor.moveToFirst() || cursor1.moveToFirst()) {
             vi.emp_details.visibility = View.VISIBLE
             if (cursor.moveToFirst()) {
@@ -74,9 +81,9 @@ class Device_Details : Fragment() {
             }
 
 
-            var cursor2 = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_id))
+            var cursor2 = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE ID=?", arrayOf(mailid))
 
-            if (cursor2.moveToFirst()) {
+            if (cursor2.moveToNext()) {
                 var name_index = cursor2.getColumnIndex("NAME")
                 var name = cursor2.getString(name_index)
                 var id_index = cursor2.getColumnIndex("ID")

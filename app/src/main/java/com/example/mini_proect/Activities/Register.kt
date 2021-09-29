@@ -44,6 +44,9 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             Toast.makeText(this, "a", Toast.LENGTH_LONG).show()
             spin.setSelection(0)
             spin.isEnabled= false
+            spin.visibility=View.GONE
+            type.visibility=View.GONE
+
             var cursor = db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?", arrayOf(adminEmail))
             if (cursor.moveToFirst()) {
 
@@ -73,6 +76,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     var Name =emp_name.text.toString()
                     var Email = emp_email.text.toString()
                     var MobileNo = emp_mobile.text.toString()
+
 
                     if(Check_for_empty_fields(id,Name,Email,MobileNo,adminEmail)) {
 
@@ -226,14 +230,9 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
             var cursor1=db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?",arrayOf(emp_email.text.toString()))
 
-            if((cursor.moveToNext()&& (!email.equals(personEmail))) || cursor1.moveToNext()){
+            if((cursor.moveToNext()&& (!email.equals(personEmail))) ){
                 material_emp_email.error=getString(R.string.Emailalreadyexists)
                 material_emp_email.isErrorEnabled=true
-            }
-            else if(cursor1.moveToNext()) {
-                material_emp_email.error=getString(R.string.Emailalreadyexists)
-                material_emp_email.isErrorEnabled=true
-
             }else
             {
                 material_emp_email.isErrorEnabled=false
@@ -250,7 +249,12 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }else if(! isDigit(mobile)){
             material_emp_mobile.error=getString(R.string.Entervalidmobilenumber)
             material_emp_mobile.isErrorEnabled=true
-        }else{
+        }
+        else if(mobile.length!=10){
+            material_emp_mobile.error= "Mobile number must contain 10 digits"
+            material_emp_mobile.isErrorEnabled=true
+        }
+        else{
             material_emp_mobile.isErrorEnabled=false
             x++
         }

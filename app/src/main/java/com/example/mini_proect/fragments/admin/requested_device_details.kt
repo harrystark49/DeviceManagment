@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.all_devices
+import com.example.mini_proect.fragments.emp.My_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.fragment_requested_device_details.view.*
 import java.text.SimpleDateFormat
@@ -23,6 +25,16 @@ class requested_device_details : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        var callback=object :OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                activity?.supportFragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.emp_fragment_replacer,My_devices())
+                    commit()
+                }
+            }
+        }
+        activity?.onBackPressedDispatcher?.addCallback(callback)
         var view = inflater.inflate(R.layout.fragment_requested_device_details, container, false)
         helper = dbHelper(view.context)
         var db = helper.readableDatabase
@@ -120,4 +132,7 @@ class requested_device_details : Fragment() {
             }
         }
         return view
-    }}
+    }
+
+
+}

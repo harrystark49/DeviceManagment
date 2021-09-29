@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_Entity
@@ -45,6 +46,8 @@ class adap(
             data.Version = Devices[position].Version
             data.phonetype = Devices[position].phonetype
 
+
+
             itemView.deviceId.text = "Device id: " + Devices[position].device_Id
             itemView.phoneType.text = "Phone type: " + Devices[position].phonetype
             itemView.manu.text = "Manufacture: " + Devices[position].Manufacture
@@ -55,11 +58,14 @@ class adap(
                 var b = Bundle()
                 b.putString("DeviceId", Devices[position].device_Id)
                 b.putString("Email", email)
+                var x=position+1
+                b.putString("pos", x.toString())
                 var frag = NewEmpDevDetails(history)
                 frag.arguments = b
                 var activity = itemView.context as AppCompatActivity
                 activity.supportFragmentManager.beginTransaction().apply {
                     replace(R.id.emp_fragment_replacer, frag)
+                    addToBackStack(null)
                     commit()
                 }
             } }

@@ -12,4 +12,16 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/nodevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Devices"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        >
+
+    </TextView>
+
 </FrameLayout>

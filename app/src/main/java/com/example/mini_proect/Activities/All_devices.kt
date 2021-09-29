@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.fragment_all_devices.*
+import kotlinx.android.synthetic.main.fragment_all_devices.view.*
 
 
 class all_devices(var adminOremp:String,var email:String) : Fragment() {
@@ -46,15 +48,21 @@ class all_devices(var adminOremp:String,var email:String) : Fragment() {
         ).get(All_Devices_view_Model::class.java)
         viewModel.getDeviceDetails(requireContext())!!.observe(requireActivity(), Observer {
 
-            val recycler = view.findViewById<RecyclerView>(R.id.recyclerView)
-            var recycle: RecyclerView = recycler
-            var LLM: LinearLayoutManager = LinearLayoutManager(context)
-            LLM.orientation = RecyclerView.VERTICAL
-            recycle.layoutManager = LLM
-            var adapter = context?.let { it1 -> Adapter(it1,it,adminOremp,email) }
-            recycle.adapter = adapter
+            if(it==null || it.isEmpty()){
+                Toast.makeText(view.context, "djgdf", Toast.LENGTH_SHORT).show()
+                view.no_devices.visibility=View.VISIBLE
+            }else {
+                Toast.makeText(view.context, "$it", Toast.LENGTH_SHORT).show()
+                view.no_devices.visibility=View.GONE
+                val recycler = view.findViewById<RecyclerView>(R.id.recyclerView)
+                var recycle: RecyclerView = recycler
+                var LLM: LinearLayoutManager = LinearLayoutManager(context)
+                LLM.orientation = RecyclerView.VERTICAL
+                recycle.layoutManager = LLM
+                var adapter = context?.let { it1 -> Adapter(it1, it, adminOremp, email) }
+                recycle.adapter = adapter
 
-
+            }
         })
     }
 
