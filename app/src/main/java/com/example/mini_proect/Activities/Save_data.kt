@@ -8,7 +8,6 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.example.mini_proect.Activities.login
 import com.example.mini_proect.DataBase.dbHelper
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_save_data.*
 
 class save_data : AppCompatActivity() {
@@ -26,10 +25,12 @@ class save_data : AppCompatActivity() {
         var email = bundle?.get("EMAIL").toString()
         var name = bundle?.get("NAME").toString()
         var mobile = bundle?.get("MOBILE").toString()
+        var adminOruser=bundle?.getString("AdminOrUser")
         cv.put("ID", id)
         cv.put("NAME", name)
         cv.put("EMAIL", email)
         cv.put("MOBILE", mobile)
+
 
 
 
@@ -41,7 +42,7 @@ class save_data : AppCompatActivity() {
                 } else {
                     cv.put("PASSWORD", emp_pass.text.toString())
                     var cursor = db.rawQuery("SELECT * FROM ADD_ADMIN", null)
-                    if (!cursor.moveToNext()) {
+                    if (!cursor.moveToNext() && (adminOruser=="Admin")) {
                         db.insert("ADD_ADMIN", null, cv)
                         Toast.makeText(this, R.string.AdminsuccessfullyAdded, Toast.LENGTH_SHORT)
                             .show()

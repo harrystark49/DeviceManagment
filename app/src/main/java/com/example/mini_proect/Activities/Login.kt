@@ -4,17 +4,13 @@ import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mini_proect.DataBase.All_Devices_Repository.Companion.insertData
-import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
 
 
 class login : AppCompatActivity() {

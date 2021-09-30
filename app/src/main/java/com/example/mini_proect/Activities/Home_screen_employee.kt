@@ -10,11 +10,9 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.*
-import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.emp.My_devices
 import com.example.mini_proect.fragments.emp.emp_myhistory
 import com.example.mini_proect.fragments.emp.emp_settings
-import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 import kotlinx.android.synthetic.main.activity_home_screen_employee.*
 import kotlinx.android.synthetic.main.activity_home_screen_employee.drawer_layout
 
@@ -28,6 +26,7 @@ class Home_screen_employee : AppCompatActivity() {
         var email = b?.getString("EmpEmail")
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.emp_fragment_replacer, all_devices("emp",email.toString()))
+            addToBackStack("frag")
             commit()
         }
 
@@ -51,6 +50,7 @@ class Home_screen_employee : AppCompatActivity() {
                     myFrag1.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag1)
+                        addToBackStack("frag")
                         commit()
                     }
                 }
@@ -63,6 +63,7 @@ class Home_screen_employee : AppCompatActivity() {
                     myFrag1.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag1)
+                        addToBackStack("Frag")
                         commit()
                     }
                 }
@@ -77,10 +78,11 @@ class Home_screen_employee : AppCompatActivity() {
                     myFrag1.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag1)
+                        addToBackStack("Frag")
                         commit()
                     }
                 }
-                R.id.emp_logout->{
+                R.id.emp_logout_device->{
                     alertDialog()
                 }
             }
@@ -98,13 +100,18 @@ class Home_screen_employee : AppCompatActivity() {
     private fun Fragments(frag:Fragment){
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.emp_fragment_replacer, frag)
+            addToBackStack("frag")
             commit()
 
         }
     }
 
     override fun onBackPressed() {
-        alertDialog()
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStackImmediate()
+        } else {
+            alertDialog()
+        }
     }
 
     private fun alertDialog(){

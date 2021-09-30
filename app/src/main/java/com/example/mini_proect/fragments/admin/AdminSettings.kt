@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.mini_proect.Activities.ChangePassword
 import com.example.mini_proect.Activities.Register
 import com.example.mini_proect.R

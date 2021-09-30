@@ -12,7 +12,6 @@ import android.widget.Toast
 import com.example.mini_proect.R
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.save_data
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -41,9 +40,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         // For updating the admin profile
 
         if(adminEmail!=null) {
-            Toast.makeText(this, "a", Toast.LENGTH_LONG).show()
-            spin.setSelection(0)
-            spin.isEnabled= false
+
             spin.visibility=View.GONE
             type.visibility=View.GONE
 
@@ -102,7 +99,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         //For updating the employee profile
 
         else if(empEmail!=null) {
-            Toast.makeText(this, "b", Toast.LENGTH_LONG).show()
 
             spin.setSelection(1)
             spin.isEnabled = false
@@ -155,10 +151,8 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         //For registering a new user
 
         else{
-            Toast.makeText(this, "New user", Toast.LENGTH_SHORT).show()
 
             emp_register_btn.setOnClickListener {
-
 
                 var cursor=db.rawQuery("SELECT * FROM ADD_ADMIN",null)
                 if(cursor.moveToNext() && user=="Admin"){
@@ -182,6 +176,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         intent.putExtra("NAME",emp_name.text.toString())
                         intent.putExtra("EMAIL",emp_email.text.toString())
                         intent.putExtra("MOBILE",emp_mobile.text.toString())
+                        intent.putExtra("AdminOrUser",user)
                         startActivity(intent)
                     }}
 
@@ -227,8 +222,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             var db=helper.readableDatabase
 
             var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_email.text.toString()))
-
-            var cursor1=db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?",arrayOf(emp_email.text.toString()))
 
             if((cursor.moveToNext()&& (!email.equals(personEmail))) ){
                 material_emp_email.error=getString(R.string.Emailalreadyexists)

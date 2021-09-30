@@ -2,7 +2,6 @@ package com.example.mini_proect.fragments.admin
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_device__details.*
 import kotlinx.android.synthetic.main.fragment_device__details.view.*
-import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
-import kotlinx.android.synthetic.main.fragment_requested_device_details.*
 
 class Device_Details : Fragment() {
 

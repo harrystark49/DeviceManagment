@@ -8,14 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
-import kotlinx.android.synthetic.main.fragment_device__details.view.*
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,7 +38,6 @@ class emp_device_details(var email:String , var details:String="details") : Frag
         var mail=args?.getString("Email")
 
 
-        Toast.makeText(vi.context, "$mail", Toast.LENGTH_SHORT).show()
 
         var c1=db.rawQuery("SELECT * FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
         var c2=db.rawQuery("SELECT * FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
@@ -69,15 +66,16 @@ class emp_device_details(var email:String , var details:String="details") : Frag
         b.putString("Email",mail)
         var frag = Device_Details()
         frag.arguments = b
+        if(mail3.isNotEmpty() || mail1.isNotEmpty()){
 
-        if(((mail==mail1) || (mail==mail3))){
+        if((mail!=mail3)  && (mail!=mail1)){
 
             activity?.supportFragmentManager?.beginTransaction()?.apply {
                 replace(R.id.emp_fragment_replacer, frag)
                 commit()
             }
 
-        }
+        }}
 
 
 
@@ -96,7 +94,6 @@ class emp_device_details(var email:String , var details:String="details") : Frag
                 Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show()
             }
         })
-        Toast.makeText(context, "$id", Toast.LENGTH_SHORT).show()
 
         var cursor=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
         var cursor1=db.rawQuery("SELECT DEVICE_ID FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(id))
@@ -105,9 +102,10 @@ class emp_device_details(var email:String , var details:String="details") : Frag
             vi.register_device.setText("STATUS PENDING")
         }
         else if(cursor1.moveToNext()){
+            vi.register_device.visibility=View.VISIBLE
             vi.register_device.setText("RETURN DEVICE")
         }
-        else{
+        else {
             vi.register_device.visibility=View.VISIBLE
             vi.register_device.setText("REGISTER DEVICE")
         }
@@ -134,10 +132,11 @@ class emp_device_details(var email:String , var details:String="details") : Frag
                 })
         }
             else if(reg=="RETURN DEVICE"){
-                Toast.makeText(vi.context, "return", Toast.LENGTH_SHORT).show()
                 var cv1=ContentValues()
                 cv1.put("DEVICE_ID",id)
                 cv1.put("EMP_MAIL",mail)
+
+
 
                 val simpleDateFormat = SimpleDateFormat("MM.dd.yyyy HH:mm:ss")
                 val currentDateAndTime: String = simpleDateFormat.format(Date())
@@ -150,7 +149,19 @@ class emp_device_details(var email:String , var details:String="details") : Frag
                 }
                 vi.register_device.setText("REGISTER DEVICE")
                 Toast.makeText(vi.context, "Succesfully Returned", Toast.LENGTH_SHORT).show()
-                db.insert("DEVICE_HISTORY",null,cv1)
+
+
+
+                var c=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE DEVICE_ID=? AND EMP_MAIL=?",arrayOf(id,mail))
+                if(c.moveToNext()){
+                    db.update("DEVICE_HISTORY",cv1,"DEVICE_ID=? AND EMP_MAIL=?",arrayOf(id,mail))
+                }else{
+                    db.insert("DEVICE_HISTORY",null,cv1)
+                }
+
+
+
+
                 db.delete("ACCEPTED_DEVICES","DEVICE_ID=?",arrayOf(id))
             }
 

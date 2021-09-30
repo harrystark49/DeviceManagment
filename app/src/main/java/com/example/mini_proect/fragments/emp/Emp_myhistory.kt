@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,7 +51,7 @@ class emp_myhistory : Fragment() {
         }
 
 
-        var cursor1=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_ID=?", arrayOf(id))
+        var cursor1=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_MAIL=?", arrayOf(id))
 
         while(cursor1.moveToNext()){
 
@@ -76,7 +75,6 @@ class emp_myhistory : Fragment() {
                     var adapter =  adap(view.context,list,true,mail.toString())
                     recycle.adapter = adapter
                 }
-
             })
         }
         return  view

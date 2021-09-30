@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.Activities.Home_screen_admin
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
-import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
 

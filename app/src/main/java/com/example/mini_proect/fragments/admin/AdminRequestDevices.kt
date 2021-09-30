@@ -11,7 +11,6 @@ import com.example.mini_proect.Adapter.Request_device_Adapter
 import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.Adapter
 import kotlinx.android.synthetic.main.fragment_admin_request_devices.view.*
 
 class AdminRequestDevices(var adminOremp:String,var email:String) : Fragment() {

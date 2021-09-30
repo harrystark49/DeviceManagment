@@ -13,7 +13,6 @@ import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.emp.emp_device_details
 import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
-import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 
 class Adapter(
     var context: Context,
@@ -60,6 +59,7 @@ class Adapter(
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.fragment_replacer, frag)
+                        addToBackStack("frag")
                         commit()
                     }
                 } else {
@@ -71,6 +71,7 @@ class Adapter(
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, frag)
+                        addToBackStack("frag")
                         commit()
                     }
                 }
@@ -85,7 +86,7 @@ class Adapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var v: View =
             LayoutInflater.from(parent.context)
-                .inflate(com.example.mini_proect.R.layout.alldeviceviewitem, parent, false)
+                .inflate(R.layout.alldeviceviewitem, parent, false)
         var view = ViewHolder(v)
 
         return view

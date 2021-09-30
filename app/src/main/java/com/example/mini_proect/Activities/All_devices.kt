@@ -2,21 +2,16 @@ package com.example.mini_proect.fragments
 
 import android.app.Application
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
-import kotlinx.android.synthetic.main.activity_home_screen_admin.*
-import kotlinx.android.synthetic.main.fragment_all_devices.*
 import kotlinx.android.synthetic.main.fragment_all_devices.view.*
 
 
@@ -49,10 +44,8 @@ class all_devices(var adminOremp:String,var email:String) : Fragment() {
         viewModel.getDeviceDetails(requireContext())!!.observe(requireActivity(), Observer {
 
             if(it==null || it.isEmpty()){
-                Toast.makeText(view.context, "djgdf", Toast.LENGTH_SHORT).show()
                 view.no_devices.visibility=View.VISIBLE
             }else {
-                Toast.makeText(view.context, "$it", Toast.LENGTH_SHORT).show()
                 view.no_devices.visibility=View.GONE
                 val recycler = view.findViewById<RecyclerView>(R.id.recyclerView)
                 var recycle: RecyclerView = recycler

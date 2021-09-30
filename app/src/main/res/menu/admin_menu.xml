@@ -18,7 +18,7 @@
         android:title="@string/settings">
     </item>
     <item
-        android:id="@+id/admin_logout"
-        android:title="@string/logout">
+        android:id="@+id/admin_logout_device"
+        android:title="Logout">
     </item>
 </menu>

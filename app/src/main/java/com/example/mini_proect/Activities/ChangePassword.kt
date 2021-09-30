@@ -8,10 +8,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.admin.AdminSettings
-import com.example.mini_proect.fragments.emp.emp_settings
 import kotlinx.android.synthetic.main.activity_change_password.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 class ChangePassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

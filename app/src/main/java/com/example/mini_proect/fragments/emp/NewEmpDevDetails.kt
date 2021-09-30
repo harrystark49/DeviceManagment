@@ -14,9 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
-import com.example.mini_proect.fragments.admin.Device_Details
 import com.example.mini_proect.fragments.all_devices
-import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.emp_device_id_value1
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.emp_manufacture_value1
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.emp_os_type_value1
@@ -54,13 +52,13 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
         var args = arguments
         var id = args?.getString("DeviceId")
         var mail = args?.getString("Email")
-        var pos=args?.getString("pos")
-        Toast.makeText(view.context, "recived pos is $pos", Toast.LENGTH_SHORT).show()
+
         var idd = ""
         var c1 = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(mail))
 
         if (c1.moveToFirst()) {
             idd = c1.getString(c1.getColumnIndex("ID"))
+
         }
         if (history) {
             view.retur.visibility = View.GONE
@@ -68,10 +66,11 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
             view.endtime.visibility = View.VISIBLE
 
 
-            var c3 = db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE ID=?", arrayOf(pos))
+
+            var c3 = db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE DEVICE_ID=? AND EMP_MAIL=?", arrayOf(id,idd))
             while (c3.moveToNext()) {
+
                 var x =c3.getColumnIndex("ID")
-                Toast.makeText(view.context, "$x", Toast.LENGTH_SHORT).show()
                 var start_time = c3.getString(c3.getColumnIndex("START_TIME"))
                 var end_time = c3.getString(c3.getColumnIndex("END_TIME"))
                 view.starttime_value.setText(start_time)
@@ -108,12 +107,13 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
                 val end: String = simpleDateFormat.format(Date())
                 cv.put("END_TIME", end)
                 cv.put("DEVICE_ID", id)
-                cv.put("EMP_ID", idd)
-                db.insert("DEVICE_HISTORY", null, cv)
+                cv.put("EMP_MAIL", idd)
+
+                    db.insert("DEVICE_HISTORY",null,cv)
 
                 db.delete("ACCEPTED_DEVICES", "DEVICE_ID=?", arrayOf(id))
 
-                Toast.makeText(view.context, "success retured", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "Successfully returned", Toast.LENGTH_SHORT).show()
 
                 activity?.supportFragmentManager?.beginTransaction()?.apply {
                     replace(R.id.emp_fragment_replacer, all_devices("emp", ""))

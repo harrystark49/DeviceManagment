@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_Entity
@@ -56,6 +55,7 @@ class Request_device_Adapter(
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.fragment_replacer, frag)
+                        addToBackStack("frag")
                         commit()
                     }
                 }
