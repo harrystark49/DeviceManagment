@@ -32,7 +32,7 @@ class Home_screen_employee : AppCompatActivity() {
         var edit = sharedPreferences.edit()
 
 
-        var emp_id = sharedPreferences.getString("empid",null)
+        var emp_id = sharedPreferences.getString("empid", null)
 
 
 
@@ -63,7 +63,7 @@ class Home_screen_employee : AppCompatActivity() {
 
                     var myhistorybundle = Bundle()
                     myhistorybundle.putString("text", "History")
-                    myhistorybundle.putString("empid",emp_id)
+                    myhistorybundle.putString("empid", emp_id)
 
                     var frag = EmpMyHistory()
                     frag.arguments = myhistorybundle
@@ -82,6 +82,7 @@ class Home_screen_employee : AppCompatActivity() {
                     myFrag1.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag1)
+                        addToBackStack("Fragment")
                         commit()
                     }
                 }
@@ -107,13 +108,18 @@ class Home_screen_employee : AppCompatActivity() {
     private fun Fragments(frag: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.emp_fragment_replacer, frag)
+            addToBackStack("Fragment")
             commit()
 
         }
     }
 
     override fun onBackPressed() {
-        alertDialog()
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStackImmediate()
+        } else {
+            alertDialog()
+        }
     }
 
     private fun alertDialog() {

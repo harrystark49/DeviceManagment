@@ -26,6 +26,7 @@
             android:exported="true"
             android:label="Registration_form" />
         <activity
+            android:noHistory="false"
             android:name=".Activities.Home_screen_admin"
             android:exported="true"
             android:label="ADMIN" />

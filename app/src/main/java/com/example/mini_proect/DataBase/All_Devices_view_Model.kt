@@ -3,6 +3,7 @@ package com.example.mini_proect.DataBase
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.room.Query
 
 class All_Devices_view_Model : ViewModel() {
 
@@ -56,6 +57,12 @@ class All_Devices_view_Model : ViewModel() {
         data!!.All_Devices_Dao().RemoveFromPendingDevices(id)
 
     }
+
+    fun getStartTime(context: Context,emp_id: String?, dev_id:String):History{
+        data = initializeDb(context)
+        return data!!.All_Devices_Dao().getStartTime(emp_id,dev_id)
+    }
+
 
 
     fun getDeviceDetails(context: Context): LiveData<List<All_Devices_Entity>>? {
@@ -115,9 +122,9 @@ class All_Devices_view_Model : ViewModel() {
 
 
 
-    fun UpdateEndTime(context: Context, emp_id: String, dev_id: String, endtime: String) {
+    fun UpdateEndTime(context: Context, emp_id: String, dev_id: String, starttime:String,endtime: String) {
         data = initializeDb(context)
-        data!!.All_Devices_Dao().UpdateEndTime(emp_id, dev_id, endtime)
+        data!!.All_Devices_Dao().UpdateEndTime(emp_id, dev_id,starttime, endtime)
     }
 
     fun getHistory(context: Context, dev_id: String):History{

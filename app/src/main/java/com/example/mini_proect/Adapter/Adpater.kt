@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.History
@@ -60,9 +61,7 @@ class Adapter(
 
 
             itemView.setOnClickListener {
-                if (AdminOrEmp == "Admin" ) {
-
-
+                if (AdminOrEmp == "Admin") {
 
 
                     var b = Bundle()
@@ -75,6 +74,7 @@ class Adapter(
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.fragment_replacer, frag)
+                        addToBackStack("fragment")
                         commit()
                     }
                 } else if (id1 == Devices[position].isAllocated) {
@@ -92,6 +92,7 @@ class Adapter(
 
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, frag)
+                        addToBackStack("fragment")
                         commit()
                     }
                 } else if (Devices[position].isAllocated == "false") {
@@ -106,6 +107,7 @@ class Adapter(
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, frag)
+                        addToBackStack("fragment")
                         commit()
                     }
 
@@ -126,9 +128,11 @@ class Adapter(
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, frag)
+                        addToBackStack("fragment")
                         commit()
                     }
-                } else { }
+                } else {
+                }
             }
         }
     }
@@ -150,5 +154,12 @@ class Adapter(
     override fun getItemCount(): Int {
         return Devices!!.size
     }
+
+
+//    fun fragmets(frag: Fragment) {
+//        var act = context as AppCompatActivity
+//        act.supportFragmentManager.beginTransaction().replace(R.id.fragment_replacer, frag)
+//            .addToBackStack("fragment").commit()
+//    }
 
 }

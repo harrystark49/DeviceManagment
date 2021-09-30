@@ -4,26 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mini_proect.Activities.EmpMyHistory
-import com.example.mini_proect.DataBase.All_Devices_Entity
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.History
 import com.example.mini_proect.DataBase.dbHelper
 import com.example.mini_proect.R
-import com.example.mini_proect.deviceDetails
-import com.example.mini_proect.fragments.admin.Device_Details
-import com.example.mini_proect.fragments.all_devices
-import com.example.mini_proect.fragments.emp.emp_device_details
 import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
 
 class myhistoryAdap(

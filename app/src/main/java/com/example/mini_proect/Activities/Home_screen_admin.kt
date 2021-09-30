@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -17,8 +17,10 @@ import com.example.mini_proect.fragments.admin.AdminSettings
 import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 
+
 class Home_screen_admin : AppCompatActivity() {
     lateinit var togglebtn: ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_admin)
@@ -34,6 +36,7 @@ class Home_screen_admin : AppCompatActivity() {
         var frag = all_devices()
         frag.arguments = b1
         fragmets(frag)
+
 
         navigation_tool.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -73,7 +76,6 @@ class Home_screen_admin : AppCompatActivity() {
                     edit.commit()
                     alertDialog()
                     startActivity(Intent(this, login::class.java))
-
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -83,11 +85,8 @@ class Home_screen_admin : AppCompatActivity() {
     }
 
     fun fragmets(frag: Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_replacer, frag)
-            addToBackStack(null)
-            commit()
-        }
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_replacer, frag)
+            .addToBackStack("fragment").commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -97,21 +96,24 @@ class Home_screen_admin : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onBackPressed() {
 
-        alertDialog()
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStackImmediate()
+        }else{
+            alertDialog()
+        }
+
     }
+
 
     protected fun alertDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.alert)
-        builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
-            finish()
-        }
-        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
-
-        }
+        builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int -> finish() }
+        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int -> }
         builder.create()
         builder.show()
     }
 }
+

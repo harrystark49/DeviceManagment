@@ -3,6 +3,7 @@ package com.example.mini_proect.fragments.emp
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import java.util.*
 class emp_device_details : Fragment() {
     lateinit var helper: dbHelper
     lateinit var loginViewModel: All_Devices_view_Model
+
     @SuppressLint("Range")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,15 +63,28 @@ class emp_device_details : Fragment() {
         vi.register_device.setOnClickListener {
             val sdf = SimpleDateFormat("dd/M/yyyy \n hh:mm:ss")
             val currentDate = sdf.format(Date())
+
             if (vi.register_device.text == "Return Device") {
+
+                var startTim =
+                    All_Devices_view_Model().getStartTime(this.requireContext(), id1, id)
+                var startTime = startTim.startTme
                 All_Devices_view_Model().UpdateDevieAllocation(this.requireContext(), "false", id)
-                All_Devices_view_Model().UpdateEndTime(this.requireContext(), id1, id, currentDate)
+                All_Devices_view_Model().UpdateEndTime(
+                    this.requireContext(),
+                    id1,
+                    id,
+                    startTime,
+                    currentDate
+                )
                 return@setOnClickListener
             }
             if (vi.register_device.text == "Register Device") {
-                loginViewModel.getLoginDetailsById(context, id)!!.observe(this.viewLifecycleOwner, Observer {
+                loginViewModel.getLoginDetailsById(context, id)!!
+                    .observe(this.viewLifecycleOwner, Observer {
                         if (it != null) {
-                            var cursor1 = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE ID=?", arrayOf(id1))
+                            var cursor1 =
+                                db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE ID=?", arrayOf(id1))
                             loginViewModel.UpdateDevieAllocation(requireContext(), "Pending", id)
                             loginViewModel.InsertIntoPending(requireContext(), id, id1)
                         } else {

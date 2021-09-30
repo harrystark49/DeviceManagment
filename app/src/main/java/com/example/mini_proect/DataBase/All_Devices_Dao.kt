@@ -29,6 +29,8 @@ interface All_Devices_Dao {
 
 
 
+    @Query("Select * from History where emp_id=:emp_id and device_Id=:dev_id")
+    fun getStartTime(emp_id: String?, dev_id:String) : History
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -65,8 +67,8 @@ interface All_Devices_Dao {
     fun UpdateStartTime(eemp_id:String,dev_id:String,time:String,endtime:String)
 
 
-    @Query("Update History set EndTime=:endtime where device_Id=:dev_id AND emp_id=:emp_id")
-    fun UpdateEndTime(emp_id: String,dev_id: String,endtime:String)
+    @Query("Update History set EndTime=:endtime where device_Id=:dev_id AND emp_id=:emp_id AND startTme=:starttime")
+    fun UpdateEndTime(emp_id: String,dev_id: String,starttime:String,endtime:String)
 
     @Query("SELECT * from History  where device_Id=:dev_id")
     fun getHistory(dev_id: String):History
