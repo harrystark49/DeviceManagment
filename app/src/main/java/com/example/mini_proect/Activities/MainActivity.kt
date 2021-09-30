@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
 
-
     private lateinit var viewModel: All_Devices_view_Model
     lateinit var devicesList: List<All_Devices_Entity>
 
@@ -25,46 +24,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
         var edit = sharedPreferences.edit()
 
         project_title.animate().setDuration(1000).rotationYBy(360f)
         app_title.alpha = 0f
         app_title.animate().setDuration(3000).alpha(1f).withEndAction {
 
-            val islooged = sharedPreferences.getBoolean("isLogged",false)
-            val adminoremp = sharedPreferences.getString("AdminOrEmp",null)
+            val islooged = sharedPreferences.getBoolean("isLogged", false)
+            val adminoremp = sharedPreferences.getString("AdminOrEmp", null)
 
-            if(!islooged) {
+            if (!islooged) {
                 var intent = Intent(this, login::class.java)
                 startActivity(intent)
                 finish()
-            }else if(adminoremp.equals("Employee")){
-                startActivity(Intent(this,Home_screen_employee::class.java))
+            } else if (adminoremp.equals("Employee")) {
+                startActivity(Intent(this, Home_screen_employee::class.java))
                 finish()
-            }else{
-                startActivity(Intent(this,Home_screen_admin::class.java))
+            } else {
+                startActivity(Intent(this, Home_screen_admin::class.java))
                 finish()
             }
         }
-
-
-
-//        viewModel = ViewModelProvider(
-//            this,
-//            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-//        ).get(All_Devices_view_Model::class.java)
-//
-//        viewModel.getLoginDetails(this)?.observe(this, Observer {
-//            if(it.isNotEmpty()){
-//            devicesList = it
-//            Adapter(this,devicesList)
-//        }else{
-//            Toast.makeText(this,"No Device Available",Toast.LENGTH_SHORT).show()
-//            }
-//        })
-
-
     }
 }
 

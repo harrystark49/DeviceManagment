@@ -36,15 +36,18 @@ class deviceDetails : Fragment() {
 
         if (b?.getString("isallocated") == "Pending") {
 
-            var p = All_Devices_view_Model().getPendingDevicesById(this.requireContext(), b?.getString("deviceid")!!)
+            var p = All_Devices_view_Model().getPendingDevicesById(
+                this.requireContext(),
+                b?.getString("deviceid")!!
+            )
 
-             var emp_id = p.emp_id
+            var emp_id = p.emp_id
             view.empidvalue.text = emp_id
             view.statusvalue.text = "Pending"
 
 
             var c = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE ID=?", arrayOf(emp_id))
-            if(c.moveToFirst()){
+            if (c.moveToFirst()) {
                 view.deviceusedvalue.text = c.getString(c.getColumnIndex("NAME")).toString()
                 view.mobilenumbervalue.text = c.getString(c.getColumnIndex("MOBILE")).toString()
             }
@@ -55,16 +58,18 @@ class deviceDetails : Fragment() {
 
         if (b?.getString("isallocated") != "Pending" && b?.getString("isallocated") != "false") {
 
-            var p = All_Devices_view_Model().getPendingDevicesById(this.requireContext(), b?.getString("deviceid")!!)
+            var p = All_Devices_view_Model().getPendingDevicesById(
+                this.requireContext(),
+                b?.getString("deviceid")!!
+            )
 
-            var emp_id =  b?.getString("isallocated")
+            var emp_id = b?.getString("isallocated")
             view.empidvalue.text = emp_id
             view.statusvalue.text = "Granted"
 
 
-
             var c = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE ID=?", arrayOf(emp_id))
-            if(c.moveToFirst()){
+            if (c.moveToFirst()) {
                 view.deviceusedvalue.text = c.getString(c.getColumnIndex("NAME")).toString()
                 view.mobilenumbervalue.text = c.getString(c.getColumnIndex("MOBILE")).toString()
             }

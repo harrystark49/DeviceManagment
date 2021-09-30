@@ -20,37 +20,23 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class emp_device_details : Fragment() {
-
     lateinit var helper: dbHelper
     lateinit var loginViewModel: All_Devices_view_Model
-
     @SuppressLint("Range")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         var vi = inflater.inflate(R.layout.fragment_emp_device_details, container, false)
         helper = dbHelper(vi.context)
         var db = helper.readableDatabase
-
         vi.register_device.setText("REGISTER DEVICE")
-
         var args = arguments
         var id = args?.get("DeviceId").toString()
         var id1 = args?.get("empid").toString()
-
-
-
-        Toast.makeText(this.requireContext(), "${id1} From emp_device_details", Toast.LENGTH_SHORT)
-            .show()
-
-
         loginViewModel = ViewModelProvider(this).get(All_Devices_view_Model::class.java)
-
         loginViewModel.getLoginDetailsById(context, id)!!
             .observe(this.viewLifecycleOwner, Observer {
-
                 if (it != null) {
                     vi.emp_device_id_value1.setText(it.device_Id)
                     vi.emp_os_type_value1.setText(it.OsType)
@@ -61,7 +47,6 @@ class emp_device_details : Fragment() {
                     Toast.makeText(context, "No Data Found!", Toast.LENGTH_SHORT).show()
                 }
             })
-
         loginViewModel.getDetailsBydevId(this.requireContext(), id).observe(this.viewLifecycleOwner,
             Observer {
                 if (it.isAllocated == "Pending") {
@@ -73,57 +58,28 @@ class emp_device_details : Fragment() {
                     vi.register_device.setText("Return Device")
                 }
             })
-
-
-
-
-
-
-
         vi.register_device.setOnClickListener {
-
             val sdf = SimpleDateFormat("dd/M/yyyy \n hh:mm:ss")
             val currentDate = sdf.format(Date())
-
-
             if (vi.register_device.text == "Return Device") {
                 All_Devices_view_Model().UpdateDevieAllocation(this.requireContext(), "false", id)
-
-                Toast.makeText(this.requireContext(),"emp and device id's:${id} , ${id1},",Toast.LENGTH_SHORT).show()
-                All_Devices_view_Model().UpdateEndTime(this.requireContext(),id1,id,currentDate)
+                All_Devices_view_Model().UpdateEndTime(this.requireContext(), id1, id, currentDate)
                 return@setOnClickListener
             }
-
             if (vi.register_device.text == "Register Device") {
-                loginViewModel.getLoginDetailsById(context, id)!!
-                    .observe(this.viewLifecycleOwner, Observer {
-
+                loginViewModel.getLoginDetailsById(context, id)!!.observe(this.viewLifecycleOwner, Observer {
                         if (it != null) {
-
-                            var cursor1 =
-                                db.rawQuery(
-                                    "SELECT * FROM ADD_EMPLOYEE WHERE ID=?",
-                                    arrayOf(id1)
-                                )
-
-
-
+                            var cursor1 = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE ID=?", arrayOf(id1))
                             loginViewModel.UpdateDevieAllocation(requireContext(), "Pending", id)
                             loginViewModel.InsertIntoPending(requireContext(), id, id1)
-
                         } else {
                             Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show()
                         }
-
                         vi.register_device.isEnabled = false
-
                     })
-
-
                 return@setOnClickListener
             }
         }
         return vi
     }
-
 }

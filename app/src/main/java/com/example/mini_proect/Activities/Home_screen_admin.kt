@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
+
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -22,33 +22,24 @@ class Home_screen_admin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_admin)
-
-        var b1 = Bundle()
-        b1.putString("adminOrEmp","Admin")
-        var frag = all_devices()
-        frag.arguments = b1
-        fragmets(frag)
-
-
-        var b: Bundle? = intent.extras
-
-
-
         var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
         var edit = sharedPreferences.edit()
-
-
-
         togglebtn = ActionBarDrawerToggle(this, drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
         togglebtn.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        var b1 = Bundle()
+        b1.putString("adminOrEmp", "Admin")
+        var frag = all_devices()
+        frag.arguments = b1
+        fragmets(frag)
+
         navigation_tool.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.admin_all_devices -> {
                     var b = Bundle()
-                    b.putString("adminOrEmp","Admin")
+                    b.putString("adminOrEmp", "Admin")
                     var frag = all_devices()
                     frag.arguments = b
                     fragmets(frag)
@@ -60,11 +51,13 @@ class Home_screen_admin : AppCompatActivity() {
                     fragmets(AddNewDevice())
                 }
                 R.id.admin_settings -> {
+
                     var b: Bundle? = intent.extras
                     var email = b?.getString("AdminEmail").toString()
                     var pass = b?.getString("AdminPass").toString()
 
                     val myFrag = AdminSettings()
+
                     val mBundle = Bundle()
                     mBundle.putString("AdminEmail", email)
                     mBundle.putString("AdminPass", pass)
@@ -78,8 +71,9 @@ class Home_screen_admin : AppCompatActivity() {
                 R.id.admin_logout -> {
                     edit.clear()
                     edit.commit()
-                    startActivity(Intent(this, login::class.java))
                     alertDialog()
+                    startActivity(Intent(this, login::class.java))
+
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)

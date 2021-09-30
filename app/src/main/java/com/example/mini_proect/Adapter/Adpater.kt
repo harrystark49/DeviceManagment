@@ -60,7 +60,7 @@ class Adapter(
 
 
             itemView.setOnClickListener {
-                if (AdminOrEmp == "Admin") {
+                if (AdminOrEmp == "Admin" ) {
 
 
 

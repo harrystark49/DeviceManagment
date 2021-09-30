@@ -22,31 +22,27 @@ class Device_Details : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var vi=inflater.inflate(R.layout.fragment_device__details, container, false)
+        var vi = inflater.inflate(R.layout.fragment_device__details, container, false)
 
-
-        var args=arguments
-        var id=args?.get("DeviceId").toString()
+        var args = arguments
+        var id = args?.get("DeviceId").toString()
 
         loginViewModel = ViewModelProvider(this).get(All_Devices_view_Model::class.java)
 
-        loginViewModel.getLoginDetailsById(context,id)!!.observe(this.viewLifecycleOwner, Observer {
+        loginViewModel.getLoginDetailsById(context, id)!!
+            .observe(this.viewLifecycleOwner, Observer {
 
-            if(it != null){
-                vi.emp_device_id_value.setText(it.device_Id)
-                vi.emp_os_type_value.setText(it.OsType)
-                vi.emp_manufacture_value.setText(it.Manufacture)
-                vi.emp_os_version_value.setText(it.Version)
-                vi.emp_phn_type_value.setText(it.phonetype)
-            }
-            else{
-                Toast.makeText(context, "No data!!", Toast.LENGTH_SHORT).show()
+                if (it != null) {
+                    vi.emp_device_id_value.setText(it.device_Id)
+                    vi.emp_os_type_value.setText(it.OsType)
+                    vi.emp_manufacture_value.setText(it.Manufacture)
+                    vi.emp_os_version_value.setText(it.Version)
+                    vi.emp_phn_type_value.setText(it.phonetype)
+                } else {
+                    Toast.makeText(context, "No data!!", Toast.LENGTH_SHORT).show()
 
-            }
-          })
-
-
+                }
+            })
         return vi
     }
-
 }
