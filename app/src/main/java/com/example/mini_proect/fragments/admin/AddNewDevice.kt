@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.Activities.Home_screen_admin
 import com.example.mini_proect.DataBase.AllDevicesEntity
@@ -23,6 +24,8 @@ import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
 class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
     lateinit var vm: All_Devices_view_Model
+    lateinit var adap3:ArrayAdapter<String>
+    lateinit var adap4:ArrayAdapter<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,17 +43,17 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
             vm = ViewModelProvider(this).get(All_Devices_view_Model::class.java)
             var devId = device_id.text.toString()
 
-            var s = vm.getLoginDetailsById(view.context, devId)
-
-
             var osVer = os_version.text.toString()
             var os_type = os_type_spinner.selectedItem.toString()
             var phn_type = view.phoneType_spinner.selectedItem.toString()
             var manuf = view.manufacture_spinner.selectedItem.toString()
 
 
+    vm.getLoginDetailsById(view.context, devId)?.observe(viewLifecycleOwner, Observer {
+        if(it == null){
 
-                if (Error(devId, osVer,s)) {
+            deviceID.isErrorEnabled = false
+                if (Error(devId, osVer)) {
                     val builder = AlertDialog.Builder(view.context)
                     builder.setTitle(R.string.Devicemessage)
                         .setPositiveButton(getString(R.string.yes),
@@ -72,6 +75,13 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
                     builder.create()
                     builder.show()
                 }
+        }else{
+            deviceID.error = "Device already exists"
+            deviceID.isErrorEnabled = true
+        }
+    })
+
+
         }
 
         view.os_type_spinner.onItemSelectedListener = this
@@ -96,20 +106,26 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
             "Vivo",
             "One Plus+",
             "Nokia",
-            "Apple"
+
         )
-        var adap3 =
+        adap3 =
             ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, manufactures)
         view.manufacture_spinner.adapter = adap3
+
+        adap4= ArrayAdapter(view.context, R.layout.support_simple_spinner_dropdown_item, arrayOf("Apple"))
+
         return view
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
         if(p0?.selectedItem=="iOS"){
-            manufacture_spinner.setSelection(7)
+            manufacture_spinner.adapter = adap4
+
         }else{
+           manufacture_spinner.adapter = adap3
             manufacture_spinner.setSelection(0)
+
         }
     }
 
@@ -117,7 +133,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
-    private fun Error(deviceId: String, osVersion: String, id: LiveData<AllDevicesEntity>?): Boolean {
+    private fun Error(deviceId: String, osVersion: String): Boolean {
         var y = 0
         if (deviceId.isEmpty()) {
             deviceID.error = getString(R.string.EnterDeviceID)
@@ -137,14 +153,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
             os_version_layout.isErrorEnabled = false
             y++
         }
-        if(id!=null){
-            deviceID.error = "Device Id already exists"
-            deviceID.isErrorEnabled = true
-        }else{
-            deviceID.isErrorEnabled = false
-            y++
-        }
-        if(y==3){
+        if(y==2){
             return true
         }
         return false
