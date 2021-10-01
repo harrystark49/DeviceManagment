@@ -86,6 +86,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
                         var i = Intent(this,login::class.java)
                         startActivity(i)
+                        finish()
 
                     }
 
@@ -142,6 +143,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
                         var i = Intent(this,login::class.java)
                         startActivity(i)
+                        finish()
 
                     }
                 }
@@ -178,6 +180,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         intent.putExtra("MOBILE",emp_mobile.text.toString())
                         intent.putExtra("AdminOrUser",user)
                         startActivity(intent)
+                        finish()
                     }}
 
 
