@@ -26,7 +26,6 @@ class Home_screen_employee : AppCompatActivity() {
         var email = b?.getString("EmpEmail")
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.emp_fragment_replacer, all_devices("emp",email.toString()))
-            addToBackStack("frag")
             commit()
         }
 
@@ -50,7 +49,6 @@ class Home_screen_employee : AppCompatActivity() {
                     myFrag1.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag1)
-                        addToBackStack("frag")
                         commit()
                     }
                 }
@@ -63,7 +61,6 @@ class Home_screen_employee : AppCompatActivity() {
                     myFrag1.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag1)
-                        addToBackStack("Frag")
                         commit()
                     }
                 }
@@ -100,14 +97,13 @@ class Home_screen_employee : AppCompatActivity() {
     private fun Fragments(frag:Fragment){
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.emp_fragment_replacer, frag)
-            addToBackStack("frag")
             commit()
 
         }
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 1) {
+        if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStackImmediate()
         } else {
             alertDialog()

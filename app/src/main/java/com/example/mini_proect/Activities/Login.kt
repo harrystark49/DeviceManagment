@@ -59,9 +59,13 @@ class login : AppCompatActivity() {
                 }
 
             } else {
+                 var s=email_id.text.toString()
                 var args = arrayOf(email_id.text.toString())
-                var admin_cursor = db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?", args)
+
+                Toast.makeText(this, "${email_id.text.toString()}", Toast.LENGTH_SHORT).show()
+                var admin_cursor = db.rawQuery("SELECT * FROM ADD_ADMIN", null)
                 if (admin_cursor.moveToNext()) {
+
                     var login_details = arrayOf(email_id.text.toString(), password.text.toString())
                     var cursor = db.rawQuery(
                         "SELECT * FROM ADD_ADMIN WHERE EMAIL=? AND PASSWORD=?",

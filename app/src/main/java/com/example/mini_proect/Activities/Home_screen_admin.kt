@@ -87,7 +87,6 @@ class Home_screen_admin : AppCompatActivity() {
     fun fragmets(frag: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_replacer, frag)
-            addToBackStack("frag")
             commit()
         }
     }
@@ -101,7 +100,7 @@ class Home_screen_admin : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        if (supportFragmentManager.backStackEntryCount > 1) {
+        if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStackImmediate()
         } else {
             alertDialog()

@@ -48,6 +48,7 @@ class save_data : AppCompatActivity() {
                             .show()
                         var intent = Intent(this, login::class.java)
                         startActivity(intent)
+                        finish()
                     } else {
 
                         db.insert("ADD_EMPLOYEE", null, cv)
@@ -55,6 +56,7 @@ class save_data : AppCompatActivity() {
                             .show()
                         var intent = Intent(this, login::class.java)
                         startActivity(intent)
+                        finish()
                     }
                 }
             }
