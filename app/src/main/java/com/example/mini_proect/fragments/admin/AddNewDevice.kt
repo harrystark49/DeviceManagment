@@ -17,7 +17,6 @@ import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_add_new__device.*
 import kotlinx.android.synthetic.main.fragment_add_new__device.view.*
 
-
 class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
     lateinit var vm: All_Devices_view_Model
