@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mini_proect.Adapter.Request_device_Adapter
-import com.example.mini_proect.DataBase.All_Devices_Entity
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.Adapter.RequestDeviceAdapter
+import com.example.mini_proect.DataBase.AllDevicesEntity
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_admin_request_devices.view.*
 
@@ -28,9 +28,9 @@ class AdminRequestDevices(var adminOremp:String,var email:String) : Fragment() {
 
 
         var view= inflater.inflate(R.layout.fragment_admin_request_devices, container, false)
-        var helper=dbHelper(view!!.context)
+        var helper=DBHelper(view!!.context)
         var db=helper.readableDatabase
-        var list=ArrayList<All_Devices_Entity>()
+        var list=ArrayList<AllDevicesEntity>()
 
         var cursor=db.rawQuery("SELECT * FROM REQUESTED_DEVICES",null)
 
@@ -49,7 +49,7 @@ class AdminRequestDevices(var adminOremp:String,var email:String) : Fragment() {
             var version=cursor.getString(db_version)
             var phntype=cursor.getString(db_phn_type)
 
-            var data=All_Devices_Entity(id,phntype,manufacacture,version,ostype)
+            var data=AllDevicesEntity(id,phntype,manufacacture,version,ostype)
             list.add(data)
         }
         if(list.isEmpty()){
@@ -61,7 +61,7 @@ class AdminRequestDevices(var adminOremp:String,var email:String) : Fragment() {
             var LLM: LinearLayoutManager = LinearLayoutManager(context)
             LLM.orientation = RecyclerView.VERTICAL
             recycle.layoutManager = LLM
-            var adapter = Request_device_Adapter(view.context, list, "Admin", email)
+            var adapter = RequestDeviceAdapter(view.context, list, "Admin", email)
             recycle.adapter = adapter
 
         }

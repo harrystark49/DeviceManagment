@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_change_password.*
 
@@ -16,7 +16,7 @@ class ChangePassword : AppCompatActivity() {
         setContentView(R.layout.activity_change_password)
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         password_main.startAnimation(anim)
-        var helper = dbHelper(this)
+        var helper = DBHelper(this)
         var db = helper.readableDatabase
 
 
@@ -43,7 +43,7 @@ class ChangePassword : AppCompatActivity() {
                         db.update("ADD_EMPLOYEE", cv, "EMAIL=?", arrayOf(empEmail))
 
                         Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
-                        var i=Intent(this,Home_screen_employee::class.java)
+                        var i=Intent(this,HomeScreenEmployee::class.java)
                         startActivity(i)
                         finish()
                     }

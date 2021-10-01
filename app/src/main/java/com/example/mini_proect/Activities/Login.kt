@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mini_proect.R
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.DBHelper
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -20,7 +20,7 @@ class login : AppCompatActivity() {
 
 
 
-        var helper = dbHelper(this)
+        var helper = DBHelper(this)
         var db = helper.readableDatabase
 
         super.onCreate(savedInstanceState)
@@ -45,7 +45,7 @@ class login : AppCompatActivity() {
                         var pass = cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if (pass == password.text.toString()) {
 
-                            var intent = Intent(this, Home_screen_employee::class.java)
+                            var intent = Intent(this, HomeScreenEmployee::class.java)
                             intent.putExtra("EmpEmail", email_id.text.toString())
                             intent.putExtra("EmpPass", password.text.toString())
                             startActivity(intent)

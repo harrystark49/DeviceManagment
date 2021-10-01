@@ -10,7 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.mini_proect.R
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.save_data
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -25,7 +25,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         c2.startAnimation(anim)
 
-        var helper = dbHelper(this)
+        var helper = DBHelper(this)
         var db = helper.readableDatabase
 
         spin.onItemSelectedListener = this
@@ -218,7 +218,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             material_emp_email.isErrorEnabled=true
         }else{
 
-            var helper= dbHelper(this)
+            var helper= DBHelper(this)
             var db=helper.readableDatabase
 
             var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(emp_email.text.toString()))

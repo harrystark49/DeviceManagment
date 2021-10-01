@@ -13,7 +13,7 @@
             android:name=".Activities.AdminDetails"
             android:exported="true" />
         <activity
-            android:name=".Activities.Home_screen_employee"
+            android:name=".Activities.HomeScreenEmployee"
             android:exported="true" />
         <activity
             android:name=".Activities.ChangePassword"

@@ -7,17 +7,17 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao()
-interface All_Devices_Dao {
+interface AllDevicesDao {
 
     @Insert(onConflict =  OnConflictStrategy.REPLACE)
-    fun insertData(All_Devices_Entity:All_Devices_Entity)
+    fun insertData(AllDevicesEntity:AllDevicesEntity)
 
 
     @Query("SELECT * FROM all_Devices_Details WHERE device_Id=:id")
-    fun getDetailsById(id:String): LiveData<All_Devices_Entity>
+    fun getDetailsById(id:String): LiveData<AllDevicesEntity>
 
     @Query("SELECT * FROM all_Devices_Details ORDER BY device_Id")
-    fun getDetails(): LiveData<List<All_Devices_Entity>>
+    fun getDetails(): LiveData<List<AllDevicesEntity>>
 
 
 

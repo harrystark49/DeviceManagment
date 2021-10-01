@@ -12,7 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_view_Model
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.emp_device_id_value1
@@ -38,7 +38,7 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
         var callback=object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 activity?.supportFragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.emp_fragment_replacer,My_devices())
+                    replace(R.id.emp_fragment_replacer,MyDevices())
                     commit()
                 }
             }
@@ -46,7 +46,7 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
         activity?.onBackPressedDispatcher?.addCallback(callback)
         var view = inflater.inflate(R.layout.fragment_new_emp_dev_details, container, false)
 
-        var helper = dbHelper(view.context)
+        var helper = DBHelper(view.context)
         var db = helper.readableDatabase
 
         var args = arguments
