@@ -62,7 +62,6 @@ class login : AppCompatActivity() {
                  var s=email_id.text.toString()
                 var args = arrayOf(email_id.text.toString())
 
-                Toast.makeText(this, "${email_id.text.toString()}", Toast.LENGTH_SHORT).show()
                 var admin_cursor = db.rawQuery("SELECT * FROM ADD_ADMIN", null)
                 if (admin_cursor.moveToNext()) {
 
