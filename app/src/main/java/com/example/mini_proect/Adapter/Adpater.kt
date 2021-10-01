@@ -7,29 +7,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mini_proect.DataBase.All_Devices_Entity
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.AllDevicesEntity
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
-import com.example.mini_proect.fragments.emp.emp_device_details
+import com.example.mini_proect.fragments.emp.EmpDeviceDetails
 import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
 
 class Adapter(
     var context: Context,
-    var Devices: List<All_Devices_Entity>,
+    var devices: List<AllDevicesEntity>,
     var AdminOrEmp: String = "emp",
     var email:String
 ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-    lateinit var db:dbHelper
+    lateinit var db:DBHelper
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var helper=dbHelper(context)
+        var helper=DBHelper(context)
         var db=helper.readableDatabase
 
-        fun setdata(data: All_Devices_Entity, position: Int) {
-            var s=Devices[position].device_Id
-            data.device_Id = Devices[position].device_Id
+        fun setdata(data: AllDevicesEntity, position: Int) {
+            var s=devices[position].device_Id
+            data.device_Id = devices[position].device_Id
             var cursor1=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
             var cursor=db.rawQuery("SELECT DEVICE_ID FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
             if(cursor1.moveToNext() || cursor.moveToNext() ){
@@ -38,21 +38,21 @@ class Adapter(
                 itemView.setBackgroundColor(-16711936)
             }
 
-            data.Manufacture = Devices[position].Manufacture
-            data.Version = Devices[position].Version
-            data.phonetype = Devices[position].phonetype
+            data.Manufacture = devices[position].Manufacture
+            data.Version = devices[position].Version
+            data.phonetype = devices[position].phonetype
 
-            itemView.deviceId.text="Device id: "+Devices[position].device_Id
-            itemView.phoneType.text="Phone type: "+Devices[position].phonetype
-            itemView.manu.text="Manufacture: "+Devices[position].Manufacture
-            itemView.version.text=Devices[position].Version
+            itemView.deviceId.text="Device id: "+devices[position].device_Id
+            itemView.phoneType.text="Phone type: "+devices[position].phonetype
+            itemView.manu.text="Manufacture: "+devices[position].Manufacture
+            itemView.version.text=devices[position].Version
 
 
             itemView.setOnClickListener {
 
                 if (AdminOrEmp == "Admin") {
                     var b: Bundle = Bundle()
-                    b.putString("DeviceId", Devices[position].device_Id)
+                    b.putString("DeviceId", devices[position].device_Id)
                     var frag = Device_Details()
                     b.putString("Email",email)
                     frag.arguments = b
@@ -64,9 +64,9 @@ class Adapter(
                     }
                 } else {
                     var b: Bundle = Bundle()
-                    b.putString("DeviceId", Devices[position].device_Id)
+                    b.putString("DeviceId", devices[position].device_Id)
                     b.putString("Email",email)
-                    var frag = emp_device_details(email)
+                    var frag = EmpDeviceDetails(email)
                     frag.arguments = b
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
@@ -93,12 +93,12 @@ class Adapter(
     }
 
     override fun onBindViewHolder(holder: Adapter.ViewHolder, position: Int) {
-        var data = Devices[position]
+        var data = devices[position]
         holder.setdata(data, position)
     }
 
     override fun getItemCount(): Int {
-        return Devices!!.size
+        return devices!!.size
     }
 }
 

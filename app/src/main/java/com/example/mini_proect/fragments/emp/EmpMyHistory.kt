@@ -11,17 +11,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mini_proect.DataBase.All_Devices_Entity
-import com.example.mini_proect.DataBase.All_Devices_view_Model
-import com.example.mini_proect.DataBase.dbHelper
-import com.example.mini_proect.R
 import com.example.mini_proect.Adapter.adap
+import com.example.mini_proect.DataBase.AllDevicesEntity
+import com.example.mini_proect.DataBase.All_Devices_view_Model
+import com.example.mini_proect.DataBase.DBHelper
+import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_my_devices.view.*
 
 
-class My_devices : Fragment() {
-    lateinit var helper: dbHelper
+class emp_myhistory : Fragment() {
+    lateinit var helper: DBHelper
     private lateinit var viewModel: All_Devices_view_Model
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     @SuppressLint("Range")
     override fun onCreateView(
@@ -29,12 +33,11 @@ class My_devices : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         var view= inflater.inflate(R.layout.fragment_my_devices, container, false)
 
-        var list=ArrayList<All_Devices_Entity>()
+        var list=ArrayList<AllDevicesEntity>()
 
-        helper=dbHelper(view.context)
+        helper=DBHelper(view.context)
         var db=helper.readableDatabase
 
         var id=""
@@ -44,11 +47,11 @@ class My_devices : Fragment() {
         var cursor=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(mail))
         if(cursor.moveToFirst()){
 
-             id=cursor.getString(cursor.getColumnIndex("ID"))
+            id=cursor.getString(cursor.getColumnIndex("ID"))
         }
 
 
-        var cursor1=db.rawQuery("SELECT * FROM ACCEPTED_DEVICES WHERE EMP_ID=?", arrayOf(id))
+        var cursor1=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_MAIL=?", arrayOf(id))
 
         while(cursor1.moveToNext()){
 
@@ -60,7 +63,7 @@ class My_devices : Fragment() {
             ).get(All_Devices_view_Model::class.java)
             viewModel.getLoginDetailsById(requireContext(),idd)!!.observe(requireActivity(), Observer {
                 if(it==null){
-                    view.nodevice.visibility=View.VISIBLE
+                  view.nodevice.visibility=View.VISIBLE
                 }else{
                     view.nodevice.visibility=View.GONE
                     list.add(it)
@@ -69,10 +72,9 @@ class My_devices : Fragment() {
                     var LLM: LinearLayoutManager = LinearLayoutManager(context)
                     LLM.orientation = RecyclerView.VERTICAL
                     recycle.layoutManager = LLM
-                    var adapter =  adap(view.context,list,false,mail.toString())
+                    var adapter =  adap(view.context,list,true,mail.toString())
                     recycle.adapter = adapter
                 }
-
             })
         }
         return  view

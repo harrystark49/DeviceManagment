@@ -10,13 +10,13 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.*
-import com.example.mini_proect.fragments.emp.My_devices
+import com.example.mini_proect.fragments.emp.MyDevices
 import com.example.mini_proect.fragments.emp.emp_myhistory
 import com.example.mini_proect.fragments.emp.emp_settings
 import kotlinx.android.synthetic.main.activity_home_screen_employee.*
 import kotlinx.android.synthetic.main.activity_home_screen_employee.drawer_layout
 
-class Home_screen_employee : AppCompatActivity() {
+class HomeScreenEmployee : AppCompatActivity() {
     lateinit var toggle:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class Home_screen_employee : AppCompatActivity() {
                 R.id.emp_mydevices->{
                     var b: Bundle? = intent.extras
                     var email = b?.getString("EmpEmail")
-                    val myFrag1 = My_devices()
+                    val myFrag1 = MyDevices()
                     val mBundle = Bundle()
                     mBundle.putString("EmpEmail", email)
                     myFrag1.arguments = mBundle

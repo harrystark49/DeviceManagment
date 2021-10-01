@@ -8,17 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.all_devices
-import com.example.mini_proect.fragments.emp.My_devices
+import com.example.mini_proect.fragments.emp.MyDevices
 import kotlinx.android.synthetic.main.fragment_requested_device_details.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class requested_device_details : Fragment() {
-    lateinit var helper:dbHelper
+    lateinit var helper:DBHelper
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,14 +27,14 @@ class requested_device_details : Fragment() {
         var callback=object :OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 activity?.supportFragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.emp_fragment_replacer,My_devices())
+                    replace(R.id.emp_fragment_replacer,MyDevices())
                     commit()
                 }
             }
         }
         activity?.onBackPressedDispatcher?.addCallback(callback)
         var view = inflater.inflate(R.layout.fragment_requested_device_details, container, false)
-        helper = dbHelper(view.context)
+        helper = DBHelper(view.context)
         var db = helper.readableDatabase
         var args = arguments
         var id_device = args?.get("DeviceId").toString()

@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.example.mini_proect.Activities.login
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.DBHelper
 import kotlinx.android.synthetic.main.activity_save_data.*
 
 class save_data : AppCompatActivity() {
@@ -16,7 +16,7 @@ class save_data : AppCompatActivity() {
         setContentView(R.layout.activity_save_data)
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         c3.startAnimation(anim)
-        var helper = dbHelper(this)
+        var helper = DBHelper(this)
         var db = helper.readableDatabase
         var cv = ContentValues()
 

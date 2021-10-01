@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "all_Devices_Details")
-data class All_Devices_Entity(
+data class AllDevicesEntity(
     @PrimaryKey
     var device_Id:String,
     var phonetype:String,

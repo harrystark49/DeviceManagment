@@ -10,13 +10,13 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_view_Model
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_device__details.view.*
 
 class Device_Details : Fragment() {
 
-    lateinit var helper: dbHelper
+    lateinit var helper: DBHelper
 
     lateinit var loginViewModel: All_Devices_view_Model
     @SuppressLint("Range")
@@ -27,7 +27,7 @@ class Device_Details : Fragment() {
 
 
         var vi = inflater.inflate(R.layout.fragment_device__details, container, false)
-        helper = dbHelper(vi.context)
+        helper = DBHelper(vi.context)
         var db = helper.readableDatabase
 
         var args = arguments

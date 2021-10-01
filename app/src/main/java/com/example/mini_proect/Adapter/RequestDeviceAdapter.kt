@@ -6,49 +6,49 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mini_proect.DataBase.All_Devices_Entity
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.AllDevicesEntity
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.requested_device_details
 import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
 
 
-class Request_device_Adapter(
+class RequestDeviceAdapter(
     var context: Context,
-    var Devices: List<All_Devices_Entity>,
+    var devices: List<AllDevicesEntity>,
     var AdminOrEmp: String = "emp",
     var email:String
-) : RecyclerView.Adapter<Request_device_Adapter.ViewHolder>() {
+) : RecyclerView.Adapter<RequestDeviceAdapter.ViewHolder>() {
 
-    lateinit var db: dbHelper
+    lateinit var db: DBHelper
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var helper= dbHelper(context)
+        var helper= DBHelper(context)
         var db=helper.readableDatabase
 
-        fun setdata(data: All_Devices_Entity, position: Int) {
-            var s=Devices[position].device_Id
-            data.device_Id = Devices[position].device_Id
+        fun setdata(data: AllDevicesEntity, position: Int) {
+            var s=devices[position].device_Id
+            data.device_Id = devices[position].device_Id
             var cursor=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
             if(cursor!=null && cursor.moveToNext() ){
                 itemView.setBackgroundColor(-7829368)
             }
 
-            data.Manufacture = Devices[position].Manufacture
-            data.Version = Devices[position].Version
-            data.phonetype = Devices[position].phonetype
+            data.Manufacture = devices[position].Manufacture
+            data.Version = devices[position].Version
+            data.phonetype = devices[position].phonetype
 
-            itemView.deviceId.text="Device id: "+Devices[position].device_Id
-            itemView.phoneType.text="Phone type: "+Devices[position].phonetype
-            itemView.manu.text="Manufacture: "+Devices[position].Manufacture
-            itemView.version.text=Devices[position].Version
+            itemView.deviceId.text="Device id: "+devices[position].device_Id
+            itemView.phoneType.text="Phone type: "+devices[position].phonetype
+            itemView.manu.text="Manufacture: "+devices[position].Manufacture
+            itemView.version.text=devices[position].Version
 
 
             itemView.setOnClickListener {
 
                 if (AdminOrEmp == "Admin") {
                     var b: Bundle = Bundle()
-                    b.putString("DeviceId", Devices[position].device_Id)
+                    b.putString("DeviceId", devices[position].device_Id)
                     var frag = requested_device_details()
                     b.putString("Email",email)
                     frag.arguments = b
@@ -76,13 +76,13 @@ class Request_device_Adapter(
         return view
     }
 
-    override fun onBindViewHolder(holder: Request_device_Adapter.ViewHolder, position: Int) {
-        var data = Devices[position]
+    override fun onBindViewHolder(holder: RequestDeviceAdapter.ViewHolder, position: Int) {
+        var data = devices[position]
         holder.setdata(data, position)
     }
 
     override fun getItemCount(): Int {
-        return Devices!!.size
+        return devices!!.size
     }
 }
 

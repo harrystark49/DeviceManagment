@@ -11,9 +11,9 @@ class All_Devices_Repository {
     companion object {
 
         private var data: All_Devices_Db? = null
-        private lateinit var livedata: LiveData<List<All_Devices_Entity>>
-        private lateinit var ldata: LiveData<All_Devices_Entity>
-        private lateinit var AllDeviceslivedata: LiveData<List<All_Devices_Entity>>
+        private lateinit var livedata: LiveData<List<AllDevicesEntity>>
+        private lateinit var ldata: LiveData<AllDevicesEntity>
+        private lateinit var allDeviceslivedata: LiveData<List<AllDevicesEntity>>
 
 
         private fun initializeDb(context: Context?): All_Devices_Db {
@@ -33,14 +33,14 @@ class All_Devices_Repository {
 
             CoroutineScope(Dispatchers.IO).launch {
 
-                val loginDetails = All_Devices_Entity(id, phn_type, maufacture, version,ostype)
+                val loginDetails = AllDevicesEntity(id, phn_type, maufacture, version,ostype)
 
                 data!!.All_Devices_Dao().insertData(loginDetails)
             }
 
         }
 
-        fun getLoginDetailsById(context: Context?, id: String): LiveData<All_Devices_Entity> {
+        fun getLoginDetailsById(context: Context?, id: String): LiveData<AllDevicesEntity> {
 
             data = initializeDb(context)
 
@@ -49,17 +49,17 @@ class All_Devices_Repository {
             return ldata
         }
 
-        fun DeviceDetails(context: Context): LiveData<List<All_Devices_Entity>> {
+        fun DeviceDetails(context: Context): LiveData<List<AllDevicesEntity>> {
 
             data = initializeDb(context)
 
-            AllDeviceslivedata = data!!.All_Devices_Dao().getDetails()
+            allDeviceslivedata = data!!.All_Devices_Dao().getDetails()
 
-            return AllDeviceslivedata
+            return allDeviceslivedata
         }
 
 
-        fun getLoginDetails(context: Context): LiveData<List<All_Devices_Entity>>? {
+        fun getLoginDetails(context: Context): LiveData<List<AllDevicesEntity>>? {
 
             data = initializeDb(context)
 

@@ -11,16 +11,16 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_proect.DataBase.All_Devices_view_Model
-import com.example.mini_proect.DataBase.dbHelper
+import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class emp_device_details(var email:String , var details:String="details") : Fragment() {
+class EmpDeviceDetails(var email:String, var details:String="details") : Fragment() {
 
-    lateinit var helper: dbHelper
+    lateinit var helper: DBHelper
     lateinit var loginViewModel: All_Devices_view_Model
     @SuppressLint("Range")
     override fun onCreateView(
@@ -29,7 +29,7 @@ class emp_device_details(var email:String , var details:String="details") : Frag
     ): View? {
 
         var vi=inflater.inflate(R.layout.fragment_emp_device_details, container, false)
-        helper=dbHelper(vi.context)
+        helper=DBHelper(vi.context)
         var db=helper.readableDatabase
 
 
