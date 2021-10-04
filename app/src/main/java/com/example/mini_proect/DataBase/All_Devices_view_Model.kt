@@ -122,9 +122,9 @@ class All_Devices_view_Model : ViewModel() {
 
 
 
-    fun UpdateEndTime(context: Context, emp_id: String, dev_id: String, starttime:String,endtime: String) {
+    fun UpdateEndTime(context: Context, emp_id: String, dev_id: String,endtime: String) {
         data = initializeDb(context)
-        data!!.All_Devices_Dao().UpdateEndTime(emp_id, dev_id,starttime, endtime)
+        data!!.All_Devices_Dao().UpdateEndTime(emp_id, dev_id, endtime)
     }
 
     fun getHistory(context: Context, dev_id: String):History{

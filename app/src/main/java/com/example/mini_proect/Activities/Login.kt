@@ -20,32 +20,28 @@ import kotlinx.android.synthetic.main.activity_register.*
 class login : AppCompatActivity() {
 
 
-
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
-
-
         var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
         var edit = sharedPreferences.edit()
-
 
         var helper = dbHelper(this)
         var db = helper.readableDatabase
 
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         c1.startAnimation(anim)
+
         login_btn.setOnClickListener {
             check_empty_fileds(email_id.text.toString(), password.text.toString())
             if (!admin_check.isChecked) {
                 var args = arrayOf(email_id.text.toString())
                 var emp_cursor = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", args)
                 if (emp_cursor.moveToNext()) {
-                    var login_details = arrayOf(email_id.text.toString(), password.text.toString())
-                    var cursor = db.rawQuery(
+                    val login_details = arrayOf(email_id.text.toString(), password.text.toString())
+                    val cursor = db.rawQuery(
                         "SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=? AND PASSWORD=?",
                         login_details
                     )
@@ -54,19 +50,19 @@ class login : AppCompatActivity() {
                         var pass = cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if (pass == password.text.toString()) {
                             var emp_id = cursor.getString(cursor.getColumnIndex("ID")).toString()
-
+                            var emp_name = cursor.getString(cursor.getColumnIndex("NAME")).toString()
 
                             edit.putBoolean("isLogged", true)
                             edit.putString("empid", emp_id)
-                            edit.putString("AdminOrEmp","Employee")
+                            edit.putString("AdminOrEmp", "Employee")
                             edit.putString("email", email_id.text.toString())
+                            edit.putString("name",emp_name)
                             edit.commit()
-
-
 
                             var intent = Intent(this, Home_screen_employee::class.java)
                             intent.putExtra("EmpEmail", email_id.text.toString())
                             intent.putExtra("EmpPass", password.text.toString())
+
                             startActivity(intent)
                             finish()
                         }
@@ -124,9 +120,7 @@ class login : AppCompatActivity() {
         builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
             finish()
         }
-        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
-
-        }
+        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int -> }
         builder.create()
         builder.setCancelable(true)
         builder.show()

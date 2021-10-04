@@ -16,16 +16,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
 
-    private lateinit var viewModel: All_Devices_view_Model
-    lateinit var devicesList: List<All_Devices_Entity>
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
-        var edit = sharedPreferences.edit()
 
         project_title.animate().setDuration(1000).rotationYBy(360f)
         app_title.alpha = 0f

@@ -66,15 +66,11 @@ class emp_device_details : Fragment() {
 
             if (vi.register_device.text == "Return Device") {
 
-                var startTim =
-                    All_Devices_view_Model().getStartTime(this.requireContext(), id1, id)
-                var startTime = startTim.startTme
                 All_Devices_view_Model().UpdateDevieAllocation(this.requireContext(), "false", id)
                 All_Devices_view_Model().UpdateEndTime(
                     this.requireContext(),
                     id1,
                     id,
-                    startTime,
                     currentDate
                 )
                 return@setOnClickListener

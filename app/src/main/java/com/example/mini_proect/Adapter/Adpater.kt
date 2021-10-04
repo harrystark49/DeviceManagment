@@ -39,10 +39,7 @@ class Adapter(
         @SuppressLint("Range")
         fun setdata(data: All_Devices_Entity, position: Int) {
 
-
             data.device_Id = Devices[position].device_Id
-
-
 
             if (data.isAllocated == "false") {
                 itemView.CL.setBackgroundColor(Color.parseColor("Green"))
@@ -61,7 +58,7 @@ class Adapter(
 
 
             itemView.setOnClickListener {
-                if (AdminOrEmp == "Admin") {
+                if (AdminOrEmp == "Admin" && Devices[position].isAllocated == "false") {
 
 
                     var b = Bundle()
@@ -80,7 +77,6 @@ class Adapter(
                 } else if (id1 == Devices[position].isAllocated) {
 
                     var b = Bundle()
-//                    b.putString("email", email)
                     b.putString("DeviceId", Devices[position].device_Id)
                     b.putString("empid", id1)
 

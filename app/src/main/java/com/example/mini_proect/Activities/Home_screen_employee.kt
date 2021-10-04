@@ -22,14 +22,19 @@ class Home_screen_employee : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen_employee)
 
+        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+
+
+
+        setTitle("Welcome ${sharedPreferences.getString("name",null)}")
+
+
         var b1 = Bundle()
         b1.putString("adminOrEmp", "Employee")
         var frag = all_devices()
         frag.arguments = b1
         Fragments(frag)
-
-        var sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
-        var edit = sharedPreferences.edit()
 
 
         var emp_id = sharedPreferences.getString("empid", null)
@@ -110,7 +115,6 @@ class Home_screen_employee : AppCompatActivity() {
             replace(R.id.emp_fragment_replacer, frag)
             addToBackStack("Fragment")
             commit()
-
         }
     }
 
@@ -128,9 +132,7 @@ class Home_screen_employee : AppCompatActivity() {
         builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
             finish()
         }
-        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
-
-        }
+        builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int -> }
         builder.create()
         builder.show()
     }

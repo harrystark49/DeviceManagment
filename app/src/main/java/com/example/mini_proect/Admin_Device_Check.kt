@@ -64,22 +64,21 @@ class Admin_Device_Check(var dev_id: String, var emp_id: String?) : Fragment() {
             val sdf = SimpleDateFormat("dd/M/yyyy \n hh:mm:ss")
             val currentDate = sdf.format(Date())
 
-            viewModel.UpdateStartTime(this.requireContext(),emp_id!!,dev_id,currentDate," ")
+            viewModel.UpdateStartTime(this.requireContext(), emp_id!!, dev_id, currentDate, " ")
             viewModel.UpdateDevieAllocation(this.requireContext(), emp_id, dev_id)
             viewModel.RemoveFromPendingTable(this.requireContext(), dev_id)
 
-            activity?.supportFragmentManager!!.beginTransaction()
-                .replace(R.id.FARD, all_devices()).commit()
-
+            Toast.makeText(view.context, "Device Has Been Accepted!", Toast.LENGTH_SHORT).show()
+            view.Accept.isEnabled = false
+            view.decline.isEnabled = false
         }
 
         view.decline.setOnClickListener {
-
-
             viewModel.UpdateDevieAllocation(this.requireContext(), "false", dev_id)
             viewModel.deletePending(this.requireContext(), dev_id)
-            activity?.supportFragmentManager!!.beginTransaction()
-                .replace(R.id.FARD, all_devices()).commit()
+            Toast.makeText(view.context, "Device Has Been Declined!", Toast.LENGTH_SHORT).show()
+            view.Accept.isEnabled = false
+            view.decline.isEnabled = false
         }
 
         return view

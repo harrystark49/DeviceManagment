@@ -18,8 +18,6 @@ class deviceDetails : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     @SuppressLint("Range")
@@ -73,12 +71,7 @@ class deviceDetails : Fragment() {
                 view.deviceusedvalue.text = c.getString(c.getColumnIndex("NAME")).toString()
                 view.mobilenumbervalue.text = c.getString(c.getColumnIndex("MOBILE")).toString()
             }
-
-
         }
-
-
-
         view.emp_device_id_value1.text = b?.getString("deviceid")
         view.emp_os_type_value1.text = b?.getString("ostype")
         view.emp_os_version_value1.text = b?.getString("version")
