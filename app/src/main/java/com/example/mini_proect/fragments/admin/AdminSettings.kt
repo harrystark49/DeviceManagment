@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.mini_proect.Activities.ChangePassword
 import com.example.mini_proect.Activities.Register
 import com.example.mini_proect.R
+import com.example.mini_proect.finish_Activity
 import kotlinx.android.synthetic.main.fragment_admin_settings.view.*
 
 class AdminSettings : Fragment() {
@@ -36,6 +37,7 @@ class AdminSettings : Fragment() {
             val i = Intent(context,Register::class.java)
             i.putExtra("AdminEmail",email)
             startActivity(i)
+            finish_Activity
         }
         view.change_password.setOnClickListener {
 
@@ -44,6 +46,7 @@ class AdminSettings : Fragment() {
             intent.putExtra("AdminPass", pass)
 
             startActivity(intent)
+            finish_Activity
         }
         return view
     }

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mini_proect">
 
     <application
+
+        android:debuggable="true"
+        android:testOnly="true"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="Device Management"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Mini_proect">
+        android:theme="@style/Theme.Mini_proect"
+        tools:ignore="HardcodedDebugMode">
         <activity
             android:name=".Activities.AdminDetails"
             android:exported="true" />

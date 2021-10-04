@@ -10,6 +10,7 @@ import com.example.mini_proect.Activities.AdminDetails
 import com.example.mini_proect.Activities.ChangePassword
 import com.example.mini_proect.Activities.Register
 import com.example.mini_proect.R
+import com.example.mini_proect.finish_Activity
 import kotlinx.android.synthetic.main.fragment_emp_settings.view.*
 
 
@@ -25,26 +26,29 @@ class emp_settings : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view =inflater.inflate(R.layout.fragment_emp_settings, container, false)
+        val view = inflater.inflate(R.layout.fragment_emp_settings, container, false)
         val b = arguments
         val email = b!!.getString("EmpEmail").toString()
         val pass = b!!.getString("EmpPass").toString()
 
         view.emp_update_profile.setOnClickListener {
-                    val intent=Intent(context,Register::class.java)
-                    intent.putExtra("EmpEmail",email)
-                    startActivity(intent)
+            val intent = Intent(context, Register::class.java)
+            intent.putExtra("EmpEmail", email)
+            startActivity(intent)
+            finish_Activity
         }
         view.emp_change_password.setOnClickListener {
 
             val intent = Intent(context, ChangePassword::class.java)
-            intent.putExtra("EmpEmail",email)
-            intent.putExtra("EmpPass",pass)
+            intent.putExtra("EmpEmail", email)
+            intent.putExtra("EmpPass", pass)
             startActivity(intent)
+            finish_Activity
         }
         view.adminDetails.setOnClickListener {
-            val intent = Intent(context,AdminDetails::class.java)
+            val intent = Intent(context, AdminDetails::class.java)
             startActivity(intent)
+            finish_Activity
         }
 
         return view

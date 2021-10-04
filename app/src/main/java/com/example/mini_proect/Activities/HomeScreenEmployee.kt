@@ -75,7 +75,6 @@ class HomeScreenEmployee : AppCompatActivity() {
                     myFrag1.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.emp_fragment_replacer, myFrag1)
-                        addToBackStack("Frag")
                         commit()
                     }
                 }
