@@ -84,9 +84,10 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         db.update("ADD_ADMIN",cv,"ID=?", arrayOf(id))
 
                         Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
-                        var i = Intent(this,login::class.java)
+                        var i = Intent(this,Home_screen_admin::class.java)
+                        i.putExtra("AdminEmail",Email)
                         startActivity(i)
-                        finish()
+                        finishAffinity()
 
                     }
 
@@ -141,9 +142,10 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         cv.put("MOBILE", MobileNo)
                         db.update("ADD_EMPLOYEE", cv, "ID=?", arrayOf(id))
                         Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
-                        var i = Intent(this,login::class.java)
+                        var i = Intent(this,HomeScreenEmployee::class.java)
+                        i.putExtra("EmpEmail",Email)
                         startActivity(i)
-                        finish()
+                        finishAffinity()
 
                     }
                 }

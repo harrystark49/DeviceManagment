@@ -38,7 +38,6 @@ class emp_settings : Fragment() {
             finish_Activity
         }
         view.emp_change_password.setOnClickListener {
-
             val intent = Intent(context, ChangePassword::class.java)
             intent.putExtra("EmpEmail", email)
             intent.putExtra("EmpPass", pass)

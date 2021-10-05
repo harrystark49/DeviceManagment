@@ -80,6 +80,7 @@ class HomeScreenEmployee : AppCompatActivity() {
                 }
                 R.id.emp_logout_device->{
                     alertDialog()
+
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -114,7 +115,7 @@ class HomeScreenEmployee : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.alert)
         builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
-            finish()
+            finishAffinity()
         }
         builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
         }

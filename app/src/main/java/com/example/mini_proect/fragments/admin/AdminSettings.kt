@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.mini_proect.Activities.ChangePassword
 import com.example.mini_proect.Activities.Register
 import com.example.mini_proect.R
@@ -26,16 +27,22 @@ class AdminSettings : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val i1 = activity?.intent?.extras
+        val mail = i1?.getString("email")
+
+        Toast.makeText(this.context,    "$mail is", Toast.LENGTH_SHORT).show()
 
         val view = inflater.inflate(R.layout.fragment_admin_settings, container, false)
 
         val b = arguments
+
         val email = b!!.getString("AdminEmail").toString()
         val pass = b!!.getString("AdminPass").toString()
 
         view.update_profile.setOnClickListener {
             val i = Intent(context,Register::class.java)
             i.putExtra("AdminEmail",email)
+
             startActivity(i)
             finish_Activity
         }
