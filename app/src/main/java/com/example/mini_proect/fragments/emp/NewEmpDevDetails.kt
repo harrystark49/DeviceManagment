@@ -67,7 +67,7 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
 
 
 
-            var c3 = db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE DEVICE_ID=? AND EMP_MAIL=?", arrayOf(id,idd))
+            var c3 = db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE DEVICE_ID=? AND EMP_ID=?", arrayOf(id,idd))
             while (c3.moveToNext()) {
 
                 var x =c3.getColumnIndex("ID")
@@ -107,7 +107,7 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
                 val end: String = simpleDateFormat.format(Date())
                 cv.put("END_TIME", end)
                 cv.put("DEVICE_ID", id)
-                cv.put("EMP_MAIL", idd)
+                cv.put("EMP_ID", idd)
 
                     db.insert("DEVICE_HISTORY",null,cv)
 

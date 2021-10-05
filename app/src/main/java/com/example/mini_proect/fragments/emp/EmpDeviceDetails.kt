@@ -134,7 +134,7 @@ class EmpDeviceDetails(var email:String, var details:String="details") : Fragmen
             else if(reg=="RETURN DEVICE"){
                 var cv1=ContentValues()
                 cv1.put("DEVICE_ID",id)
-                cv1.put("EMP_MAIL",mail)
+                cv1.put("EMP_ID",mail)
 
 
 
@@ -152,9 +152,9 @@ class EmpDeviceDetails(var email:String, var details:String="details") : Fragmen
 
 
 
-                var c=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE DEVICE_ID=? AND EMP_MAIL=?",arrayOf(id,mail))
+                var c=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE DEVICE_ID=? AND EMP_ID=?",arrayOf(id,mail))
                 if(c.moveToNext()){
-                    db.update("DEVICE_HISTORY",cv1,"DEVICE_ID=? AND EMP_MAIL=?",arrayOf(id,mail))
+                    db.update("DEVICE_HISTORY",cv1,"DEVICE_ID=? AND EMP_ID=?",arrayOf(id,mail))
                 }else{
                     db.insert("DEVICE_HISTORY",null,cv1)
                 }

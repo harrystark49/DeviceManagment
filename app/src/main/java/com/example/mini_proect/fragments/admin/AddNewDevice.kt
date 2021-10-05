@@ -64,6 +64,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
                                 )
                                     .show()
                                 vm.insertData(view.context, devId, phn_type, osVer, os_type, manuf)
+                                deviceID.isErrorEnabled = false
                                 var intent = Intent(view.context, Home_screen_admin::class.java)
                                 startActivity(intent)
                                 activity?.finish()

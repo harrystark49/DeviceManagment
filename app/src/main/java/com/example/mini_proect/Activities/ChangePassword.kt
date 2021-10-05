@@ -45,6 +45,7 @@ class ChangePassword : AppCompatActivity() {
                         var i=Intent(this,HomeScreenEmployee::class.java)
                         i.putExtra("EmpEmail",empEmail)
                         i.putExtra("EmpPass",NewPass)
+                        i.putExtra("Emp","Emp")
                         startActivity(i)
                         finishAffinity()
                     }
@@ -63,6 +64,7 @@ class ChangePassword : AppCompatActivity() {
                         var i=Intent(this,Home_screen_admin::class.java)
                         i.putExtra("AdminEmail",adminEmail)
                         i.putExtra("AdminPass",NewPass)
+                        i.putExtra("Admin","Admin")
                         startActivity(i)
                         finishAffinity()
                     }

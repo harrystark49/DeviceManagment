@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBHelper(context: Context):SQLiteOpenHelper(context,"myDB",null,2) {
+class DBHelper(context: Context):SQLiteOpenHelper(context,"DeviceManagementDB",null,2) {
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("CREATE TABLE ADD_EMPLOYEE(ID VARCHAR2 PRIMARY KEY,NAME VARCHAR2,EMAIL VARCHAR2,PASSWORD VARCAHR2,MOBILE VARCHAR2)")
 
@@ -14,7 +14,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context,"myDB",null,2) {
 
         db?.execSQL("CREATE TABLE ACCEPTED_DEVICES(DEVICE_ID VARCHAR2,EMP_ID VARCHAR2,START_TIME VARCHAR2)")
 
-        db?.execSQL("CREATE TABLE DEVICE_HISTORY(ID INTEGER,DEVICE_ID VARCHAR2,EMP_MAIL VARCHAR2,START_TIME VARCHAR2,END_TIME VARCHAR2)")
+        db?.execSQL("CREATE TABLE DEVICE_HISTORY(DEVICE_ID VARCHAR2,EMP_ID VARCHAR2,START_TIME VARCHAR2,END_TIME VARCHAR2)")
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {

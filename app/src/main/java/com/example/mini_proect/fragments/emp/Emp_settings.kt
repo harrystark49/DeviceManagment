@@ -34,6 +34,7 @@ class emp_settings : Fragment() {
         view.emp_update_profile.setOnClickListener {
             val intent = Intent(context, Register::class.java)
             intent.putExtra("EmpEmail", email)
+            intent.putExtra("EmpPass", pass)
             startActivity(intent)
             finish_Activity
         }

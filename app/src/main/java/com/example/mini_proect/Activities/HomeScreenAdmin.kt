@@ -23,11 +23,27 @@ class Home_screen_admin : AppCompatActivity() {
         var b: Bundle? = intent.extras
         var emails = b?.getString("AdminEmail").toString()
 
+        var admin=b?.getString("Admin")
 
-
+        if(admin.isNullOrEmpty()){
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_replacer, all_devices("Admin", emails))
             commit()
+        }}else{
+            var b: Bundle? = intent.extras
+            var email = b?.getString("AdminEmail").toString()
+            var pass = b?.getString("AdminPass").toString()
+
+            val myFrag = AdminSettings()
+            val mBundle = Bundle()
+            mBundle.putString("AdminEmail", email)
+            mBundle.putString("AdminPass", pass)
+
+            myFrag.arguments = mBundle
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragment_replacer, myFrag)
+                commit()
+            }
         }
         setContentView(R.layout.activity_home_screen_admin)
 
@@ -68,7 +84,7 @@ class Home_screen_admin : AppCompatActivity() {
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle(R.string.alert)
                     builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
-                        finish()
+                        finishAffinity()
                     }
                     builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
 

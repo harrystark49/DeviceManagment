@@ -3,6 +3,7 @@ package com.example.mini_proect.fragments.emp
 import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_my_devices.view.*
+import kotlin.math.log
 
 
 class emp_myhistory : Fragment() {
@@ -51,7 +53,7 @@ class emp_myhistory : Fragment() {
         }
 
 
-        var cursor1=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_MAIL=?", arrayOf(id))
+        var cursor1=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_ID=? ORDER BY DEVICE_ID", arrayOf(id))
 
         while(cursor1.moveToNext()){
 
@@ -67,6 +69,9 @@ class emp_myhistory : Fragment() {
                 }else{
                     view.nodevice.visibility=View.GONE
                     list.add(it)
+
+
+
                     val recyc = view.findViewById<RecyclerView>(R.id.recyclerView3)
                     var recycle: RecyclerView = recyc
                     var LLM: LinearLayoutManager = LinearLayoutManager(context)
@@ -77,6 +82,7 @@ class emp_myhistory : Fragment() {
                 }
             })
         }
+        Log.d("DEBUG","$list")
         return  view
     }
 }

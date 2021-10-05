@@ -36,6 +36,8 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         var b :Bundle? = intent.extras
         var adminEmail = b?.getString("AdminEmail")
         var empEmail = b?.getString("EmpEmail")
+        var adminPass = b?.getString("AdminPass")
+        var empPass = b?.getString("EmpPass")
 
         // For updating the admin profile
 
@@ -66,8 +68,6 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
                 cursor.close()
 
-
-
                 emp_register_btn.setOnClickListener{
 
                     var Name =emp_name.text.toString()
@@ -86,6 +86,8 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
                         var i = Intent(this,Home_screen_admin::class.java)
                         i.putExtra("AdminEmail",Email)
+                        i.putExtra("AdminPass",adminPass)
+                        i.putExtra("Admin","Admin")
                         startActivity(i)
                         finishAffinity()
 
@@ -141,9 +143,19 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         cv.put("EMAIL", Email)
                         cv.put("MOBILE", MobileNo)
                         db.update("ADD_EMPLOYEE", cv, "ID=?", arrayOf(id))
+
+                        if(!empEmail.equals(Email)) {
+                            var cv2 = ContentValues()
+                            cv2.put("EMAIL",Email)
+                            db.update("REQUESTED_DEVICES", cv2, "EMAIL=?", arrayOf(empEmail))
+                        }
                         Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
+
+
                         var i = Intent(this,HomeScreenEmployee::class.java)
                         i.putExtra("EmpEmail",Email)
+                        i.putExtra("EmpPass",empPass)
+                        i.putExtra("Emp","Emp")
                         startActivity(i)
                         finishAffinity()
 

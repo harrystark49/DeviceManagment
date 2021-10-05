@@ -36,11 +36,12 @@ class AdminSettings : Fragment() {
 
         val b = arguments
 
-        val email = b!!.getString("AdminEmail").toString()
-        val pass = b!!.getString("AdminPass").toString()
+        val email = b?.getString("AdminEmail")
+        val pass = b?.getString("AdminPass")
 
         view.update_profile.setOnClickListener {
             val i = Intent(context,Register::class.java)
+            i.putExtra("AdminPass", pass)
             i.putExtra("AdminEmail",email)
 
             startActivity(i)
@@ -51,7 +52,6 @@ class AdminSettings : Fragment() {
             val intent = Intent(context, ChangePassword::class.java)
             intent.putExtra("AdminEmail", email)
             intent.putExtra("AdminPass", pass)
-
             startActivity(intent)
             finish_Activity
         }

@@ -24,9 +24,25 @@ class HomeScreenEmployee : AppCompatActivity() {
         setContentView(R.layout.activity_home_screen_employee)
         var b:Bundle? = intent.extras
         var email = b?.getString("EmpEmail")
+        var emp=b?.getString("Emp")
+
+        if(emp.isNullOrEmpty()){
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.emp_fragment_replacer, all_devices("emp",email.toString()))
             commit()
+        }}else{
+            var b: Bundle? = intent.extras
+            var email = b?.getString("EmpEmail")
+            var pass = b?.getString("EmpPass")
+            val myFrag1 = emp_settings()
+            val mBundle = Bundle()
+            mBundle.putString("EmpEmail", email)
+            mBundle.putString("EmpPass", pass)
+            myFrag1.arguments = mBundle
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.emp_fragment_replacer, myFrag1)
+                commit()
+            }
         }
 
         toggle= ActionBarDrawerToggle(this,drawer_layout, R.string.open, R.string.close)
