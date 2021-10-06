@@ -27,7 +27,7 @@ class Adapter(
         var helper=DBHelper(context)
         var db=helper.readableDatabase
 
-        fun setdata(data: AllDevicesEntity, position: Int) {
+        fun setData(data: AllDevicesEntity, position: Int) {
             var s=devices[position].device_Id
             data.device_Id = devices[position].device_Id
             var cursor1=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
@@ -51,10 +51,9 @@ class Adapter(
             itemView.setOnClickListener {
 
                 if (AdminOrEmp == "Admin") {
-                    var b: Bundle = Bundle()
+                    var b = Bundle()
                     b.putString("DeviceId", devices[position].device_Id)
                     var frag = Device_Details()
-                    b.putString("Email",email)
                     frag.arguments = b
                     var activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction().apply {
@@ -63,7 +62,7 @@ class Adapter(
                         commit()
                     }
                 } else {
-                    var b: Bundle = Bundle()
+                    var b = Bundle()
                     b.putString("DeviceId", devices[position].device_Id)
                     b.putString("Email",email)
                     var frag = EmpDeviceDetails(email)
@@ -94,7 +93,7 @@ class Adapter(
 
     override fun onBindViewHolder(holder: Adapter.ViewHolder, position: Int) {
         var data = devices[position]
-        holder.setdata(data, position)
+        holder.setData(data, position)
     }
 
     override fun getItemCount(): Int {

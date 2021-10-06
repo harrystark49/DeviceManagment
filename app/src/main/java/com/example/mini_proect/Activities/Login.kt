@@ -18,8 +18,6 @@ class login : AppCompatActivity() {
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
-
         var helper = DBHelper(this)
         var db = helper.readableDatabase
 
@@ -29,13 +27,15 @@ class login : AppCompatActivity() {
         c1.startAnimation(anim)
         login_btn.setOnClickListener {
 
+            var Email =email_id.text.toString()
+            var Pass= password.text.toString()
 
-            check_empty_fileds(email_id.text.toString(), password.text.toString())
+            check_empty_fileds(Email,Pass )
             if (!admin_check.isChecked) {
-                var args = arrayOf(email_id.text.toString())
+                var args = arrayOf(Email)
                 var emp_cursor = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", args)
                 if (emp_cursor.moveToNext()) {
-                    var login_details = arrayOf(email_id.text.toString(), password.text.toString())
+                    var login_details = arrayOf(Email, Pass)
                     var cursor = db.rawQuery(
                         "SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=? AND PASSWORD=?",
                         login_details
@@ -43,11 +43,10 @@ class login : AppCompatActivity() {
 
                     if (cursor.moveToNext()) {
                         var pass = cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
-                        if (pass == password.text.toString()) {
+                        if (pass == Pass) {
 
+                            CompanionObjectData.loginDetails(Email,Pass,"Employee")
                             var intent = Intent(this, HomeScreenEmployee::class.java)
-                            intent.putExtra("EmpEmail", email_id.text.toString())
-                            intent.putExtra("EmpPass", password.text.toString())
                             startActivity(intent)
                             finish()
                         }
@@ -59,13 +58,11 @@ class login : AppCompatActivity() {
                 }
 
             } else {
-                 var s=email_id.text.toString()
-                var args = arrayOf(email_id.text.toString())
 
                 var admin_cursor = db.rawQuery("SELECT * FROM ADD_ADMIN", null)
                 if (admin_cursor.moveToNext()) {
 
-                    var login_details = arrayOf(email_id.text.toString(), password.text.toString())
+                    var login_details = arrayOf(Email, Pass)
                     var cursor = db.rawQuery(
                         "SELECT * FROM ADD_ADMIN WHERE EMAIL=? AND PASSWORD=?",
                         login_details
@@ -76,9 +73,8 @@ class login : AppCompatActivity() {
                         var pass = cursor.getString(cursor.getColumnIndex("PASSWORD")).toString()
                         if (pass == password.text.toString()) {
 
+                            CompanionObjectData.loginDetails(Email,Pass,"Admin")
                             var intent = Intent(this, Home_screen_admin::class.java)
-                            intent.putExtra("AdminEmail", email_id.text.toString())
-                            intent.putExtra("AdminPass", password.text.toString())
                             startActivity(intent)
                             finish()
                         }
@@ -90,6 +86,7 @@ class login : AppCompatActivity() {
                 }
             }
         }
+
         Register_btn.setOnClickListener {
             var reg_intent = Intent(this, Register::class.java)
             startActivity(reg_intent)

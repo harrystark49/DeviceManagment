@@ -27,31 +27,17 @@ class AdminSettings : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val i1 = activity?.intent?.extras
-        val mail = i1?.getString("email")
-
-        Toast.makeText(this.context,    "$mail is", Toast.LENGTH_SHORT).show()
-
         val view = inflater.inflate(R.layout.fragment_admin_settings, container, false)
 
-        val b = arguments
-
-        val email = b?.getString("AdminEmail")
-        val pass = b?.getString("AdminPass")
-
         view.update_profile.setOnClickListener {
+            
             val i = Intent(context,Register::class.java)
-            i.putExtra("AdminPass", pass)
-            i.putExtra("AdminEmail",email)
-
             startActivity(i)
             finish_Activity
         }
         view.change_password.setOnClickListener {
 
             val intent = Intent(context, ChangePassword::class.java)
-            intent.putExtra("AdminEmail", email)
-            intent.putExtra("AdminPass", pass)
             startActivity(intent)
             finish_Activity
         }

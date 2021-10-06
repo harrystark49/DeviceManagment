@@ -25,15 +25,12 @@ class Device_Details : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         var vi = inflater.inflate(R.layout.fragment_device__details, container, false)
         helper = DBHelper(vi.context)
         var db = helper.readableDatabase
 
         var args = arguments
         var id = args?.get("DeviceId").toString()
-        var emp_id = args?.getString("Email")
-
 
         loginViewModel = ViewModelProvider(this).get(All_Devices_view_Model::class.java)
 
@@ -74,7 +71,6 @@ class Device_Details : Fragment() {
                 vi.statusvalue.setText("Assigned")
 
             }
-
 
             var cursor2 = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE ID=?", arrayOf(mailid))
 

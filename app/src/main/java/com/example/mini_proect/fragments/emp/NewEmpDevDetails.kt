@@ -65,8 +65,6 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
             view.starttime.visibility = View.VISIBLE
             view.endtime.visibility = View.VISIBLE
 
-
-
             var c3 = db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE DEVICE_ID=? AND EMP_ID=?", arrayOf(id,idd))
             while (c3.moveToNext()) {
 
@@ -76,7 +74,6 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
                 view.starttime_value.setText(start_time)
                 view.endtime_value.setText(end_time)
             }
-
         }
 
 
@@ -125,7 +122,5 @@ class NewEmpDevDetails(var history: Boolean = false) : Fragment() {
 
         return view
     }
-
-
 }
 

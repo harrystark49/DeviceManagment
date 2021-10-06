@@ -23,26 +23,20 @@ class all_devices(var adminOremp:String,var email:String) : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         var view = inflater.inflate(R.layout.fragment_all_devices, container, false)
         intiData(view)
-
-
         return view
     }
-
-
     private fun intiData(view: View) {
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(Application())
         ).get(All_Devices_view_Model::class.java)
         viewModel.getDeviceDetails(requireContext())!!.observe(requireActivity(), Observer {
-
             if(it==null || it.isEmpty()){
                 view.no_devices.visibility=View.VISIBLE
             }else {

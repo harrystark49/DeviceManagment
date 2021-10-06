@@ -53,7 +53,7 @@ class emp_myhistory : Fragment() {
         }
 
 
-        var cursor1=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_ID=? ORDER BY DEVICE_ID", arrayOf(id))
+        var cursor1=db.rawQuery("SELECT * FROM DEVICE_HISTORY WHERE EMP_ID=?", arrayOf(id))
 
         while(cursor1.moveToNext()){
 

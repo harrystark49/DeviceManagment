@@ -14,8 +14,10 @@ class save_data : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_save_data)
+
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         c3.startAnimation(anim)
+
         var helper = DBHelper(this)
         var db = helper.readableDatabase
         var cv = ContentValues()
@@ -26,16 +28,14 @@ class save_data : AppCompatActivity() {
         var name = bundle?.get("NAME").toString()
         var mobile = bundle?.get("MOBILE").toString()
         var adminOruser=bundle?.getString("AdminOrUser")
+
         cv.put("ID", id)
         cv.put("NAME", name)
         cv.put("EMAIL", email)
         cv.put("MOBILE", mobile)
 
-
-
-
         emp_submit.setOnClickListener {
-            if (pass_check(emp_pass.text.toString())) {
+            if (passCheck(emp_pass.text.toString())) {
 
                 if (emp_pass.text.toString() != emp_confirm_password.text.toString()) {
                     Toast.makeText(this, R.string.Passwordmismatch, Toast.LENGTH_SHORT).show()
@@ -64,7 +64,7 @@ class save_data : AppCompatActivity() {
     }
 
 
-    private fun pass_check(pass: String): Boolean {
+    private fun passCheck(pass: String): Boolean {
         if (pass.isEmpty()) {
             material_emp_password.isErrorEnabled = true
             material_emp_password.error = getString(R.string.ProvidePassword)
@@ -82,9 +82,9 @@ class save_data : AppCompatActivity() {
     }
 
     private fun IsAlphaNumeric(id: String): Boolean {
-        var x: Boolean = false
-        var y: Boolean = false
-        var z: Boolean = true
+        var x = false
+        var y = false
+        var z = true
         for (c in id) {
             if (c in 'a'..'z' || c in 'A'..'Z')
                 x = true

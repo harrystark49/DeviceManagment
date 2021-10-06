@@ -27,21 +27,14 @@ class emp_settings : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_emp_settings, container, false)
-        val b = arguments
-        val email = b!!.getString("EmpEmail").toString()
-        val pass = b!!.getString("EmpPass").toString()
 
         view.emp_update_profile.setOnClickListener {
             val intent = Intent(context, Register::class.java)
-            intent.putExtra("EmpEmail", email)
-            intent.putExtra("EmpPass", pass)
             startActivity(intent)
             finish_Activity
         }
         view.emp_change_password.setOnClickListener {
             val intent = Intent(context, ChangePassword::class.java)
-            intent.putExtra("EmpEmail", email)
-            intent.putExtra("EmpPass", pass)
             startActivity(intent)
             finish_Activity
         }

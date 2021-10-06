@@ -16,36 +16,30 @@ import com.example.mini_proect.fragments.all_devices
 import kotlinx.android.synthetic.main.activity_home_screen_admin.*
 
 class Home_screen_admin : AppCompatActivity() {
+
     lateinit var togglebtn: ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_home_screen_admin)
 
-        var b: Bundle? = intent.extras
-        var emails = b?.getString("AdminEmail").toString()
+        var mail = CompanionObjectData.email
+        var b:Bundle? = intent.extras
+        var text = b?.getString("AdminSettings")
 
-        var admin=b?.getString("Admin")
-
-        if(admin.isNullOrEmpty()){
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_replacer, all_devices("Admin", emails))
-            commit()
-        }}else{
-            var b: Bundle? = intent.extras
-            var email = b?.getString("AdminEmail").toString()
-            var pass = b?.getString("AdminPass").toString()
-
+        if(text.isNullOrEmpty()) {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragment_replacer, all_devices("Admin", mail))
+                commit()
+            }
+        }
+        else{
             val myFrag = AdminSettings()
-            val mBundle = Bundle()
-            mBundle.putString("AdminEmail", email)
-            mBundle.putString("AdminPass", pass)
-
-            myFrag.arguments = mBundle
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.fragment_replacer, myFrag)
                 commit()
             }
         }
-        setContentView(R.layout.activity_home_screen_admin)
 
         togglebtn = ActionBarDrawerToggle(this, drawer_layout, R.string.open, R.string.close)
         drawer_layout.addDrawerListener(togglebtn)
@@ -55,32 +49,25 @@ class Home_screen_admin : AppCompatActivity() {
         navigation_tool.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.admin_all_devices -> {
-                    fragmets(all_devices("Admin", emails!!))
+                    fragments(all_devices("Admin", mail!!))
 
                 }
                 R.id.request_devices -> {
-                    fragmets(AdminRequestDevices("Admin", emails!!))
+                    fragments(AdminRequestDevices("Admin", mail!!))
                 }
                 R.id.add_newDevice -> {
-                    fragmets(AddNewDevice())
+                    fragments(AddNewDevice())
                 }
                 R.id.admin_settings -> {
-                    var b: Bundle? = intent.extras
-                    var email = b?.getString("AdminEmail").toString()
-                    var pass = b?.getString("AdminPass").toString()
 
                     val myFrag = AdminSettings()
-                    val mBundle = Bundle()
-                    mBundle.putString("AdminEmail", email)
-                    mBundle.putString("AdminPass", pass)
-
-                    myFrag.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.fragment_replacer, myFrag)
                         commit()
                     }
                 }
                 R.id.admin_logout_device -> {
+
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle(R.string.alert)
                     builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
@@ -100,7 +87,7 @@ class Home_screen_admin : AppCompatActivity() {
 
     }
 
-    fun fragmets(frag: Fragment) {
+    fun fragments(frag: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_replacer, frag)
             commit()

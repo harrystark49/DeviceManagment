@@ -20,25 +20,20 @@ class HomeScreenEmployee : AppCompatActivity() {
     lateinit var toggle:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_home_screen_employee)
-        var b:Bundle? = intent.extras
-        var email = b?.getString("EmpEmail")
-        var emp=b?.getString("Emp")
 
-        if(emp.isNullOrEmpty()){
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.emp_fragment_replacer, all_devices("emp",email.toString()))
-            commit()
-        }}else{
-            var b: Bundle? = intent.extras
-            var email = b?.getString("EmpEmail")
-            var pass = b?.getString("EmpPass")
+        var mail = CompanionObjectData.email
+        var b:Bundle? = intent.extras
+        var text = b?.getString("EmpSettings")
+
+        if(text.isNullOrEmpty()) {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.emp_fragment_replacer, all_devices("emp", mail))
+                commit()
+            }
+        }
+        else{
             val myFrag1 = emp_settings()
-            val mBundle = Bundle()
-            mBundle.putString("EmpEmail", email)
-            mBundle.putString("EmpPass", pass)
-            myFrag1.arguments = mBundle
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.emp_fragment_replacer, myFrag1)
                 commit()
@@ -52,45 +47,35 @@ class HomeScreenEmployee : AppCompatActivity() {
         emp_navigation_tool.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.emp_all_devices->{
-                    var b:Bundle? = intent.extras
-                    var email = b?.getString("EmpEmail")
-                   Fragments(all_devices("emp",email!!))
+
+                   fragments(all_devices("emp",mail))
                 }
                 R.id.emp_mydevices->{
-                    var b: Bundle? = intent.extras
-                    var email = b?.getString("EmpEmail")
-                    val myFrag1 = MyDevices()
+
+                    val myFrag = MyDevices()
                     val mBundle = Bundle()
-                    mBundle.putString("EmpEmail", email)
-                    myFrag1.arguments = mBundle
+                    mBundle.putString("EmpEmail",mail)
+                    myFrag.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.emp_fragment_replacer, myFrag1)
+                        replace(R.id.emp_fragment_replacer, myFrag)
                         commit()
                     }
                 }
                 R.id.emp_myhistory->{
-                    var b: Bundle? = intent.extras
-                    var email = b?.getString("EmpEmail")
-                    val myFrag1 = emp_myhistory()
+                    val myFrag = emp_myhistory()
                     val mBundle = Bundle()
-                    mBundle.putString("EmpEmail", email)
-                    myFrag1.arguments = mBundle
+                    mBundle.putString("EmpEmail", mail)
+                    myFrag.arguments = mBundle
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.emp_fragment_replacer, myFrag1)
+                        replace(R.id.emp_fragment_replacer, myFrag)
                         commit()
                     }
                 }
                 R.id.emp_settings-> {
-                    var b: Bundle? = intent.extras
-                    var email = b?.getString("EmpEmail")
-                    var pass = b?.getString("EmpPass")
-                    val myFrag1 = emp_settings()
-                    val mBundle = Bundle()
-                    mBundle.putString("EmpEmail", email)
-                    mBundle.putString("EmpPass", pass)
-                    myFrag1.arguments = mBundle
+
+                    val myFrag = emp_settings()
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.emp_fragment_replacer, myFrag1)
+                        replace(R.id.emp_fragment_replacer, myFrag)
                         commit()
                     }
                 }
@@ -110,7 +95,7 @@ class HomeScreenEmployee : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-    private fun Fragments(frag:Fragment){
+    private fun fragments(frag:Fragment){
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.emp_fragment_replacer, frag)
             commit()

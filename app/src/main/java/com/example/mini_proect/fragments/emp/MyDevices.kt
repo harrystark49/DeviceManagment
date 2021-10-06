@@ -47,7 +47,6 @@ class MyDevices : Fragment() {
              id=cursor.getString(cursor.getColumnIndex("ID"))
         }
 
-
         var cursor1=db.rawQuery("SELECT * FROM ACCEPTED_DEVICES WHERE EMP_ID=?", arrayOf(id))
 
         while(cursor1.moveToNext()){

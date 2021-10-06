@@ -28,7 +28,7 @@ class adap(
         var helper = DBHelper(context)
         var db = helper.readableDatabase
 
-        fun setdata(data: AllDevicesEntity, position: Int) {
+        fun setData(data: AllDevicesEntity, position: Int) {
             var s = devices[position].device_Id
             data.device_Id = devices[position].device_Id
             var cursor1 =
@@ -82,7 +82,7 @@ override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
 override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     var data = devices[position]
-    holder.setdata(data, position)
+    holder.setData(data, position)
 }
 
 override fun getItemCount(): Int {

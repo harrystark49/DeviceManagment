@@ -36,14 +36,12 @@ class AdminRequestDevices(var adminOremp:String,var email:String) : Fragment() {
 
         while(cursor.moveToNext()){
             var db_id=cursor.getColumnIndex("DEVICE_ID")
-            var db_mail=cursor.getColumnIndex("EMAIL")
             var db_manufacture=cursor.getColumnIndex("MANUFACTURE")
             var db_ostype=cursor.getColumnIndex("OS_TYPE")
             var db_version=cursor.getColumnIndex("VERSION")
             var db_phn_type=cursor.getColumnIndex("PHN_TYPE")
 
             var id=cursor.getString(db_id).toString()
-            var mail=cursor.getString(db_mail)
             var manufacacture=cursor.getString(db_manufacture)
             var ostype=cursor.getString(db_ostype)
             var version=cursor.getString(db_version)

@@ -26,7 +26,7 @@ class RequestDeviceAdapter(
         var helper= DBHelper(context)
         var db=helper.readableDatabase
 
-        fun setdata(data: AllDevicesEntity, position: Int) {
+        fun setData(data: AllDevicesEntity, position: Int) {
             var s=devices[position].device_Id
             data.device_Id = devices[position].device_Id
             var cursor=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
@@ -78,7 +78,7 @@ class RequestDeviceAdapter(
 
     override fun onBindViewHolder(holder: RequestDeviceAdapter.ViewHolder, position: Int) {
         var data = devices[position]
-        holder.setdata(data, position)
+        holder.setData(data, position)
     }
 
     override fun getItemCount(): Int {

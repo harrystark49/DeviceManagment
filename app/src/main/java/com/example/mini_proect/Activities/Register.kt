@@ -33,20 +33,18 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         var adap = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, arr)
         spin.adapter = adap
 
-        var b :Bundle? = intent.extras
-        var adminEmail = b?.getString("AdminEmail")
-        var empEmail = b?.getString("EmpEmail")
-        var adminPass = b?.getString("AdminPass")
-        var empPass = b?.getString("EmpPass")
+        var mail = CompanionObjectData.email
+        var password = CompanionObjectData.password
+        var person = CompanionObjectData.type
 
         // For updating the admin profile
 
-        if(adminEmail!=null) {
+        if(person.equals("Admin")) {
 
             spin.visibility=View.GONE
             type.visibility=View.GONE
 
-            var cursor = db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?", arrayOf(adminEmail))
+            var cursor = db.rawQuery("SELECT * FROM ADD_ADMIN WHERE EMAIL=?", arrayOf(mail))
             if (cursor.moveToFirst()) {
 
                 var id_index = cursor.getColumnIndex("ID")
@@ -74,8 +72,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     var Email = emp_email.text.toString()
                     var MobileNo = emp_mobile.text.toString()
 
-
-                    if(Check_for_empty_fields(id,Name,Email,MobileNo,adminEmail)) {
+                    if(Check_for_empty_fields(id,Name,Email,MobileNo,mail)) {
 
                         var cv=ContentValues()
                         cv.put("NAME",Name)
@@ -83,11 +80,10 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         cv.put("MOBILE",MobileNo)
                         db.update("ADD_ADMIN",cv,"ID=?", arrayOf(id))
 
+                        CompanionObjectData.loginDetails(Email,password,"Admin")
                         Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
                         var i = Intent(this,Home_screen_admin::class.java)
-                        i.putExtra("AdminEmail",Email)
-                        i.putExtra("AdminPass",adminPass)
-                        i.putExtra("Admin","Admin")
+                        i.putExtra("AdminSettings","Admin")
                         startActivity(i)
                         finishAffinity()
 
@@ -102,12 +98,12 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         //For updating the employee profile
 
-        else if(empEmail!=null) {
+        else if(person.equals("Employee")) {
 
             spin.setSelection(1)
             spin.isEnabled = false
 
-            var cursor = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(empEmail))
+            var cursor = db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(mail))
             if (cursor.moveToNext()) {
 
                 var id_index = cursor.getColumnIndex("ID")
@@ -136,7 +132,7 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     var Email = emp_email.text.toString()
                     var MobileNo = emp_mobile.text.toString()
 
-                    if (Check_for_empty_fields(id,Name, Email, MobileNo,empEmail)) {
+                    if (Check_for_empty_fields(id,Name, Email, MobileNo,mail)) {
 
                         var cv = ContentValues()
                         cv.put("NAME", Name)
@@ -144,18 +140,19 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         cv.put("MOBILE", MobileNo)
                         db.update("ADD_EMPLOYEE", cv, "ID=?", arrayOf(id))
 
-                        if(!empEmail.equals(Email)) {
+                        if(!mail.equals(Email)) {
                             var cv2 = ContentValues()
                             cv2.put("EMAIL",Email)
-                            db.update("REQUESTED_DEVICES", cv2, "EMAIL=?", arrayOf(empEmail))
+                            db.update("REQUESTED_DEVICES", cv2, "EMAIL=?", arrayOf(mail))
                         }
+
+                        CompanionObjectData.loginDetails(Email,password,"Employee")
+
                         Toast.makeText(this, "Successfully updated profile", Toast.LENGTH_SHORT).show()
 
 
                         var i = Intent(this,HomeScreenEmployee::class.java)
-                        i.putExtra("EmpEmail",Email)
-                        i.putExtra("EmpPass",empPass)
-                        i.putExtra("Emp","Emp")
+                        i.putExtra("EmpSettings","Employee")
                         startActivity(i)
                         finishAffinity()
 
@@ -290,9 +287,9 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun IsAlphaNumeric(id: String): Boolean {
-        var x:Boolean=false
-        var y:Boolean=false
-        var z=true
+        var x = false
+        var y = false
+        var z = true
         for(c in id){
             if(c in 'a'..'z' || c in 'A'..'Z'){
                 x=true

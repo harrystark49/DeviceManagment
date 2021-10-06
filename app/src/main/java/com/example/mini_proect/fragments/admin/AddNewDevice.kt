@@ -52,7 +52,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
         if(it == null){
 
             deviceID.isErrorEnabled = false
-                if (Error(devId, osVer)) {
+                if (error(devId, osVer)) {
                     val builder = AlertDialog.Builder(view.context)
                     builder.setTitle(R.string.Devicemessage)
                         .setPositiveButton(getString(R.string.yes),
@@ -133,7 +133,7 @@ class AddNewDevice : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
-    private fun Error(deviceId: String, osVersion: String): Boolean {
+    private fun error(deviceId: String, osVersion: String): Boolean {
         var y = 0
         if (deviceId.isEmpty()) {
             deviceID.error = getString(R.string.EnterDeviceID)

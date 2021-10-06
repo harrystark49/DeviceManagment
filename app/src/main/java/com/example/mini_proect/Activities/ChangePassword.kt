@@ -9,23 +9,22 @@ import android.widget.Toast
 import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.activity_change_password.*
+import java.net.PasswordAuthentication
 
 class ChangePassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_password)
+
         val anim = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         password_main.startAnimation(anim)
 
         var helper = DBHelper(this)
         var db = helper.readableDatabase
 
-        var b: Bundle? = intent.extras
-        var empEmail = b?.getString("EmpEmail")
-        var empPass = b?.getString("EmpPass")
-
-        var adminEmail = b?.getString("AdminEmail")
-        var adminPass = b?.getString("AdminPass")
+        var password = CompanionObjectData.password
+        var mail = CompanionObjectData.email
+        var type = CompanionObjectData.type
 
         submit_button.setOnClickListener {
 
@@ -33,38 +32,38 @@ class ChangePassword : AppCompatActivity() {
             val NewPass = new_password.text.toString()
             val ConNew = admin_confirm_password.text.toString()
 
-            if(OldPass==empPass){
+            if((OldPass==password) && (type.equals("Employee"))){
                 oldpassword.isErrorEnabled = false
                 if(checkDetails(NewPass,ConNew,OldPass)) {
                     if (OldPass!=NewPass) {
                         var cv = ContentValues()
                         cv.put("PASSWORD", NewPass)
-                        db.update("ADD_EMPLOYEE", cv, "EMAIL=?", arrayOf(empEmail))
+                        db.update("ADD_EMPLOYEE", cv, "EMAIL=?", arrayOf(mail))
 
+                        CompanionObjectData.loginDetails(mail,NewPass,"Employee")
                         Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
+
                         var i=Intent(this,HomeScreenEmployee::class.java)
-                        i.putExtra("EmpEmail",empEmail)
-                        i.putExtra("EmpPass",NewPass)
-                        i.putExtra("Emp","Emp")
+                        i.putExtra("EmpSettings","Employee")
                         startActivity(i)
                         finishAffinity()
                     }
                 }
             }
 
-            else if(OldPass==adminPass){
+            else if((OldPass==password) && (type.equals("Admin"))){
                 oldpassword.isErrorEnabled = false
                 if(checkDetails(NewPass,ConNew,OldPass) ) {
                     if (!OldPass.equals(NewPass)) {
                         var cv = ContentValues()
                         cv.put("PASSWORD", NewPass)
-                        db.update("ADD_ADMIN", cv, "EMAIL=?", arrayOf(adminEmail))
+                        db.update("ADD_ADMIN", cv, "EMAIL=?", arrayOf(mail))
+
+                        CompanionObjectData.loginDetails(mail,NewPass,"Admin")
 
                         Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
                         var i=Intent(this,Home_screen_admin::class.java)
-                        i.putExtra("AdminEmail",adminEmail)
-                        i.putExtra("AdminPass",NewPass)
-                        i.putExtra("Admin","Admin")
+                        i.putExtra("AdminSettings","Admin")
                         startActivity(i)
                         finishAffinity()
                     }
@@ -114,14 +113,10 @@ class ChangePassword : AppCompatActivity() {
         return false
     }
 
-
-
-
-
         private fun IsAlphaNumeric(id: String): Boolean {
-            var x: Boolean = false
-            var y: Boolean = false
-            var z: Boolean = true
+            var x = false
+            var y = false
+            var z = true
             for (c in id) {
                 if (c in 'a'..'z' || c in 'A'..'Z')
                     x = true
@@ -139,8 +134,5 @@ class ChangePassword : AppCompatActivity() {
     }
 
 
-/*
 
-
- */
 
