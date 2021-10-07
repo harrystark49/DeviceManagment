@@ -14,6 +14,7 @@ import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.fragment_emp_device_details.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -130,7 +131,12 @@ class EmpDeviceDetails(var email: String, var details: String = "details") : Fra
             } else if (reg == "RETURN DEVICE") {
                 var cv1 = ContentValues()
                 cv1.put("DEVICE_ID", id)
-                cv1.put("EMP_ID", mail)
+                var cv2=db.rawQuery("SELECT * FROM ADD_EMPLOYEE WHERE EMAIL=?", arrayOf(mail))
+                var emp_id=""
+                if(cv2.moveToNext()){
+                    emp_id=cv2.getString(cv2.getColumnIndex("ID"))
+                }
+                cv1.put("EMP_ID", emp_id)
 
 
                 val simpleDateFormat = SimpleDateFormat("MM.dd.yyyy HH:mm:ss")
@@ -151,10 +157,10 @@ class EmpDeviceDetails(var email: String, var details: String = "details") : Fra
 
                 var c = db.rawQuery(
                     "SELECT * FROM DEVICE_HISTORY WHERE DEVICE_ID=? AND EMP_ID=?",
-                    arrayOf(id, mail)
+                    arrayOf(id, emp_id)
                 )
                 if (c.moveToNext()) {
-                    db.update("DEVICE_HISTORY", cv1, "DEVICE_ID=? AND EMP_ID=?", arrayOf(id, mail))
+                    db.update("DEVICE_HISTORY", cv1, "DEVICE_ID=? AND EMP_ID=?", arrayOf(id, emp_id))
                 } else {
                     db.insert("DEVICE_HISTORY", null, cv1)
                 }
