@@ -98,6 +98,8 @@ class login : AppCompatActivity() {
         var builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.alert)
         builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
+
+            CompanionObjectData.loginDetails("","","")
             finish()
         }
         builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->

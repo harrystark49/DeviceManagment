@@ -71,6 +71,7 @@ class Home_screen_admin : AppCompatActivity() {
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle(R.string.alert)
                     builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
+                        CompanionObjectData.loginDetails("","","")
                         finishAffinity()
                     }
                     builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
@@ -114,6 +115,8 @@ class Home_screen_admin : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.alert)
         builder.setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
+
+            CompanionObjectData.loginDetails("","","")
             finishAffinity()
         }
         builder.setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
