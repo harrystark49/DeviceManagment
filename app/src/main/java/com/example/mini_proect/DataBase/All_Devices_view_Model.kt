@@ -30,4 +30,8 @@ class All_Devices_view_Model:ViewModel() {
         emplogindata = All_Devices_Repository.getLoginDetails(context)
         return emplogindata
     }
+
+    fun delete(context: Context,id:String){
+        All_Devices_Repository.delete(context, id)
+    }
 }

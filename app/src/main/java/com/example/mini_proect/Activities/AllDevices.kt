@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mini_proect.DataBase.AllDevicesEntity
 import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.R
 import kotlinx.android.synthetic.main.fragment_all_devices.view.*
@@ -46,7 +47,12 @@ class all_devices(var adminOremp:String,var email:String) : Fragment() {
                 var LLM: LinearLayoutManager = LinearLayoutManager(context)
                 LLM.orientation = RecyclerView.VERTICAL
                 recycle.layoutManager = LLM
-                var adapter = context?.let { it1 -> Adapter(it1, it, adminOremp, email) }
+                var alist = ArrayList<AllDevicesEntity>()
+                for( i in it){
+                    alist.add(i)
+
+                }
+                var adapter = context?.let { it1 -> Adapter(it1, alist, adminOremp, email) }
                 recycle.adapter = adapter
 
             }

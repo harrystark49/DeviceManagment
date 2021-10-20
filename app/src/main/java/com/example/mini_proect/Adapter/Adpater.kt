@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_proect.DataBase.AllDevicesEntity
+import com.example.mini_proect.DataBase.All_Devices_view_Model
 import com.example.mini_proect.DataBase.DBHelper
 import com.example.mini_proect.R
 import com.example.mini_proect.fragments.admin.Device_Details
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.alldeviceviewitem.view.*
 
 class Adapter(
     var context: Context,
-    var devices: List<AllDevicesEntity>,
+    var devices: ArrayList<AllDevicesEntity>,
     var AdminOrEmp: String = "emp",
     var email:String
 ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
@@ -46,6 +47,23 @@ class Adapter(
             itemView.phoneType.text="Phone type: "+devices[position].phonetype
             itemView.manu.text="Manufacture: "+devices[position].Manufacture
             itemView.version.text=devices[position].Version
+
+
+
+            itemView.setOnLongClickListener {
+                if (AdminOrEmp == "Admin"){
+                    var cursor2=db.rawQuery("SELECT DEVICE_ID FROM REQUESTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
+                    var cursor3=db.rawQuery("SELECT DEVICE_ID FROM ACCEPTED_DEVICES WHERE DEVICE_ID=?", arrayOf(s))
+                    if(!(cursor2.moveToNext() || cursor3.moveToNext())){
+                        All_Devices_view_Model().delete(context,devices[position].device_Id)
+                        devices.remove(data)
+                        notifyDataSetChanged()
+                    }
+                }
+                true
+            }
+
+
 
 
             itemView.setOnClickListener {

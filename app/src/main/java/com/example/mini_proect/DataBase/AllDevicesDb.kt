@@ -19,6 +19,7 @@ abstract class All_Devices_Db: RoomDatabase(){
             synchronized(context){
                 INSTACE = Room
                     .databaseBuilder(context,All_Devices_Db::class.java,"emp_database")
+                    .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build()
                 return INSTACE!!

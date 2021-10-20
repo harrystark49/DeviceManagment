@@ -67,5 +67,11 @@ class All_Devices_Repository {
 
             return livedata
         }
+
+        fun delete(context: Context,id:String){
+
+            data = initializeDb(context)
+            data!!.All_Devices_Dao().delete(id)
+        }
     }
 }

@@ -19,6 +19,9 @@ interface AllDevicesDao {
     @Query("SELECT * FROM all_Devices_Details ORDER BY device_Id")
     fun getDetails(): LiveData<List<AllDevicesEntity>>
 
+    @Query("DELETE FROM all_Devices_Details WHERE device_Id=:id")
+    fun delete(id:String)
+
 
 
 }
